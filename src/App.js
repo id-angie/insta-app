@@ -16,6 +16,9 @@ class App extends Component {
         <p className="App-loving-phrase">
           Sereja privet nyam <i>LOVE</i>
         </p>
+        <p className="App-loving-phrase">
+          Angie privet <i>LOVE</i>
+        </p>
       </div>
     );
   }
