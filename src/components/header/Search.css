@@ -1,0 +1,22 @@
+.search {
+	display: inline-block;
+	width: 200px;
+	height: 15px;
+	background-color: #fafafa;
+	border: 1px solid #dbdbdb;
+	font-family: Roboto, Helvetica, Arial;
+	font-size: 13px;
+	font-weight: 300;
+	text-align: center;
+	padding: 5px;
+	border-radius: 3px;
+}
+
+.search:focus {
+	outline: none;
+	text-align: left;
+}
+
+.search::placeholder {
+	color: #a7a9ac;
+}

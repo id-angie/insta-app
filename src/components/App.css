@@ -1,0 +1,13 @@
+.App {
+  background-color: #fafafa;
+}
+
+
+.container {
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  vertical-align: top;
+  align-items: center;
+}
