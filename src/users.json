@@ -1,0 +1,24 @@
+[
+  {
+    "id": "zamarawka",
+    "name": "Sereja",
+    "location": "MSK, Planet Earth.",
+    "avatar": "avatarS",
+    "accountData": {
+      "posts": 42,
+      "followers": 77,
+      "following": 113
+    }
+  },
+  {
+    "id": "id_angie",
+    "name": "Angelina",
+    "location": "",
+    "avatar": "avatarA",
+    "accountData": {
+      "posts": 240,
+      "followers": 76,
+      "following": 101
+    }
+  }
+]

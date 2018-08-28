@@ -10,13 +10,15 @@ class LoginButton extends Component {
 
   render() {
     return (
-      <a
-        href="#login"
-        className="login-button"
-        onClick={this.showLoginForm}
-      >
-        Войти
-      </a>
+      <div className="login-button">
+        <a
+          href="#login"
+          className="login-button__link"
+          onClick={this.showLoginForm}
+        >
+          Войти
+        </a>
+      </div>
     );
   }
 }

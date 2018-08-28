@@ -1,3 +1,7 @@
+* {
+  transition: all .3s;
+}
+
 .header {
   background-color: #fff;
   height: 90px;
@@ -5,21 +9,31 @@
   border-bottom: 1px solid #e7e7e7;
   display: flex;
   justify-content: center;
+  position: fixed;
 }
 
-.header-logo {
-  width: 300px;
+.header_scrolled {
+  height: 52px;
 }
 
-.img-logo {
-  height: 30px;
-  vertical-align: middle;
+.header__logo {
+  width: 30%;
+}
+
+.header__img-logo {
   padding-right: 20px;
-  border-right: 2px solid #ccc;
+  border-right: 1px solid rgb(147, 147, 147);
 }
 
-.text-logo {
-  height: 45px;
+.header__text-logo {
   padding-left: 20px;
-  vertical-align: middle;
+}
+
+.header_scrolled .header__img-logo {
+  padding-right: 20px;
+  border-right: none;
+}
+
+.header_scrolled .header__text-logo {
+  opacity: 0;
 }

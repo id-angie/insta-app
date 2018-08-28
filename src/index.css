@@ -1,5 +1,62 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family:
+    -apple-system,
+    system-ui,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+button {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  vertical-align: top;
+  align-items: center;
+}
+
+.img-logo {
+  height: 30px;
+  vertical-align: middle;
+}
+
+.text-logo {
+  height: 45px;
+  vertical-align: middle;
+}
+
+.ml40 {
+	margin-left: 40px;
+}
+
+.ml20 {
+	margin-left: 20px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.mt40 {
+	margin-top: 40px;
+}
+
+.mb40 {
+  margin-bottom: 40px;
 }
