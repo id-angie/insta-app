@@ -1,3 +1,7 @@
+* {
+  transition: all .3s, background-position 0s;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -22,6 +26,23 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 32px;
+  color: rgb(38, 38, 38);
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+  line-height: 20px;
+}
+
+input:focus {
+  outline: none;
+}
+
 .container {
   width: 1000px;
   display: flex;
@@ -41,6 +62,14 @@ a {
   vertical-align: middle;
 }
 
+.avatarS {
+  background-image: url('./assets/avatarS.jpg');
+}
+
+.avatarA {
+  background-image: url('./assets/avatarA.jpg');
+}
+
 .ml40 {
 	margin-left: 40px;
 }
@@ -55,6 +84,10 @@ a {
 
 .mt40 {
 	margin-top: 40px;
+}
+
+.mt10 {
+  margin-top: 10px;
 }
 
 .mb40 {

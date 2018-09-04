@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cn from 'classnames';
 import './index.css';
 import Search from '../ui/Search.js';
 import LoginButton from '../ui/LoginButton.js';
@@ -19,7 +20,9 @@ class Header extends Component {
   render() {
     return (
       <header
-        className={`header${this.state.scrolled ?" header_scrolled" : ""}`}
+        className={ cn("header", {
+          "header_scrolled": this.state.scrolled
+        }) }
       >
        <div className="container">
           <div className="header__logo">

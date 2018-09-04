@@ -8,8 +8,8 @@ class Search extends Component {
   };
   render() {
     return (
-      <div className={cn('search', {
-        search_focused: this.state.isFocused
+      <div className={cn("search", {
+        "search_focused": this.state.isFocused
       })}>
         <input
           className="search__input"

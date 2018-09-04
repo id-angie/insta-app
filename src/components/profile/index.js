@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import './index.css';
 import CustomButton from '../ui/CustomButton';
-import cn from 'classnames';
 
 class Profile extends Component {
   static propTypes = {
     user: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
-      location: PropTypes.string,
+      about: PropTypes.string,
       avatar: PropTypes.string,
       isFollow: PropTypes.bool,
       accountData: PropTypes.shape({
@@ -24,7 +24,7 @@ class Profile extends Component {
     user: {
       id: 'unknown',
       name: '',
-      location: '',
+      about: '',
       avatar: '',
       isFollow: false,
       accountData: {
@@ -35,18 +35,8 @@ class Profile extends Component {
     }
   };
 
-  state = {
-    isFollow: this.props.user.isFollow
-  };
-
-  toggleFollow = () => {
-    this.setState({
-      isFollow: !this.state.isFollow
-    });
-    }
-
   render() {
-    const { user } = this.props;
+    const { user, isFollow, handleClick } = this.props;
     return (
       <div>
         <div className="profile">
@@ -57,11 +47,12 @@ class Profile extends Component {
               <div className="profile__row">
                 <div className="profile__user-name">{ user.id }</div>
                 <CustomButton
-                  className="profile__follow-button ml20"
-                  isActive={this.state.isFollow}
-                  onClick={this.toggleFollow}
+                className="profile__follow-button ml20"
+                  isActive={isFollow}
+                  textActive="Подписки"
+                  textDisactive="Подписаться"
+                  handleClick={handleClick}
                 >
-                  { this.state.isFollow ? "Подписки" : "Подписаться" }
                 </CustomButton>
               </div>
               <div className="profile__row">
@@ -77,7 +68,7 @@ class Profile extends Component {
               </div>
               <div className="profile__user-data">
                 <b>{ user.name }</b><br />
-                { user.location }
+                { user.about }
               </div>
             </div>
           </div>

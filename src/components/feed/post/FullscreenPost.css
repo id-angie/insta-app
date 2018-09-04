@@ -1,0 +1,53 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: .8;
+  z-index: 9999;
+}
+
+.fullscreen-post-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  overflow: scroll;
+}
+
+.fullscreen-post {
+  flex-basis: 800px;
+  height: 550px;
+  background-color: #fff;
+  display: flex;
+}
+
+.fullscreen-post__img {
+  width: 65%;
+  height: 100%;
+  background-image: url(../../../assets/post.jpg);
+  background-size: cover;
+}
+
+.close {
+  position: fixed;
+  top: 5px;
+  right: 20px;
+  font-size: 40px;
+  color: #bababa;
+  background-color: transparent;
+  border: none;
+  transition: color 0s;
+}
+
+.close:hover {
+  color: #fff;
+  cursor: pointer;
+}

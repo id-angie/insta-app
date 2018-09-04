@@ -16,3 +16,15 @@
   border: 1px solid #dbdbdb;
   color: rgb(38, 38, 38);
 }
+
+.post-info__follow-button {
+  color: rgb(56, 151, 240);
+  border: none;
+  padding: 0;
+  background-color: #fff;
+  height: 35px;
+}
+
+.post-info__follow-button.custom-button_active {
+  color: rgb(38, 38, 38);
+}

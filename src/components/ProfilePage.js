@@ -6,13 +6,23 @@ import Footer from './footer';
 import users from '../users.json';
 
 class ProfilePage extends Component {
+  state = {
+    isFollow: users[0].isFollow
+  };
+
+  toggleFollow = () => {
+    (this.state.isFollow === false || window.confirm("Отписаться?")) &&
+      this.setState({
+       isFollow: !this.state.isFollow
+      });
+  }
+
   render() {
-    const random = (new Date()) %2 ===0 ? 0 : 1;
     return (
       <div className="ProfilePage">
         <Header />
-        <Profile user={users[random]} />
-        <Feed />
+        <Profile user={users[0]} isFollow={this.state.isFollow} handleClick={this.toggleFollow} />
+        <Feed user={users[0]} isFollow={this.state.isFollow} handleClick={this.toggleFollow} />
         <Footer />
       </div>
     );

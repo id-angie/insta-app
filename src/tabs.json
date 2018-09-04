@@ -1,0 +1,12 @@
+[
+  {
+    "value": "posts",
+    "title": "Публикации",
+    "iconClass":"feed-state__img_view_posts"
+  },
+  {
+    "value": "tagged",
+    "title": "Отметки",
+    "iconClass":"feed-state__img_view_tagged"
+  }
+]

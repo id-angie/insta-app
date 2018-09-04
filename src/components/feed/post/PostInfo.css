@@ -1,0 +1,129 @@
+.post-info {
+  height: 100%;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 17px;
+  box-sizing: border-box;
+}
+
+.post-info__header {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  line-height: 32px;
+}
+
+.post-info__comments {
+  border-top: 1px solid #ddd;
+  font-size: 14px;
+  padding: 10px 5px;
+  height: 68%;
+  margin: 0;
+  overflow: scroll;
+}
+
+.post-info__avatar {
+  height: 30px;
+  width: 30px;
+  margin-right: 7px;
+  background-size: contain;
+  border-radius: 50%;
+}
+
+.post-info__dot {
+  margin: 0 10px;
+}
+
+.post-info__feedback {
+  border-top: 1px solid #ddd;
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.post-info__actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-info__actions-left {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-info__actions-left::after {
+  content: '';
+  width: 45%;
+}
+
+.post-info__icon {
+  height: 25px;
+  width: 25px;
+  background-image: url(../../../assets/sprite2.png);
+  margin: 5px;
+}
+
+.post-info__icon_like {
+  background-position: -25px -91px;
+}
+
+.post-info__icon_like-active {
+  background-position: 0 -91px;
+}
+
+.post-info__icon_comment {
+  background-position: -26px -65px;
+}
+
+.post-info__icon_share {
+  background-position: -52px -143px;
+}
+
+.post-info__icon_save {
+  background-position: -157px -78px;
+}
+
+.post-info__icon_save-active {
+  background-position: -157px 0;
+}
+
+.post-info__likes {
+  font-size: 14px;
+}
+
+.post-info__date {
+  font-size: 10px;
+  color: rgb(153, 153, 153);
+  text-transform: uppercase;
+}
+
+.post-info__add-comment {
+  border-top: 1px solid #ddd;
+  height: 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.post-info__add-comment-input {
+  border: none;
+  width: 100%;
+  font-size: 14px;
+  color: #262626;
+  line-height: 10px;
+}
+
+.post-info__add-comment-actions {
+  width: 15%;
+  font-size: 20px;
+  color: #111;
+  line-height: 26px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
