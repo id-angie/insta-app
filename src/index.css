@@ -53,6 +53,33 @@ input:focus {
   align-items: center;
 }
 
+.input-box {
+  display: flex;
+  justify-content: center;
+  background-color: #fafafa;
+  border: 1px solid #dbdbdb;
+}
+
+.input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.input::placeholder {
+  color: #a7a9ac;
+}
+
+.input:focus {
+  outline: none;
+  text-align: left;
+}
+
 .img-logo {
   height: 30px;
   vertical-align: middle;

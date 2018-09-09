@@ -8,11 +8,11 @@ class Search extends Component {
   };
   render() {
     return (
-      <div className={cn("search", {
+      <div className={cn("search input-box", {
         "search_focused": this.state.isFocused
       })}>
         <input
-          className="search__input"
+          className="input search__input"
           placeholder="Поиск"
           onFocus={() => this.setState({ isFocused: true })}
           onBlur={() => this.setState({ isFocused: false })}
