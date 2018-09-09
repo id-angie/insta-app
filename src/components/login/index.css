@@ -1,0 +1,72 @@
+.login-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login {
+  background-color: #fff;
+  border: 1px solid #e7e7e7;
+  width: 330px;
+  margin: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.login__logo {
+  background-image: url('../../assets/sprite.png');
+  width: 175px;
+  height: 51px;
+  background-position: -97px -150px;
+  margin: 15px;
+}
+
+.login__input-box {
+  width: 75%;
+  display: flex;
+  position: relative;
+}
+
+.login__label {
+  position: absolute;
+  top: 25%;
+  left: 0;
+  color: #a7a9ac;
+  font-size: 12px;
+  padding: 2px 5px;
+}
+
+.login__label_small {
+  top: 0;
+  font-size: 9px;
+}
+
+.login__input {
+  font-size: 12px;
+  width: 100%;
+  height: 80%;
+  padding: 11px 6px;
+  text-align: left;
+  z-index: 999;
+}
+
+.login__input_typing {
+  padding: 18px 10px 4px 6px;
+}
+
+.login__login-button {
+  margin: 20px;
+  width: 75%;
+}
+
+.login__login-button_disactive {
+  opacity: .5;
+}
+
+.login__input_focused::placeholder {
+  font-size: 10px;
+}
