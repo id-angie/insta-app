@@ -34,7 +34,7 @@ class Post extends Component {
   }
 
   render() {
-    const { user, post, isFollow, handleClick } = this.props;
+    const { user, post, handleClick } = this.props;
     const { view, feedback } = this.state;
     const img = require(`../../../assets/${post.media[post.previewIndex]}`);
 
@@ -68,7 +68,7 @@ class Post extends Component {
             post={post}
             img={img}
             closeFullscreen={this.showPreview}
-            isFollow={isFollow}
+            isFollow={user.isFollow}
             handleClick={handleClick}
           />
         }

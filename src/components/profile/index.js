@@ -36,7 +36,7 @@ class Profile extends Component {
   };
 
   render() {
-    const { user, isFollow, handleClick } = this.props;
+    const { user, handleClick } = this.props;
     return (
       <div>
         <div className="profile">
@@ -48,7 +48,7 @@ class Profile extends Component {
                 <div className="profile__user-name">{ user.id }</div>
                 <CustomButton
                 className="profile__follow-button ml20"
-                  isActive={isFollow}
+                  isActive={user.isFollow}
                   textActive="Подписки"
                   textDisactive="Подписаться"
                   handleClick={handleClick}

@@ -15,7 +15,7 @@ const FullscreenPost = (props) => (
           className="fullscreen-post__img"
           style={{ backgroundImage: `url(${props.img})` }}
         />
-        <PostInfo user={props.user} post={props.post} isFollow={props.isFollow} handleClick={props.handleClick} />
+        <PostInfo user={props.user} post={props.post} handleClick={props.handleClick} />
       </div>
       <button className="close">
         <span>×</span>
