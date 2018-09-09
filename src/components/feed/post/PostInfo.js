@@ -12,10 +12,38 @@ class PostInfo extends Component {
 
   addComment = (e) => {
     e.preventDefault();
-    const newComment = document.createElement('li');
-    newComment.innerHTML = "<b>id_angie </b>" + e.target.children[0].value;
-    document.querySelector('.post-info__comments').appendChild(newComment);
+    const { user, post } = this.state;
+    const newComment = e.target.children[0].value;
     e.target.children[0].value = null;
+    post.feedback.comments.push({
+      commiter: user.id,
+      text: newComment,
+      date: new Date(),
+      likes: 0
+    });
+    this.setState({
+      user: user
+    });
+  }
+
+  toggleLike = () => {
+    const { user, post } = this.state;
+    const indexOfLike = post.feedback.likes.indexOf(user.id);
+    if (indexOfLike === -1)
+      post.feedback.likes.push(user.id);
+    else
+      post.feedback.likes.splice(indexOfLike, 1);
+    this.setState({
+      post: post
+    });
+  }
+
+  toggleSave = () => {
+    const { post } = this.state;
+    post.isSaved = !post.isSaved;
+    this.setState({
+      post: post
+    });
   }
 
   render() {
