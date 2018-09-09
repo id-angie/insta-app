@@ -1,5 +1,136 @@
 [
   {
+    "id": "1",
+    "name": "Sereja",
+    "about": "MSK, Planet Earth.",
+    "avatar": "avatarS",
+    "isFollow": false,
+    "accountData": {
+      "posts": 42,
+      "followers": 77,
+      "following": 113
+    },
+    "feed": {
+      "posts": [
+        {
+          "id": "post1",
+          "date": "Wed Aug 29 2018 15:55:01 GMT+0300",
+          "format": "series",
+          "media": [
+            "post.jpg",
+            "post2.jpg"
+          ],
+          "previewIndex": 0,
+          "isSaved": false,
+          "feedback": {
+            "views": -1,
+            "likes": [
+              "id_angie",
+              "mr_shilkin"
+            ],
+            "comments": [
+              {
+                "commiter": "mr_shilkin",
+                "text": "Это где?",
+                "date": "Wed Aug 29 2018 13:49:56 GMT+0300",
+                "likes": 0
+              },
+              {
+                "commiter": "zamarawka",
+                "text": "@mr_shilkin олимпийская деревня ;-)",
+                "date": "Wed Aug 29 2018 13:55:01 GMT+0300",
+                "likes": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "post2",
+          "date": "Thu Aug 28 2018 10:55:01 GMT+0300",
+          "format": "image",
+          "media": [
+            "post2.jpg"
+          ],
+          "previewIndex": 0,
+          "isSaved": false,
+          "feedback": {
+            "views": -1,
+            "likes": [
+              "mr_shilkin"
+            ],
+            "comments": [
+              {
+                "commiter": "zaglumon",
+                "text": "^^",
+                "date": "Wed Aug 29 2018 06:49:56 GMT+0300",
+                "likes": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "post3",
+          "date": "Thu Aug 16 2018 19:49:56 GMT+0300",
+          "format": "image",
+          "media": [
+            "post3.jpg"
+          ],
+          "previewIndex": 0,
+          "isSaved": false,
+          "feedback": {
+            "views": -1,
+            "likes": [
+              "id_angie",
+              "mr_shilkin"
+            ],
+            "comments": [
+              {
+                "commiter": "mr_shilkin",
+                "text": "Это где?",
+                "date": "Fri Aug 17 2018 13:49:56 GMT+0300",
+                "likes": 0
+              },
+              {
+                "commiter": "zamarawka",
+                "text": "@mr_shilkin олимпийская деревня ;-)",
+                "date": "Fri Aug 17 2018 13:55:01 GMT+0300",
+                "likes": 0
+              },
+              {
+                "commiter": "mr_shilkin",
+                "text": "@zamarawka new comment",
+                "date": "Fri Aug 17 2018 13:56:01 GMT+0300",
+                "likes": 0
+              }
+            ]
+          }
+        }
+      ],
+      "tagged": [
+        {
+          "id": "tagged1",
+          "date": "Wed May 16 2018 12:00:11 GMT+0300",
+          "format": "image",
+          "media": [
+            "post2.jpg"
+          ],
+          "previewIndex": 0,
+          "isSaved": false,
+          "feedback": {
+            "views": -1,
+            "likes": [
+              "zamarawka",
+              "id_angie",
+              "mr_shilkin"
+            ],
+            "comments": [
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
     "id": "zamarawka",
     "name": "Sereja",
     "about": "MSK, Planet Earth.",
@@ -70,7 +201,7 @@
         },
         {
           "id": "post3",
-          "date": "Thu Aug 30 2018 19:49:56 GMT+0300",
+          "date": "Thu Aug 16 2018 19:49:56 GMT+0300",
           "format": "image",
           "media": [
             "post3.jpg"
@@ -87,19 +218,19 @@
               {
                 "commiter": "mr_shilkin",
                 "text": "Это где?",
-                "date": "Fri Aug 31 2018 13:49:56 GMT+0300",
+                "date": "Fri Aug 17 2018 13:49:56 GMT+0300",
                 "likes": 0
               },
               {
                 "commiter": "zamarawka",
                 "text": "@mr_shilkin олимпийская деревня ;-)",
-                "date": "Fri Aug 31 2018 13:55:01 GMT+0300",
+                "date": "Fri Aug 17 2018 13:55:01 GMT+0300",
                 "likes": 0
               },
               {
                 "commiter": "mr_shilkin",
                 "text": "@zamarawka new comment",
-                "date": "Fri Aug 31 2018 13:56:01 GMT+0300",
+                "date": "Fri Aug 17 2018 13:56:01 GMT+0300",
                 "likes": 0
               }
             ]
