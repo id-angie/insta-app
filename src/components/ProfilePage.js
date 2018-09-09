@@ -29,7 +29,7 @@ class ProfilePage extends Component {
 
     return (
       <div className="ProfilePage">
-        <Header />
+        <Header logout={this.props.logout} />
         <Profile user={user} handleClick={this.toggleFollow} />
         <Feed user={user} handleClick={this.toggleFollow} />
         <Footer />

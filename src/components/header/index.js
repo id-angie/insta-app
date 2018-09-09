@@ -34,7 +34,7 @@ class Header extends Component {
             />
           </div>
           <Search />
-          <LoginButton />
+          <LoginButton logout={this.props.logout} />
         </div>
       </header>
     );
