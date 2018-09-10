@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
 import FeedState from './FeedState.js'
-import Post from './post/Post.js'
+import Post from './post'
 import tabs from '../../tabs.json';
 
 class Feed extends Component {
