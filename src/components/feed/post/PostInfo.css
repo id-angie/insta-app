@@ -26,6 +26,29 @@
   overflow: scroll;
 }
 
+.post-info__comments-li {
+  position: relative;
+}
+
+.post-info__comments-li:hover {
+  cursor: pointer;
+}
+
+.post-info__comments-delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 95%;
+  box-sizing: border-box;
+  opacity: 0;
+}
+
+.post-info__comments-delete:hover {
+  opacity: .7;
+}
+
 .post-info__avatar {
   height: 30px;
   width: 30px;

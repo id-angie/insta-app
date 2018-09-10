@@ -26,6 +26,21 @@ class PostInfo extends Component {
     });
   }
 
+  deleteComment = (e) => {
+    e.preventDefault();
+    const { user, post } = this.state;
+    const comments = post.feedback.comments;
+    const targetCommentId = e.target.parentNode.id;
+    const targetComment = comments.filter((comment) => {
+      return comment.date === targetCommentId;
+    });
+    const targetCommentIndex = comments.indexOf(targetComment[0]);
+    comments.splice(targetCommentIndex, 1);
+    this.setState({
+      user: user
+    });
+  }
+
   toggleLike = () => {
     const { user, post } = this.state;
     const indexOfLike = post.feedback.likes.indexOf(user.id);
@@ -68,8 +83,20 @@ class PostInfo extends Component {
         </div>
         <ul className="post-info__comments">
           {post.feedback.comments.map((comment) =>
-            <li key={comment.date}>
-              <b>{comment.commiter}</b> {comment.text}
+            <li
+              key={comment.date}
+              className="post-info__comments-li"
+              id={comment.date}
+            >
+              <span>
+                <b>{comment.commiter}</b> {comment.text}
+              </span>
+              <span
+                className="post-info__comments-delete"
+                onClick={this.deleteComment}
+              >
+                ×
+              </span>
             </li>
             )
           }
