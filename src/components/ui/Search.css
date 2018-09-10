@@ -1,7 +1,6 @@
 .search {
   width: 20%;
   position: relative;
-  transition: all 0s;
 }
 
 .search__input {
@@ -16,6 +15,7 @@
 .search__input:focus {
   padding-left: 30px;
   background-color: #fff;
+  transition: padding 0s;
 }
 
 .search__img {
@@ -26,6 +26,7 @@
   background-position: -316px -438px;
   top: 8px;
   left: 65px;
+  transition: all 0s;
 }
 
 .search__close {
