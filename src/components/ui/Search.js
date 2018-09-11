@@ -14,6 +14,13 @@ class Search extends Component {
     this.setState({ selectedOption });
   }
 
+  resetSearch = () => {
+    this.setState({
+      isFocused: false,
+      selectedOption: null
+    });
+  }
+
   render() {
     const options = users.map((user) =>
       ({value: user.id, label: user.id})
@@ -21,49 +28,24 @@ class Search extends Component {
 
     const { selectedOption } = this.state;
 
-    const customStyles = {
-      option: (base, state) => ({
-        ...base,
-        width: 150,
-        height: 40,
-
-      }),
-      control: () => ({
-        height: 30,
-        width: 150,
-        fontSize: 14,
-        display: 'flex',
-        justifyContent: 'space-beetween',
-      }),
-      singleValue: (base, state) => {
-        const color = 'blue';
-        return {...base, color}
-      }
-    }
-
     return (
-      <div className={cn("search input-box", {
-        "search_focused": this.state.isFocused
-      })}>
-    {/*    <input
-          className="input search__input"
-          placeholder="Поиск"
+      <div className={cn("search", {
+            "search_focused": this.state.isFocused
+          })}>
+        <Select
+          value={selectedOption}
+          options={options}
+          classNamePrefix="search__select"
+          className="search__select"
+          onChange={this.handleChange}
           onFocus={() => this.setState({ isFocused: true })}
-          onBlur={() => this.setState({ isFocused: false })}
+          onBlur={this.resetSearch}
+          placeholder="Поиск"
         />
-        <div className="search__img" />
-        <div className="search__close" />
-        */}
-          <Select
-            value={selectedOption}
-            options={options}
-            styles={customStyles}
-            className="search__select"
-            onChange={this.handleChange}
-            onFocus={() => this.setState({ isFocused: true })}
-            onBlur={() => this.setState({ isFocused: false })}
-            placeholder="Поиск"
-          />
+        <div
+          className="search__close"
+          onClick={this.resetSearch}
+        />
       </div>
     );
   }
