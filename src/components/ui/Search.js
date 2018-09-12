@@ -14,7 +14,8 @@ const ClearIndicator  = ({ innerProps: { ...restInnerProps } }) => (
 class Search extends Component {
   state = {
     isFocused: false,
-    selectedOption: null
+    selectedOption: null,
+    inputText: null
   };
 
   handleChange = (selectedOption) => {
@@ -24,7 +25,8 @@ class Search extends Component {
   resetSearch = () => {
     this.setState({
       isFocused: false,
-      selectedOption: null
+      selectedOption: null,
+      inputText: document.getElementById("react-select-2-input").value
     });
   }
 
@@ -40,7 +42,7 @@ class Search extends Component {
             "search_focused": this.state.isFocused
           })}>
         <Select
-          value={selectedOption}
+          value={this.state.inputText || selectedOption}
           isClearable
           options={options}
           classNamePrefix="search__select"
@@ -48,8 +50,9 @@ class Search extends Component {
           onChange={this.handleChange}
           onFocus={() => this.setState({ isFocused: true })}
           onBlur={this.resetSearch}
-          placeholder="Поиск"
+          placeholder={this.state.inputText || "Поиск"}
           components={{ClearIndicator}}
+          noOptionsMessage={ () => "Не найдено" }
         />
       </div>
     );
