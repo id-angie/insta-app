@@ -4,6 +4,13 @@ import Select from 'react-select';
 import users from '../../users.json';
 import './Search.css';
 
+const ClearIndicator  = ({ innerProps: { ...restInnerProps } }) => (
+  <div
+    {...restInnerProps}
+    className="search__close"
+  />
+);
+
 class Search extends Component {
   state = {
     isFocused: false,
@@ -34,6 +41,7 @@ class Search extends Component {
           })}>
         <Select
           value={selectedOption}
+          isClearable
           options={options}
           classNamePrefix="search__select"
           className="search__select"
@@ -41,10 +49,7 @@ class Search extends Component {
           onFocus={() => this.setState({ isFocused: true })}
           onBlur={this.resetSearch}
           placeholder="Поиск"
-        />
-        <div
-          className="search__close"
-          onClick={this.resetSearch}
+          components={{ClearIndicator}}
         />
       </div>
     );
