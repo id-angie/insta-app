@@ -30,4 +30,8 @@
   background-position: -98px -205px;
 }
 
+@media screen and (max-width: 768px) {
+  .header__logo {
+    transform: scale(.8) translateX(-20px);
+  }
 }

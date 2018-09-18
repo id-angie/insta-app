@@ -40,3 +40,9 @@
 .empty-handler__text {
   font-size: 28px;
 }
+
+@media screen and (max-width: 735px) {
+  .feed-flow {
+    padding: 0;
+  }
+}

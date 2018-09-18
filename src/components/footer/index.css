@@ -31,3 +31,14 @@
   color: rgb(153, 153,153);
   margin-top: 10px;
 }
+
+@media screen and (max-width: 875px) {
+  .footer__list {
+    justify-content: center;
+  }
+
+  .footer__copyright {
+    display: flex;
+    justify-content: center;
+  }
+}

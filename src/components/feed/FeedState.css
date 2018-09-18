@@ -54,4 +54,41 @@
 .feed-state__tab_active .feed-state__img_view_tagged {
   background-position: -232px -438px;
 }
+
+
+@media screen and (max-width: 735px) {
+  .feed-state span {
+    display: none;
+  }
+
+  .feed-state__tab {
+    width: 50%;
+    justify-content: center;
+  }
+
+  .feed-state__img {
+    height: 24px;
+    width: 24px;
+    background-image: url(../../assets/sprite2.png);
+  }
+
+  .feed-state__img_view_posts {
+    background-position: -78px -117px;
+  }
+
+  .feed-state__img_view_tagged {
+    background-position: -183px -26px;
+  }
+
+  .feed-state__tab_active {
+    border: none;
+  }
+
+  .feed-state__tab_active .feed-state__img_view_posts {
+    background-position: 0 -66px;
+  }
+
+  .feed-state__tab_active .feed-state__img_view_tagged {
+    background-position: -183px 0;
+  }
 }

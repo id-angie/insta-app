@@ -52,3 +52,12 @@
 .post__feedback-layout_hidden {
   display: none;
 }
+
+@media (max-width: 735px) {
+  .feed-flow {
+    padding: 0;
+  }
+  .post {
+    flex-basis: 33%;
+  }
+}
