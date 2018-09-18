@@ -1,6 +1,7 @@
 .search {
-  width: 205px;
+  min-width: 205px;
   position: relative;
+  border: 10px solid #fff;
 }
 
 .search__select .search__select__dropdown-indicator,

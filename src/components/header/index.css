@@ -9,28 +9,25 @@
   z-index: 999;
 }
 
+.header .container {
+  padding: 30px;
+}
+
 .header_scrolled {
   height: 52px;
 }
 
+.header__logo-block {
+  width: 33%;
+  min-width: 50px;
+  margin-left: 70px;
+}
+
 .header__logo {
-  width: 30%;
+  height: 33px;
+  width: 175px;
+  background-image: url('../../assets/sprite.png');
+  background-position: -98px -205px;
 }
 
-.header__img-logo {
-  padding-right: 20px;
-  border-right: 1px solid rgb(147, 147, 147);
-}
-
-.header__text-logo {
-  padding-left: 20px;
-}
-
-.header_scrolled .header__img-logo {
-  padding-right: 20px;
-  border-right: none;
-}
-
-.header_scrolled .header__text-logo {
-  opacity: 0;
 }

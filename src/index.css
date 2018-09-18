@@ -84,16 +84,6 @@ input::placeholder {
   text-align: left;
 }
 
-.img-logo {
-  height: 30px;
-  vertical-align: middle;
-}
-
-.text-logo {
-  height: 45px;
-  vertical-align: middle;
-}
-
 .avatarS {
   background-image: url('./assets/avatarS.jpg');
 }
