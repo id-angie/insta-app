@@ -35,14 +35,23 @@
 }
 
 .feed-state__img_view_posts {
-  background-position: -190px -438px;
+  background-position: -378px -209px;
 }
 
 .feed-state__img_view_tagged {
-  background-position: -232px -438px;
+  background-position: -246px -438px;
 }
 
 .feed-state__tab_active {
   border-top: 1px solid rgb(38, 38, 38);
   color: rgb(38, 38, 38);
+}
+
+.feed-state__tab_active .feed-state__img_view_posts {
+  background-position: -190px -438px;
+}
+
+.feed-state__tab_active .feed-state__img_view_tagged {
+  background-position: -232px -438px;
+}
 }
