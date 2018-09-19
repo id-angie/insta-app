@@ -7,7 +7,8 @@ import CustomButton from '../../ui/CustomButton.js'
 class PostInfo extends Component {
   state = {
     user: this.props.user,
-    post: this.props.post
+    post: this.props.post,
+    img: this.props.img
   };
 
   addComment = (e) => {
