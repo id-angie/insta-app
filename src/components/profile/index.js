@@ -75,7 +75,7 @@ class Profile extends Component {
 
 
             <div className="profile__info profile__info_mobile">
-              <div className="profile__row">
+              <div className="profile__row profile__head">
                 <div
                   className={ cn("avatar profile__avatar_mobile", user.avatar) }
                 />
