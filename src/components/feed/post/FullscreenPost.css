@@ -20,18 +20,26 @@
   left: 0;
   z-index: 99999;
   overflow: scroll;
+  max-width: 100%;
 }
 
 .fullscreen-post {
-  flex-basis: 800px;
-  height: 550px;
+  flex-basis: 90%;
+  max-width: 800px;
   background-color: #fff;
   display: flex;
+  margin: 40px;
+  position: relative;
+}
+
+.fullscreen-post::before {
+  content: '';
+  display: block;
+  padding-top: 60%;
 }
 
 .fullscreen-post__img {
   width: 65%;
-  height: 100%;
   background-image: url(../../../assets/post.jpg);
   background-size: cover;
 }
@@ -50,4 +58,10 @@
 .close:hover {
   color: #fff;
   cursor: pointer;
+}
+
+@media screen and (max-width: 735px) {
+  .fullscreen-post {
+    display: none;
+  }
 }
