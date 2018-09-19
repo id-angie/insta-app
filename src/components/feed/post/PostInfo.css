@@ -158,3 +158,26 @@
   padding: 0 10px;
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 735px) {
+  .post-info {
+    height: 100%;
+    width: 100%;
+    padding: 10px 0;
+
+  }
+
+  .fullscreen-post__img_mobile {
+    width: 100%;
+  }
+
+  .fullscreen-post__img_mobile::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+
+  .post-info__add-comment_fullscreen {
+    display: none;
+  }
+}

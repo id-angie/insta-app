@@ -12,10 +12,10 @@ const FullscreenPost = (props) => (
         onClick={ (e) => {e.stopPropagation()} }
       >
         <div
-          className="fullscreen-post__img"
+          className="fullscreen-post__img fullscreen-post__img_fullscreen"
           style={{ backgroundImage: `url(${props.img})` }}
         />
-        <PostInfo user={props.user} post={props.post} handleClick={props.handleClick} />
+        <PostInfo user={props.user} post={props.post} handleClick={props.handleClick} img={props.img} />
       </div>
       <button className="close">
         <span>×</span>

@@ -60,7 +60,22 @@
 }
 
 @media screen and (max-width: 735px) {
-  .fullscreen-post {
+  .fullscreen-post__img_fullscreen {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .fullscreen-post-container {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .fullscreen-post{
+    margin: 5px 0;
+    flex-basis: 100%;
+  }
+
+  .close {
     display: none;
   }
 }

@@ -82,6 +82,10 @@ class PostInfo extends Component {
           >
           </CustomButton>
         </div>
+        <div
+          className="fullscreen-post__img fullscreen-post__img_mobile"
+          style={{ backgroundImage: `url(${this.state.img})` }}
+        />
         <ul className="post-info__comments">
           {post.feedback.comments.map((comment) =>
             <li
@@ -102,7 +106,7 @@ class PostInfo extends Component {
             )
           }
         </ul>
-        <div className="post-info__feedback">
+        <div className="post-info__feedback post-info__feedback_fullscreen">
           <div className="post-info__actions">
             <div className="post-info__actions-left">
               <div
@@ -139,7 +143,7 @@ class PostInfo extends Component {
             { moment(post.date).format('LL') }
           </time>
         </div>
-          <div className="post-info__add-comment">
+        <div className="post-info__add-comment post-info__add-comment_fullscreen">
           <form onSubmit={this.addComment}>
             <input
               type="text"
