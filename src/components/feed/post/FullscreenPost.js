@@ -8,6 +8,10 @@ const FullscreenPost = (props) => (
     </div>
     <div className="fullscreen-post-container" onClick={props.closeFullscreen}>
       <div
+        className="fullscreen-post__navigation fullscreen-post__navigation_previous"
+        onClick={() => alert('prev')}
+      />
+      <div
         className="fullscreen-post"
         onClick={ (e) => {e.stopPropagation()} }
       >
@@ -19,7 +23,11 @@ const FullscreenPost = (props) => (
         </div>
         <PostInfo user={props.user} post={props.post} handleClick={props.handleClick} img={props.img} />
       </div>
-      <button className="close">
+      <div
+        className="fullscreen-post__navigation fullscreen-post__navigation_next"
+        onClick={() => alert('next')}
+      />
+      <button className="fullscreen-post__navigation fullscreen-post__navigation_close">
         <span>×</span>
       </button>
     </div>
