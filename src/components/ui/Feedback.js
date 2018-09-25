@@ -20,6 +20,12 @@ class Feedback extends Component {
     });
   }
 
+  toggleComment = () => {
+    if (window.matchMedia('(max-width: 735px)').matches)
+      document.querySelector('.post-info__add-comment').style.display = 'block';
+    document.querySelector('.post-info__add-comment-input').focus();
+  }
+
   toggleSave = () => {
     const { post } = this.state;
     post.isSaved = !post.isSaved;
@@ -44,9 +50,7 @@ class Feedback extends Component {
             />
             <div
               className="post-info__icon post-info__icon_comment"
-              onClick={() =>
-                document.querySelector('.post-info__add-comment-input').focus()
-              }
+              onClick={this.toggleComment}
             />
             <div
               className="post-info__icon post-info__icon_share"

@@ -85,16 +85,19 @@ class PostInfo extends Component {
             )
           }
         </ul>
+        <time className="post-info__date post-info__date_mobile">
+          { moment(post.date).format('LL') }
+        </time>
         <div className="post-info__feedback-row">
           <Feedback
             post={post}
             user={user}
           />
-          <time className="post-info__date">
+          <time className="post-info__date post-info__date_fullscreen">
             { moment(post.date).format('LL') }
           </time>
         </div>
-        <div className="post-info__add-comment post-info__add-comment_fullscreen">
+        <div className="post-info__add-comment">
           <form onSubmit={this.addComment}>
             <input
               type="text"
