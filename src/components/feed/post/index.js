@@ -5,21 +5,8 @@ import FullscreenPost from './FullscreenPost.js'
 
 class Post extends Component {
   state = {
-    view: 'preview',
     feedback: 'hidden'
   };
-
-  showPreview = () => {
-    this.setState({
-      view: 'preview'
-    });
-  }
-
-  showFullPost = () => {
-    this.setState({
-      view: 'full'
-    });
-  }
 
   showFeedback = () => {
     this.setState({
@@ -34,42 +21,46 @@ class Post extends Component {
   }
 
   render() {
-    const { user, post, handleClick } = this.props;
-    const { view, feedback } = this.state;
+    const { user, openedPost, post, handleClick, showPrevPost, showNextPost, showFullPost, showPreview } = this.props;
+    const { feedback } = this.state;
     const img = require(`../../../assets/${post.media[post.previewIndex]}`);
-
     return (
-      <div
-        className="post mb40"
-        style={{ backgroundImage: `url(${img})` }}
-      >
+      <div className="post-container">
         <div
-          className="post__hover-overlay"
-          onMouseOver={this.showFeedback}
-          onMouseOut={this.hideFeedback}
-          onClick={this.showFullPost}
+          className="post mb40"
+          style={{ backgroundImage: `url(${img})` }}
+          id={post.id}
         >
           <div
-            className={cn("post__feedback-layout",
-              {"post__feedback-layout_hidden": feedback === 'hidden'}
-            )}
+            className="post__hover-overlay"
+            onMouseOver={this.showFeedback}
+            onMouseOut={this.hideFeedback}
+            onClick={() => showFullPost(post.id)}
           >
-            <div className="post__feedback post__feedback_likes">
+            <div
+              className={cn("post__feedback-layout",
+                {"post__feedback-layout_hidden": feedback === 'hidden'}
+              )}
+            >
+              <div className="post__feedback post__feedback_likes">
+              </div>
+              <span>{post.feedback.likes.length}</span>
+              <div className="post__feedback post__feedback_comments">
+              </div>
+              <span>{post.feedback.comments.length}</span>
             </div>
-            <span>{post.feedback.likes.length}</span>
-            <div className="post__feedback post__feedback_comments">
-            </div>
-            <span>{post.feedback.comments.length}</span>
           </div>
         </div>
-        {view === 'full' &&
+        {openedPost && openedPost.id === post.id &&
           <FullscreenPost
             user={user}
             post={post}
             img={img}
-            closeFullscreen={this.showPreview}
+            closeFullscreen={showPreview}
             isFollow={user.isFollow}
             handleClick={handleClick}
+            showNextPost={showNextPost}
+            showPrevPost={showPrevPost}
           />
         }
       </div>
