@@ -7,6 +7,9 @@
   background-color: rgba(0, 0, 0, .8);
   z-index: 9999;
   overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .fullscreen-post-container {
@@ -14,11 +17,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
   z-index: 99999;
-  overflow: scroll;
   max-width: 100%;
 }
 
@@ -98,6 +97,12 @@
 
   .modal{
     position: absolute;
+  }
+
+  .fullscreen-post-container {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 
