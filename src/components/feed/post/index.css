@@ -1,5 +1,8 @@
-.post {
+.post-container {
   flex-basis: 30%;
+}
+
+.post {
   position: relative;
   background-image: url(../../../assets/post.jpg);
   background-size: cover;
@@ -57,7 +60,9 @@
   .feed-flow {
     padding: 0;
   }
-  .post {
+
+  .post-container {
     flex-basis: 33%;
+    position: static;
   }
 }
