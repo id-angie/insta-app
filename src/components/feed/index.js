@@ -10,6 +10,14 @@ class Feed extends Component {
     openedPost: null
   };
 
+  getPostsArray = () => {
+    return (
+      this.state.view === 'posts' ?
+      this.props.user.feed.posts :
+      this.props.user.feed.tagged
+    );
+  }
+
   handleTab = (view) => {
     this.setState({
       view
@@ -23,10 +31,7 @@ class Feed extends Component {
   }
 
   showFullPost = (id) => {
-    const postsArray =
-      this.state.view === 'posts' ?
-      this.props.user.feed.posts :
-      this.props.user.feed.tagged;
+    const postsArray = this.getPostsArray();
     const openThisPost = postsArray.find((post) => {
         return id === post.id;
       }
@@ -37,11 +42,7 @@ class Feed extends Component {
   }
 
   showPrevPost = (e, id) => {
-    const postsArray =
-      this.state.view === 'posts' ?
-      this.props.user.feed.posts :
-      this.props.user.feed.tagged;
-
+    const postsArray = this.getPostsArray();
     e.stopPropagation();
     const currentPost = postsArray.find((post) => {
         return id === post.id;
@@ -54,11 +55,7 @@ class Feed extends Component {
   }
 
   showNextPost = (e, id) => {
-    const postsArray =
-      this.state.view === 'posts' ?
-      this.props.user.feed.posts :
-      this.props.user.feed.tagged;
-
+    const postsArray = this.getPostsArray();
     e.stopPropagation();
     const currentPost = postsArray.find((post) => {
         return id === post.id;
