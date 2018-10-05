@@ -6,55 +6,17 @@ import CustomButton from '../../ui/CustomButton.js';
 import Feedback from '../../ui/Feedback.js';
 
 class PostInfo extends Component {
-  state = {
-    user: this.props.user,
-    post: this.props.post,
-    img: this.props.img
-  };
-
-  addComment = (e) => {
-    e.preventDefault();
-    const { user, post } = this.state;
-    const newComment = e.target.children[0].value;
-    e.target.children[0].value = null;
-    post.feedback.comments.push({
-      commiter: user.id,
-      text: newComment,
-      date: new Date(),
-      likes: 0
-    });
-    this.setState({
-      user: user
-    });
-  }
-
-  deleteComment = (e) => {
-    e.preventDefault();
-    const { user, post } = this.state;
-    const comments = post.feedback.comments;
-    const targetCommentId = e.target.parentNode.id;
-    const targetComment = comments.filter((comment) => {
-      return comment.date === targetCommentId;
-    });
-    const targetCommentIndex = comments.indexOf(targetComment[0]);
-    comments.splice(targetCommentIndex, 1);
-    this.setState({
-      user: user
-    });
-  }
-
   render() {
-    const { user, post } = this.state;
     const { handleClick } = this.props;
     return (
       <div className="post-info">
         <div className="post-info__header">
-          <div className={ cn("post-info__avatar", user.avatar)} />
-          <div className="post-info__user-name">{user.id}</div>
+          <div className={ cn("post-info__avatar", this.props.user.avatar)} />
+          <div className="post-info__user-name">{this.props.user.id}</div>
           <div className="post-info__dot">•</div>
           <CustomButton
             className="post-info__follow-button"
-            isActive={user.isFollow}
+            isActive={this.props.user.isFollow}
             textActive="Подписки"
             textDisactive="Подписаться"
             handleClick={handleClick}
@@ -63,21 +25,21 @@ class PostInfo extends Component {
         </div>
         <div
           className="fullscreen-post__img fullscreen-post__img_mobile"
-          style={{ backgroundImage: `url(${this.state.img})` }}
+          style={{ backgroundImage: `url(${this.props.img})` }}
         />
         <ul className="post-info__comments">
-          {post.feedback.comments.map((comment) =>
+          {this.props.post.feedback.comments.map((comment) =>
             <li
-              key={comment.date}
+              key={comment.id}
               className="post-info__comments-li"
-              id={comment.date}
+              id={comment.id}
             >
               <span>
                 <b>{comment.commiter}</b> {comment.text}
               </span>
               <span
                 className="post-info__comments-delete"
-                onClick={this.deleteComment}
+                onClick={this.props.deleteComment}
               >
                 ×
               </span>
@@ -86,19 +48,19 @@ class PostInfo extends Component {
           }
         </ul>
         <time className="post-info__date post-info__date_mobile">
-          { moment(post.date).format('LL') }
+          { moment(this.props.post.date).format('LL') }
         </time>
         <div className="post-info__feedback-row">
           <Feedback
-            post={post}
-            user={user}
+            post={this.props.post}
+            user={this.props.user}
           />
           <time className="post-info__date post-info__date_fullscreen">
-            { moment(post.date).format('LL') }
+            { moment(this.props.post.date).format('LL') }
           </time>
         </div>
         <div className="post-info__add-comment">
-          <form onSubmit={this.addComment}>
+          <form onSubmit={this.props.addComment}>
             <input
               type="text"
               className="post-info__add-comment-input"

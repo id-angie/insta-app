@@ -61,6 +61,8 @@ class Post extends Component {
             handleClick={handleClick}
             showNextPost={showNextPost}
             showPrevPost={showPrevPost}
+            addComment={this.props.addComment}
+            deleteComment={this.props.deleteComment}
           />
         }
       </div>

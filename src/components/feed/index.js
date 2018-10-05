@@ -10,7 +10,7 @@ class Feed extends Component {
     openedPost: null
   };
 
-  getPostsArray = () => {
+  getFeedContent = () => {
     return (
       this.state.view === 'posts' ?
       this.props.user.feed.posts :
@@ -31,8 +31,8 @@ class Feed extends Component {
   }
 
   showFullPost = (id) => {
-    const postsArray = this.getPostsArray();
-    const openThisPost = postsArray.find((post) => {
+    const feedContent = this.getFeedContent();
+    const openThisPost = feedContent.find((post) => {
         return id === post.id;
       }
     );
@@ -42,35 +42,65 @@ class Feed extends Component {
   }
 
   showPrevPost = (e, id) => {
-    const postsArray = this.getPostsArray();
+    const feedContent = this.getFeedContent();
     e.stopPropagation();
-    const currentPost = postsArray.find((post) => {
+    const currentPost = feedContent.find((post) => {
         return id === post.id;
       }
     );
-    const currentPostIndex = postsArray.indexOf(currentPost);
+    const currentPostIndex = feedContent.indexOf(currentPost);
     this.setState({
-      openedPost: postsArray[currentPostIndex - 1]
+      openedPost: feedContent[currentPostIndex - 1]
     });
   }
 
   showNextPost = (e, id) => {
-    const postsArray = this.getPostsArray();
+    const feedContent = this.getFeedContent();
     e.stopPropagation();
-    const currentPost = postsArray.find((post) => {
+    const currentPost = feedContent.find((post) => {
         return id === post.id;
       }
     );
-    const currentPostIndex = postsArray.indexOf(currentPost);
+    const currentPostIndex = feedContent.indexOf(currentPost);
     this.setState({
-      openedPost: postsArray[currentPostIndex+ 1]
+      openedPost: feedContent[currentPostIndex+ 1]
+    });
+  }
+
+  addComment = (e) => {
+    e.preventDefault();
+    const newComment = e.target.children[0].value;
+    e.target.children[0].value = null;
+    this.state.openedPost.feedback.comments.push({
+      id: new Date() + ' ' + Math.random(),
+      commiter: this.props.user.id,
+      text: newComment,
+      date: new Date(),
+      likes: 0
+    });
+    this.setState({
+      openedPost: this.state.openedPost
+    });
+  }
+
+  deleteComment = (e) => {
+    e.preventDefault();
+    const comments = this.state.openedPost.feedback.comments;
+    const targetCommentId = e.target.parentNode.id;
+    const targetComment = comments.find((comment) => {
+      console.log(targetCommentId, comment.id);
+      return comment.id === targetCommentId;
+    });
+    const targetCommentIndex = comments.indexOf(targetComment);
+    comments.splice(targetCommentIndex, 1);
+    this.setState({
+      openedPost: this.state.openedPost
     });
   }
 
   render() {
-    const { view } = this.state;
     const { user, handleClick } = this.props;
-    const feedContent = view === 'posts' ? user.feed.posts : user.feed.tagged;
+    const feedContent = this.getFeedContent();
     return (
       <div className="feed">
         <div className="container">
@@ -96,6 +126,8 @@ class Feed extends Component {
                   showPreview={this.showPreview}
                   showPrevPost={this.showPrevPost}
                   showNextPost={this.showNextPost}
+                  addComment={this.addComment}
+                  deleteComment={this.deleteComment}
                 />
               )
             }

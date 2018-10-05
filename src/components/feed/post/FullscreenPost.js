@@ -30,7 +30,14 @@ class FullscreenPost extends Component {
                 style={{ backgroundImage: `url(${this.props.img})` }}
               />
             </div>
-            <PostInfo user={this.props.user} post={this.props.post} handleClick={this.props.handleClick} img={this.props.img} />
+            <PostInfo
+              user={this.props.user}
+              post={this.props.post}
+              handleClick={this.props.handleClick}
+              img={this.props.img}
+              addComment={this.props.addComment}
+              deleteComment={this.props.deleteComment}
+            />
           </div>
           <div
             className="fullscreen-post__navigation fullscreen-post__navigation_next"
