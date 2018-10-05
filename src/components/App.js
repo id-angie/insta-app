@@ -19,7 +19,7 @@ class App extends Component {
   setUser = (e) => {
     e.preventDefault();
     const id = document.querySelector('.login__input').value;
-    const user = users.filter((user) => user.id === id)[0];
+    const user = users.find((user) => user.id === id);
     if (user) {
       this.setState({
         user: user
@@ -35,11 +35,24 @@ class App extends Component {
     });
   }
 
+  toggleFollow = () => {
+    if (this.state.user.isFollow === false || window.confirm("Отписаться?")) {
+      const {
+        user
+      } = this.state;
+      user.isFollow = !user.isFollow;
+
+      this.setState({
+        user: user
+      });
+    }
+  }
+
   render() {
     return (
       <div className="App">
         {this.state.user ?
-          <ProfilePage user={this.state.user} logout={this.logout} /> :
+          <ProfilePage user={this.state.user} logout={this.logout} toggleFollow={this.toggleFollow} /> :
           <IndexPage handleEnter={this.setUser} />
         }
       </div>
