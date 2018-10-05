@@ -23,10 +23,17 @@ class Login extends Component {
           <div className="login__logo" />
            <div className="input-box login__input-box">
             <input
-              className={ cn("input login__input", {"login__input_typing": this.state.isActive}) }
+              className={ cn(
+                "input login__input",
+                {"login__input_typing": this.state.isActive}
+              )}
               onChange={this.activateButton}
             />
-            <label className={ cn("login__label", {"login__label_small": this.state.isActive}) }>
+            <label
+              className={ cn(
+                "login__label",
+                {"login__label_small": this.state.isActive}
+              )}>
               Имя пользователя
             </label>
           </div>

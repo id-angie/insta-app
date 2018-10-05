@@ -48,7 +48,7 @@ class Profile extends Component {
               <div className="profile__row">
                 <div className="profile__user-name">{ user.id }</div>
                 <CustomButton
-                className="profile__follow-button ml20"
+                  className="profile__follow-button ml20"
                   isActive={user.isFollow}
                   textActive="Подписки"
                   textDisactive="Подписаться"

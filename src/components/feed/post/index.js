@@ -21,8 +21,7 @@ class Post extends Component {
   }
 
   render() {
-    const { user, openedPost, post, handleClick, showPrevPost, showNextPost, showFullPost, showPreview } = this.props;
-    const { feedback } = this.state;
+    const { post, openedPost } = this.props;
     const img = require(`../../../assets/${post.media[post.previewIndex]}`);
     return (
       <div className="post-container">
@@ -35,11 +34,11 @@ class Post extends Component {
             className="post__hover-overlay"
             onMouseOver={this.showFeedback}
             onMouseOut={this.hideFeedback}
-            onClick={() => showFullPost(post.id)}
+            onClick={() => this.props.showFullPost(post.id)}
           >
             <div
               className={cn("post__feedback-layout",
-                {"post__feedback-layout_hidden": feedback === 'hidden'}
+                {"post__feedback-layout_hidden": this.state.feedback === 'hidden'}
               )}
             >
               <div className="post__feedback post__feedback_likes">
@@ -53,14 +52,14 @@ class Post extends Component {
         </div>
         {openedPost && openedPost.id === post.id &&
           <FullscreenPost
-            user={user}
+            user={this.props.user}
             post={post}
             img={img}
-            closeFullscreen={showPreview}
-            isFollow={user.isFollow}
-            handleClick={handleClick}
-            showNextPost={showNextPost}
-            showPrevPost={showPrevPost}
+            closeFullscreen={this.props.showPreview}
+            isFollow={this.props.user.isFollow}
+            handleClick={this.props.handleClick}
+            showNextPost={this.props.showNextPost}
+            showPrevPost={this.props.showPrevPost}
             addComment={this.props.addComment}
             deleteComment={this.props.deleteComment}
           />
