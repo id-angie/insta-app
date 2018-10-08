@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
 import Select from 'react-select';
+
 import users from '../../users.json';
+
 import './Search.css';
 
 const ClearIndicator  = ({ innerProps: { ...restInnerProps } }) => (

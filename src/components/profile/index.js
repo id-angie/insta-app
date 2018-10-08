@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import cn from 'classnames';
-import './index.css';
+import PropTypes from 'prop-types';
+
 import CustomButton from '../ui/CustomButton';
+
+import './index.css';
 
 class Profile extends Component {
   static propTypes = {

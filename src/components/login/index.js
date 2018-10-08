@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import './index.css';
 import cn from 'classnames';
+
 import CustomButton from '../ui/CustomButton.js';
+
+import './index.css';
 
 class Login extends Component {
 

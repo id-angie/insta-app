@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
+
 import './Feedback.css';
 
 class Feedback extends Component {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
+
 import './CustomButton.css';
 
 class CustomButton extends Component {

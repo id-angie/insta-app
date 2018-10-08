@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
-import './index.css';
+
 import FullscreenPost from './FullscreenPost.js'
+
+import './index.css';
 
 class Post extends Component {
   state = {

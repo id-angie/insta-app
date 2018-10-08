@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import './FullscreenPost.css';
+
 import PostInfo from './PostInfo.js';
+
+import './FullscreenPost.css';
 
 class FullscreenPost extends Component {
 

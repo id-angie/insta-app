@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
-import './index.css';
+
 import Search from '../ui/Search.js';
 import LoginButton from '../ui/LoginButton.js';
+
+import './index.css';
 
 class Header extends Component {
   state = {

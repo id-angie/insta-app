@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import './index.css';
+
 import FeedState from './FeedState.js'
 import Post from './post'
 import tabs from '../../tabs.json';
+
+import './index.css';
 
 class Feed extends Component {
   state = {

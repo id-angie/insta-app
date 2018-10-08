@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
 import moment from 'moment';
-import './PostInfo.css';
+
 import CustomButton from '../../ui/CustomButton.js';
 import Feedback from '../../ui/Feedback.js';
+
+import './PostInfo.css';
 
 class PostInfo extends Component {
   render() {
