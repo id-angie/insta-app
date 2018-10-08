@@ -42,7 +42,7 @@ class FullscreenPost extends Component {
             <PostInfo
               user={this.props.user}
               post={this.props.post}
-              handleClick={this.props.handleClick}
+              toggleFollow={this.props.toggleFollow}
               img={this.props.img}
               addComment={this.props.addComment}
               deleteComment={this.props.deleteComment}

@@ -20,7 +20,7 @@ class Search extends Component {
     inputText: null
   };
 
-  handleChange = (selectedOption) => {
+  changeSelectedOption = (selectedOption) => {
     this.setState({ selectedOption });
   }
 
@@ -49,7 +49,7 @@ class Search extends Component {
           options={options}
           classNamePrefix="search__select"
           className="search__select"
-          onChange={this.handleChange}
+          onChange={this.changeSelectedOption}
           onFocus={() => this.setState({ isFocused: true })}
           onBlur={this.resetSearch}
           placeholder={this.state.inputText || "Поиск"}

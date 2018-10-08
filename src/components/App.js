@@ -53,7 +53,7 @@ class App extends Component {
       <div className="App">
         {this.state.user ?
           <ProfilePage user={this.state.user} logout={this.logout} toggleFollow={this.toggleFollow} /> :
-          <IndexPage handleEnter={this.setUser} />
+          <IndexPage setUser={this.setUser} />
         }
       </div>
       );

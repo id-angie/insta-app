@@ -18,7 +18,6 @@ class Login extends Component {
   }
 
   render() {
-    const { handleEnter } = this.props;
     return (
       <div className="login-container">
         <form className="login">
@@ -46,7 +45,7 @@ class Login extends Component {
             }
             isActive={false}
             textDisactive="Перейти"
-            handleClick={handleEnter}
+            handleClick={this.props.setUser}
           />
         </form>
       </div>

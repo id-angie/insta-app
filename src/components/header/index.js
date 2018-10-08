@@ -11,7 +11,7 @@ class Header extends Component {
     scrolled: false
   };
 
-  handleScroll = () => {
+  cutHeader = () => {
     this.setState({
       scrolled: window.pageYOffset >= 100
     });
@@ -36,11 +36,11 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('scroll', this.handleScroll);
+    document.addEventListener('scroll', this.cutHeader);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('scroll', this.handleScroll);
+    document.removeEventListener('scroll', this.cutHeader);
   }
 }
 

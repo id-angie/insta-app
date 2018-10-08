@@ -5,7 +5,7 @@ import Footer from './footer';
 
 const IndexPage = (props) => (
   <div className="IndexPage">
-    <Login handleEnter={props.handleEnter} />
+    <Login setUser={props.setUser} />
     <Footer />
   </div>
 );

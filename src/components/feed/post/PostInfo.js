@@ -9,7 +9,6 @@ import './PostInfo.css';
 
 class PostInfo extends Component {
   render() {
-    const { handleClick } = this.props;
     return (
       <div className="post-info">
         <div className="post-info__header">
@@ -21,7 +20,7 @@ class PostInfo extends Component {
             isActive={this.props.user.isFollow}
             textActive="Подписки"
             textDisactive="Подписаться"
-            handleClick={handleClick}
+            handleClick={this.props.toggleFollow}
           >
           </CustomButton>
         </div>

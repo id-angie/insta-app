@@ -10,8 +10,8 @@ class ProfilePage extends Component {
     return (
       <div className="ProfilePage">
         <Header logout={this.props.logout} />
-        <Profile user={this.props.user} handleClick={this.props.toggleFollow} />
-        <Feed user={this.props.user} handleClick={this.props.toggleFollow} />
+        <Profile user={this.props.user} toggleFollow={this.props.toggleFollow} />
+        <Feed user={this.props.user} toggleFollow={this.props.toggleFollow} />
         <Footer />
       </div>
     );

@@ -59,7 +59,7 @@ class Post extends Component {
             img={img}
             closeFullscreen={this.props.showPreview}
             isFollow={this.props.user.isFollow}
-            handleClick={this.props.handleClick}
+            toggleFollow={this.props.toggleFollow}
             showNextPost={this.props.showNextPost}
             showPrevPost={this.props.showPrevPost}
             addComment={this.props.addComment}

@@ -38,7 +38,7 @@ class Profile extends Component {
   };
 
   render() {
-    const { user, handleClick } = this.props;
+    const { user, toggleFollow } = this.props;
     return (
       <div>
         <div className="profile">
@@ -54,7 +54,7 @@ class Profile extends Component {
                   isActive={user.isFollow}
                   textActive="Подписки"
                   textDisactive="Подписаться"
-                  handleClick={handleClick}
+                  handleClick={toggleFollow}
                 >
                 </CustomButton>
               </div>
@@ -75,7 +75,6 @@ class Profile extends Component {
               </div>
             </div>
 
-
             <div className="profile__info profile__info_mobile">
               <div className="profile__row profile__head">
                 <div
@@ -88,7 +87,7 @@ class Profile extends Component {
                     isActive={user.isFollow}
                     textActive="Подписки"
                     textDisactive="Подписаться"
-                    handleClick={handleClick}
+                    handleClick={toggleFollow}
                   >
                   </CustomButton>
                 </div>

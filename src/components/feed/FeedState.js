@@ -6,7 +6,7 @@ import './FeedState.css';
 const FeedState = ({
   tabs = [],
   view = 'posts',
-  onTab,
+  changeTab,
   ...props
 }) => (
   <div className="feed-state">
@@ -18,7 +18,7 @@ const FeedState = ({
           })
         }
         key={tab.value}
-        onClick={() => onTab(tab.value)}
+        onClick={() => changeTab(tab.value)}
         {...props}
       >
         <div className={ cn("feed-state__img", tab.iconClass) } />

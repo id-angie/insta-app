@@ -20,7 +20,7 @@ class Feed extends Component {
     );
   }
 
-  handleTab = (view) => {
+  changeTab = (view) => {
     this.setState({
       view
     });
@@ -101,7 +101,7 @@ class Feed extends Component {
   }
 
   render() {
-    const { user, handleClick } = this.props;
+    const { user, toggleFollow } = this.props;
     const feedContent = this.getFeedContent();
     return (
       <div className="feed">
@@ -110,7 +110,7 @@ class Feed extends Component {
             <FeedState
               tabs={tabs}
               view={this.state.view}
-              onTab={this.handleTab}
+              changeTab={this.changeTab}
             />
             {
               (feedContent.length === 0) ?
@@ -121,7 +121,7 @@ class Feed extends Component {
               feedContent.map((post) =>
                 <Post
                   post={post} user={user}
-                  handleClick={handleClick}
+                  toggleFollow={toggleFollow}
                   key={post.id}
                   openedPost={this.state.openedPost}
                   showFullPost={this.showFullPost}
