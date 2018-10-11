@@ -71,7 +71,7 @@ class Login extends Component {
             }
             isActive={false}
             textDisactive="Перейти"
-            handleClick={this.handleClick}
+            onClick={this.handleClick}
           />
         </form>
       </div>

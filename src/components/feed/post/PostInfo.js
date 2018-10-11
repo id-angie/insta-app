@@ -39,7 +39,7 @@ class PostInfo extends Component {
             isActive={this.props.user.isFollow}
             textActive="Подписки"
             textDisactive="Подписаться"
-            handleClick={this.props.toggleFollow}
+            onClick={this.props.toggleFollow}
           >
           </CustomButton>
         </div>

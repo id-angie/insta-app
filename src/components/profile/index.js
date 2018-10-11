@@ -54,7 +54,7 @@ class Profile extends Component {
                   isActive={user.isFollow}
                   textActive="Подписки"
                   textDisactive="Подписаться"
-                  handleClick={toggleFollow}
+                  onClick={toggleFollow}
                 >
                 </CustomButton>
               </div>

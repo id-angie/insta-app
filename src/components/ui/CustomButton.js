@@ -12,7 +12,7 @@ class CustomButton extends Component {
       isActive,
       textActive,
       textDisactive,
-      handleClick,
+      onClick,
       ...props
     } = this.props;
 
@@ -22,7 +22,7 @@ class CustomButton extends Component {
           "custom-button_active": isActive
         })}
         href={href}
-        onClick={handleClick}
+        onClick={onClick}
         {...props}
       >
         { isActive ? textActive : textDisactive }
