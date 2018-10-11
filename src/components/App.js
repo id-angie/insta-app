@@ -16,10 +16,9 @@ class App extends Component {
     user: null
   };
 
-  setUser = (e) => {
-    e.preventDefault();
-    const id = document.querySelector('.login__input').value;
+  setUser = (id) => {
     const user = users.find((user) => user.id === id);
+
     if (user) {
       this.setState({
         user: user

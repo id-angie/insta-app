@@ -65,6 +65,7 @@
 
 .login__login-button_disactive {
   opacity: .5;
+  cursor: not-allowed;
 }
 
 .login__input_focused::placeholder {

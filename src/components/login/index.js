@@ -6,18 +6,43 @@ import CustomButton from '../ui/CustomButton.js';
 import './index.css';
 
 class Login extends Component {
+  input = null;
 
   state = {
-    isActive: false
+    login: ''
   }
 
-  activateButton = () => {
+  handleInput = (e) => {
+    let login = e.target.value;
+
+    login = login.replace(/(\W*|\D*)/gi, '');
+
     this.setState({
-      isActive: (document.querySelector('.login__input').value !== "")
+      login
     });
   }
 
+  handleClick = (e) => {
+    e.preventDefault();
+
+    const {
+      login: id
+    } = this.state;
+
+    if (!id)
+      return;
+
+    this.props.setUser(id);
+  }
+
+
   render() {
+    const {
+      login
+    } = this.state;
+
+    const isActive = login !== '';
+
     return (
       <div className="login-container">
         <form className="login">
@@ -26,14 +51,15 @@ class Login extends Component {
             <input
               className={ cn(
                 "input login__input",
-                {"login__input_typing": this.state.isActive}
+                {"login__input_typing": isActive}
               )}
-              onChange={this.activateButton}
+              value={login}
+              onChange={this.handleInput}
             />
             <label
               className={ cn(
                 "login__label",
-                {"login__label_small": this.state.isActive}
+                {"login__label_small": isActive}
               )}>
               Имя пользователя
             </label>
@@ -41,11 +67,11 @@ class Login extends Component {
           <CustomButton
             className={ cn(
               "login__login-button",
-              {"login__login-button_disactive": !this.state.isActive})
+              {"login__login-button_disactive": !isActive})
             }
             isActive={false}
             textDisactive="Перейти"
-            handleClick={this.props.setUser}
+            handleClick={this.handleClick}
           />
         </form>
       </div>
