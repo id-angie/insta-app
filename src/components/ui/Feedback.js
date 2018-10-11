@@ -21,12 +21,6 @@ class Feedback extends Component {
     });
   }
 
-  toggleComment = () => {
-    if (window.matchMedia('(max-width: 735px)').matches)
-      document.querySelector('.post-info__add-comment').style.display = 'block';
-    document.querySelector('.post-info__add-comment-input').focus();
-  }
-
   toggleSave = () => {
     const { post } = this.state;
     post.isSaved = !post.isSaved;
@@ -38,6 +32,11 @@ class Feedback extends Component {
   render() {
     const isLiked = this.state.post.feedback.likes.some((id) => (id === this.state.user.id));
     const isSaved = this.state.post.isSaved;
+
+    const {
+      activateComment
+    } = this.props;
+
     return (
       <div className="post-info__feedback">
         <div className="post-info__actions">
@@ -51,7 +50,7 @@ class Feedback extends Component {
             />
             <div
               className="post-info__icon post-info__icon_comment"
-              onClick={this.toggleComment}
+              onClick={activateComment}
             />
             <div
               className="post-info__icon post-info__icon_share"

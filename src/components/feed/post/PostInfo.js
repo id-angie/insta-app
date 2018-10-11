@@ -8,7 +8,26 @@ import Feedback from '../../ui/Feedback.js';
 import './PostInfo.css';
 
 class PostInfo extends Component {
+
+  input = null;
+
+  state = {
+    isCommentInput: false
+  };
+
+  activateComment = () => {
+    this.setState({
+      isCommentInput: true
+    }, () => {
+      this.input.focus();
+    });
+  }
+
   render() {
+    const {
+      isCommentInput
+    } = this.state;
+
     return (
       <div className="post-info">
         <div className="post-info__header">
@@ -55,15 +74,19 @@ class PostInfo extends Component {
           <Feedback
             post={this.props.post}
             user={this.props.user}
+            activateComment={this.activateComment}
           />
           <time className="post-info__date post-info__date_fullscreen">
             { moment(this.props.post.date).format('LL') }
           </time>
         </div>
-        <div className="post-info__add-comment">
+        <div className={cn('post-info__add-comment', {
+          'post-info__add-comment_disabled': !isCommentInput
+        })}>
           <form onSubmit={this.props.addComment}>
             <input
               type="text"
+              ref={(el) => this.input = el}
               className="post-info__add-comment-input"
               placeholder="Добавьте комментарий..."
             />

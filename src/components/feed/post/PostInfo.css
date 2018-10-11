@@ -142,7 +142,7 @@
     padding-top: 100%;
   }
 
-  .post-info__add-comment {
+  .post-info__add-comment_disabled {
     display: none;
   }
 
