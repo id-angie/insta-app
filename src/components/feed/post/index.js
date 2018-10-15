@@ -28,7 +28,7 @@ class Post extends Component {
     return (
       <div className="post-container">
         <div
-          className="post mb40"
+          className="post"
           style={{ backgroundImage: `url(${img})` }}
           id={post.id}
         >
