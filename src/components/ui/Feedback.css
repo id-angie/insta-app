@@ -1,0 +1,57 @@
+.post-info__feedback {
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+}
+
+.post-info__actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-info__actions-left {
+  display: flex;
+}
+
+.post-info__icon {
+  height: 25px;
+  width: 25px;
+  margin-right: 12px;
+  background-image: url(../../assets/sprite2.png);
+}
+
+.post-info__icon_like {
+  background-position: -25px -91px;
+}
+
+.post-info__icon_like-active {
+  background-position: 0 -91px;
+}
+
+.post-info__icon_comment {
+  background-position: -26px -65px;
+}
+
+.post-info__icon_share {
+  background-position: -52px -143px;
+}
+
+.post-info__icon_save {
+  background-position: -157px -78px;
+  margin-right: 0;
+}
+
+.post-info__icon_save-active {
+  background-position: -157px 0;
+}
+
+.post-info__likes {
+  font-size: 14px;
+  padding: 7px 0;
+}
+
+@media screen and (max-width: 735px) {
+  .post-info__feedback {
+    width: 100%;
+  }
+}

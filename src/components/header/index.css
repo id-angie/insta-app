@@ -5,21 +5,33 @@
   border-bottom: 1px solid #e7e7e7;
   display: flex;
   justify-content: center;
+  position: fixed;
+  z-index: 999;
 }
 
-.header-logo {
-  width: 300px;
+.header .container {
+  padding: 30px;
 }
 
-.img-logo {
-  height: 30px;
-  vertical-align: middle;
-  padding-right: 20px;
-  border-right: 2px solid #ccc;
+.header_scrolled {
+  height: 52px;
 }
 
-.text-logo {
-  height: 45px;
-  padding-left: 20px;
-  vertical-align: middle;
+.header__logo-block {
+  width: 33%;
+  min-width: 50px;
+  margin-left: 70px;
+}
+
+.header__logo {
+  height: 33px;
+  width: 175px;
+  background-image: url('../../assets/sprite.png');
+  background-position: -98px -205px;
+}
+
+@media screen and (max-width: 768px) {
+  .header__logo {
+    transform: scale(.8) translateX(-20px);
+  }
 }
