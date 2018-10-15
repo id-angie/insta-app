@@ -64,6 +64,8 @@ class Post extends Component {
             showPrevPost={this.props.showPrevPost}
             addComment={this.props.addComment}
             deleteComment={this.props.deleteComment}
+            toggleLike={this.props.toggleLike}
+            toggleSave={this.props.toggleSave}
           />
         }
       </div>

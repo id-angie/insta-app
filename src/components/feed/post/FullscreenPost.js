@@ -46,6 +46,8 @@ class FullscreenPost extends Component {
               img={this.props.img}
               addComment={this.props.addComment}
               deleteComment={this.props.deleteComment}
+              toggleLike={this.props.toggleLike}
+              toggleSave={this.props.toggleSave}
             />
           </div>
           <div

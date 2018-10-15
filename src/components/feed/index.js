@@ -100,6 +100,27 @@ class Feed extends Component {
     });
   }
 
+  toggleLike = () => {
+    const { user } = this.props;
+    const { openedPost } = this.state;
+    const indexOfLike = openedPost.feedback.likes.indexOf(user.id);
+    if (indexOfLike === -1)
+      openedPost.feedback.likes.push(user.id);
+    else
+      openedPost.feedback.likes.splice(indexOfLike, 1);
+    this.setState({
+      openedPost: openedPost
+    });
+  }
+
+  toggleSave = () => {
+    const { openedPost } = this.state;
+    openedPost.isSaved = !openedPost.isSaved;
+    this.setState({
+      openedPost: openedPost
+    });
+  }
+
   render() {
     const { user, toggleFollow } = this.props;
     const feedContent = this.getFeedContent();
@@ -130,6 +151,8 @@ class Feed extends Component {
                   showNextPost={this.showNextPost}
                   addComment={this.addComment}
                   deleteComment={this.deleteComment}
+                  toggleLike={this.toggleLike}
+                  toggleSave={this.toggleSave}
                 />
               )
             }

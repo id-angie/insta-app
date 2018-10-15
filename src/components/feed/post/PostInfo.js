@@ -75,6 +75,8 @@ class PostInfo extends Component {
             post={this.props.post}
             user={this.props.user}
             activateComment={this.activateComment}
+            toggleLike={this.props.toggleLike}
+            toggleSave={this.props.toggleSave}
           />
           <time className="post-info__date post-info__date_fullscreen">
             { moment(this.props.post.date).format('LL') }
