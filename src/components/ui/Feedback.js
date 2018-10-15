@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 
 import './Feedback.css';
 
 class Feedback extends Component {
+  static propTypes = {
+    activateComment: PropTypes.func
+  };
+
+  static defaultProps = {
+    activateComment: () => {}
+  };
+
   render() {
     const isLiked = this.props.post.feedback.likes.some((id) =>
       (id === this.props.user.id)
