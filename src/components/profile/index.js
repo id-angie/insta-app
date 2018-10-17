@@ -91,11 +91,11 @@ class Profile extends Component {
                 <div className="profile__column">
                   <div className="profile__user-name">{ user.id }</div>
                   <CustomButton
-                  className="profile__follow-button"
+                    className="profile__follow-button"
                     isActive={user.isFollow}
                     textActive="Подписки"
                     textDisactive="Подписаться"
-                    handleClick={toggleFollow}
+                    onClick={toggleFollow}
                   >
                   </CustomButton>
                 </div>
