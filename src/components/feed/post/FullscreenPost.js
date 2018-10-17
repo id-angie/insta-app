@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import ReactModal from 'react-modal';
 
 import PostInfo from './PostInfo.js';
 
 import './FullscreenPost.css';
+
+ReactModal.setAppElement('#root');
 
 class FullscreenPost extends Component {
 
@@ -16,7 +19,13 @@ class FullscreenPost extends Component {
 
   render() {
     return (
-      <div className="modal">
+      <ReactModal
+        isOpen={true}
+        className="react-modal__content"
+        overlayClassName="react-modal__overlay"
+        shouldCloseOnOverlayClick={true}
+        shouldCloseOnEsc={true}
+      >
         <div
           className="fullscreen-post-container"
           onClick={this.props.closeFullscreen}
@@ -60,7 +69,7 @@ class FullscreenPost extends Component {
             <span>×</span>
           </button>
         </div>
-      </div>
+      </ReactModal>
     );
   }
 }
