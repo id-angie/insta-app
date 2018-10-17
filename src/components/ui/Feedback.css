@@ -1,7 +1,7 @@
 .post-info__feedback {
   display: flex;
   flex-direction: column;
-  width: 270px;
+  width: 280px;
 }
 
 .post-info__actions {
