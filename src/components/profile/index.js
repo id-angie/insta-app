@@ -18,6 +18,10 @@ class Profile extends Component {
         posts: PropTypes.number,
         following: PropTypes.number,
         followers: PropTypes.number
+      }),
+      feed: PropTypes.shape({
+        posts: PropTypes.array,
+        tagged: PropTypes.array
       })
     })
   };
@@ -33,6 +37,10 @@ class Profile extends Component {
         posts: 0,
         following: 0,
         followers: 0
+      },
+      feed: {
+        posts: [],
+        tagged: []
       }
     }
   };

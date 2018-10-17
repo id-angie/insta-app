@@ -6,11 +6,73 @@ import './Feedback.css';
 
 class Feedback extends Component {
   static propTypes = {
-    activateComment: PropTypes.func
+    post: PropTypes.shape({
+      id: PropTypes.string,
+      date: PropTypes.string,
+      format: PropTypes.string,
+      media: PropTypes.array,
+      previewIndex: PropTypes.number,
+      isSaved: PropTypes.bool,
+      feedback: PropTypes.shape({
+        views: PropTypes.number,
+        likes: PropTypes.array,
+        comments: PropTypes.array
+      })
+    }),
+    user: PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      about: PropTypes.string,
+      avatar: PropTypes.string,
+      isFollow: PropTypes.bool,
+      accountData: PropTypes.shape({
+        posts: PropTypes.number,
+        following: PropTypes.number,
+        followers: PropTypes.number
+      }),
+      feed: PropTypes.shape({
+        posts: PropTypes.array,
+        tagged: PropTypes.array
+      })
+    }),
+    activateComment: PropTypes.func,
+    toggleLike: PropTypes.func,
+    toggleSave: PropTypes.func
+
   };
 
   static defaultProps = {
-    activateComment: () => {}
+    post: {
+      id: '',
+      date: '',
+      format: 'image',
+      media: [],
+      previewIndex: 0,
+      isSaved: false,
+      feedback: {
+        views: 0,
+        likes: [],
+        comments: []
+      }
+    },
+    user: {
+      id: 'unknown',
+      name: '',
+      about: '',
+      avatar: '',
+      isFollow: false,
+      accountData: {
+        posts: 0,
+        following: 0,
+        followers: 0
+      },
+      feed: {
+        posts: [],
+        tagged: []
+      }
+    },
+    toggleLike: () => {},
+    toggleSave: () => {}
   };
 
   render() {
