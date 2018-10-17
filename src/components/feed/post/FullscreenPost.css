@@ -34,6 +34,7 @@
 .fullscreen-post {
   flex-basis: 90%;
   max-width: 900px;
+  max-height: 85vh;
   background-color: #fff;
   display: flex;
   margin: 40px;
@@ -109,6 +110,10 @@
     position: absolute;
     top: 0;
     left: 0;
+  }
+
+  .fullscreen-post {
+    max-height: unset;
   }
 }
 

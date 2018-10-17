@@ -83,11 +83,12 @@ class Feedback extends Component {
     const {
       activateComment,
       toggleLike,
-      toggleSave
+      toggleSave,
+      className
     } = this.props;
 
     return (
-      <div className="post-info__feedback">
+      <div className={cn( "post-info__feedback", className )} >
         <div className="post-info__actions">
           <div className="post-info__actions-left">
             <div
