@@ -27,8 +27,7 @@ class App extends Component {
     alert('Пользователь не найден!');
   }
 
-  logout = (e) => {
-    e.preventDefault();
+  logout = () => {
     this.setState({
       user: null
     });

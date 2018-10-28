@@ -18,6 +18,10 @@ class Profile extends Component {
         posts: PropTypes.number,
         following: PropTypes.number,
         followers: PropTypes.number
+      }),
+      feed: PropTypes.shape({
+        posts: PropTypes.array,
+        tagged: PropTypes.array
       })
     })
   };
@@ -33,6 +37,10 @@ class Profile extends Component {
         posts: 0,
         following: 0,
         followers: 0
+      },
+      feed: {
+        posts: [],
+        tagged: []
       }
     }
   };
@@ -83,11 +91,11 @@ class Profile extends Component {
                 <div className="profile__column">
                   <div className="profile__user-name">{ user.id }</div>
                   <CustomButton
-                  className="profile__follow-button"
+                    className="profile__follow-button"
                     isActive={user.isFollow}
                     textActive="Подписки"
                     textDisactive="Подписаться"
-                    handleClick={toggleFollow}
+                    onClick={toggleFollow}
                   >
                   </CustomButton>
                 </div>

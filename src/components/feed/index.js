@@ -73,16 +73,18 @@ class Feed extends Component {
     e.preventDefault();
     const newComment = e.target.children[0].value;
     e.target.children[0].value = null;
-    this.state.openedPost.feedback.comments.push({
-      id: new Date() + ' ' + Math.random(),
-      commiter: this.props.user.id,
-      text: newComment,
-      date: new Date(),
-      likes: 0
-    });
-    this.setState({
-      openedPost: this.state.openedPost
-    });
+    if (newComment !== '') {
+      this.state.openedPost.feedback.comments.push({
+        id: new Date() + ' ' + Math.random(),
+        commiter: this.props.user.id,
+        text: newComment,
+        date: new Date(),
+        likes: 0
+      });
+      this.setState({
+        openedPost: this.state.openedPost
+      });
+    }
   }
 
   deleteComment = (e) => {
