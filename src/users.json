@@ -4,9 +4,13 @@
     "name": "Sereja",
     "about": "MSK, Planet Earth.",
     "avatar": "avatarS",
-    "isFollow": false,
+    "followers": [
+      "zamarawka"
+    ],
+    "following": [
+      "zamarawka"
+    ],
     "accountData": {
-      "posts": 42,
       "followers": 77,
       "following": 113
     },
@@ -26,7 +30,8 @@
             "views": 0,
             "likes": [
               "id_angie",
-              "mr_shilkin"
+              "mr_shilkin",
+              "zamarawka"
             ],
             "comments": [
               {
@@ -85,7 +90,8 @@
             "likes": [
               "id_angie",
               "mr_shilkin",
-              "1"
+              "1",
+              "zamarawka"
             ],
             "comments": [
               {
@@ -211,6 +217,86 @@
               }
             ]
           }
+        },
+        {
+          "id": "post7",
+          "date": "Thu Aug 16 2018 19:49:56 GMT+0300",
+          "format": "image",
+          "media": [
+            "post3.jpg"
+          ],
+          "previewIndex": 0,
+          "isSaved": false,
+          "feedback": {
+            "views": 0,
+            "likes": [
+              "id_angie",
+              "mr_shilkin"
+            ],
+            "comments": [
+              {
+                "id": "Fri Aug 17 2018 13:49:56 GMT+0300 0.2876523442",
+                "commiter": "mr_shilkin",
+                "text": "Это где?",
+                "date": "Fri Aug 17 2018 13:49:56 GMT+0300",
+                "likes": 0
+              },
+              {
+                "id": "Fri Aug 17 2018 13:55:01 GMT+0300 0.287659942",
+                "commiter": "zamarawka",
+                "text": "@mr_shilkin олимпийская деревня ;-)",
+                "date": "Fri Aug 17 2018 13:55:01 GMT+0300",
+                "likes": 0
+              },
+              {
+                "id": "Fri Aug 17 2018 13:56:01 GMT+0300 0.28765042",
+                "commiter": "mr_shilkin",
+                "text": "@zamarawka new comment",
+                "date": "Fri Aug 17 2018 13:56:01 GMT+0300",
+                "likes": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": "post8",
+          "date": "Thu Aug 16 2018 19:49:56 GMT+0300",
+          "format": "image",
+          "media": [
+            "post3.jpg"
+          ],
+          "previewIndex": 0,
+          "isSaved": false,
+          "feedback": {
+            "views": 0,
+            "likes": [
+              "id_angie",
+              "mr_shilkin"
+            ],
+            "comments": [
+              {
+                "id": "Fri Aug 17 2018 13:49:56 GMT+0300 0.2876523442",
+                "commiter": "mr_shilkin",
+                "text": "Это где?",
+                "date": "Fri Aug 17 2018 13:49:56 GMT+0300",
+                "likes": 0
+              },
+              {
+                "id": "Fri Aug 17 2018 13:55:01 GMT+0300 0.287659942",
+                "commiter": "zamarawka",
+                "text": "@mr_shilkin олимпийская деревня ;-)",
+                "date": "Fri Aug 17 2018 13:55:01 GMT+0300",
+                "likes": 0
+              },
+              {
+                "id": "Fri Aug 17 2018 13:56:01 GMT+0300 0.28765042",
+                "commiter": "mr_shilkin",
+                "text": "@zamarawka new comment",
+                "date": "Fri Aug 17 2018 13:56:01 GMT+0300",
+                "likes": 0
+              }
+            ]
+          }
         }
       ],
       "tagged": [
@@ -242,9 +328,13 @@
     "name": "Sereja",
     "about": "MSK, Planet Earth.",
     "avatar": "avatarS",
-    "isFollow": false,
+    "followers": [
+      "id_angie"
+    ],
+    "following": [
+      "id_angie"
+    ],
     "accountData": {
-      "posts": 42,
       "followers": 77,
       "following": 113
     },
@@ -382,9 +472,13 @@
     "name": "Angelina",
     "about": "",
     "avatar": "avatarA",
-    "isFollow": true,
+    "followers": [
+      "zamarawka"
+    ],
+    "following": [
+      "zamarawka"
+    ],
     "accountData": {
-      "posts": 240,
       "followers": 76,
       "following": 101
     },
