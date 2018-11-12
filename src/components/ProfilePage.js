@@ -4,8 +4,37 @@ import Header from './header';
 import Profile from './profile';
 import Feed from './feed';
 import Footer from './footer';
+import * as api from '../api/users';
 
 class ProfilePage extends Component {
+  state = {
+    user: null
+  };
+
+  componentDidMount() {
+    api.showUser(this.props.userId)
+      .then((body) => {
+        this.setState({
+          user: body.data.user
+        })
+      })
+
+      .catch((error) => {
+        console.log(error)
+      });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.userId !== this.props.userId) {
+      api.showUser(this.props.userId)
+        .then((body) => {
+          this.setState({
+            user: body.data.user
+          })
+        })
+    }
+  }
+
   render() {
     const {
       userId,
