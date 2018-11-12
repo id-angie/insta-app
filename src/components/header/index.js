@@ -4,7 +4,7 @@ import cn from 'classnames';
 import Search from '../ui/Search.js';
 import LoginButton from '../ui/LoginButton.js';
 
-import './index.css';
+import './index.scss';
 
 class Header extends Component {
   state = {

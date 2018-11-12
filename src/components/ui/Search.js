@@ -4,7 +4,7 @@ import Select from 'react-select';
 
 import users from '../../users.json';
 
-import './Search.css';
+import './Search.scss';
 
 const ClearIndicator  = ({ innerProps: { ...restInnerProps } }) => (
   <div

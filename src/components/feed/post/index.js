@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import FullscreenPost from './FullscreenPost.js'
 
-import './index.css';
+import './index.scss';
 
 class Post extends Component {
   state = {

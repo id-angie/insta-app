@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import CustomButton from '../ui/CustomButton';
 
-import './index.css';
+import './index.scss';
 
 class Profile extends Component {
   static propTypes = {

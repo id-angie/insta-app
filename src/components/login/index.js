@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import CustomButton from '../ui/CustomButton.js';
 
-import './index.css';
+import './index.scss';
 
 class Login extends Component {
   input = null;

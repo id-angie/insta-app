@@ -4,7 +4,7 @@ import FeedState from './FeedState.js'
 import Post from './post'
 import tabs from '../../tabs.json';
 
-import './index.css';
+import './index.scss';
 
 class Feed extends Component {
   state = {

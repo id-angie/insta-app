@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './LoginButton.css';
+import './LoginButton.scss';
 
 class LoginButton extends Component {
   render() {

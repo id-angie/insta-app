@@ -1,0 +1,46 @@
+@import '../../global/variables.scss';
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 38px;
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__link {
+    color: $link;
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__copyright {
+    color: $text_lighter;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 875px) {
+
+  .footer__list {
+    justify-content: center;
+  }
+
+  .footer__copyright {
+    display: flex;
+    justify-content: center;
+  }
+}

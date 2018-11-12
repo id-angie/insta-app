@@ -6,7 +6,7 @@ import IndexPage from './IndexPage.js';
 import ProfilePage from './ProfilePage.js';
 import users from '../users.json';
 
-import './App.css';
+import './App.scss';
 
 moment.locale('ru');
 

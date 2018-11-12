@@ -1,0 +1,117 @@
+@import '../../global/variables.scss';
+
+.profile {
+  padding-top: 90px;
+  display: flex;
+  justify-content: center;
+
+  &__info {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 80px;
+    box-sizing: border-box;
+
+    &_mobile {
+      display: none;
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+
+  &__user-name {
+    font-size: 32px;
+    font-weight: 200;
+    line-height: 40px;
+    text-transform: lowercase;
+    padding: 5px;
+  }
+
+  &__user-data {
+    line-height: 24px;
+  }
+
+  &__follow-button {
+    margin-left: 20px;
+  }
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 20px;
+}
+
+@media screen and (max-width: 735px) {
+
+  .profile {
+
+    &__info_fullscreen,
+    &__avatar_fullscreen {
+      display: none;
+    }
+
+    &__info_mobile {
+      display: flex;
+      padding: 0;
+      width: 100%;
+      font-size: .85em;
+    }
+
+    &__avatar_mobile {
+      transform: scale(.5);
+      min-width: 150px;
+      margin: -20px -10px 0 -30px;
+    }
+
+    &__column {
+      margin-left: 15px;
+    }
+
+    &__row {
+      padding: 0;
+    }
+
+    &__head,
+    &__user-data {
+      padding-left: 30px;
+    }
+
+    &__user-data {
+      padding-bottom: 20px;
+    }
+
+    &__user-name {
+      font-size: 22px;
+      font-weight: 400;
+    }
+
+    &__follow-button {
+      margin: auto;
+    }
+
+    &__follows-info {
+      border-top: $border_light;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__follows-info-tab {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding: 15px;
+      color: $text_lighter;
+
+      b {
+        color: $text_dark;
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 
-import './Feedback.css';
+import './Feedback.scss';
 
 class Feedback extends Component {
   static propTypes = {

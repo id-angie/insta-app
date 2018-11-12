@@ -3,7 +3,7 @@ import ReactModal from 'react-modal';
 
 import PostInfo from './PostInfo.js';
 
-import './FullscreenPost.css';
+import './FullscreenPost.scss';
 
 ReactModal.setAppElement('#root');
 

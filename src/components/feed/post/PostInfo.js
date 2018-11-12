@@ -5,7 +5,7 @@ import moment from 'moment';
 import CustomButton from '../../ui/CustomButton.js';
 import Feedback from '../../ui/Feedback.js';
 
-import './PostInfo.css';
+import './PostInfo.scss';
 
 class PostInfo extends Component {
 
