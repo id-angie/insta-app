@@ -4,6 +4,7 @@ import { Redirect } from 'react-router';
 
 import Footer from './footer';
 import { login } from '../actions';
+import { registration } from '../actions';
 
 const IndexPage = (props) => {
   if (props.currentUser)
