@@ -9,13 +9,13 @@ import './index.scss';
 class Profile extends Component {
   static propTypes = {
     user: PropTypes.shape({
-      id: PropTypes.string,
+      nickname: PropTypes.string,
       name: PropTypes.string,
       about: PropTypes.string,
       avatar: PropTypes.string,
-      isFollow: PropTypes.bool,
+      followers: PropTypes.array,
+      following: PropTypes.array,
       accountData: PropTypes.shape({
-        posts: PropTypes.number,
         following: PropTypes.number,
         followers: PropTypes.number
       }),
@@ -28,13 +28,13 @@ class Profile extends Component {
 
   static defaultProps = {
     user: {
-      id: 'unknown',
+      nickname: 'unknown',
       name: '',
       about: '',
       avatar: '',
-      isFollow: false,
+      followers: [],
+      following: [],
       accountData: {
-        posts: 0,
         following: 0,
         followers: 0
       },
@@ -46,7 +46,7 @@ class Profile extends Component {
   };
 
   render() {
-    const { user, toggleFollow } = this.props;
+    const { user, currentUser, isFollow, toggleFollow } = this.props;
     return (
       <div>
         <div className="profile">
@@ -56,19 +56,28 @@ class Profile extends Component {
             />
             <div className="profile__info profile__info_fullscreen">
               <div className="profile__row">
-                <div className="profile__user-name">{ user.id }</div>
-                <CustomButton
-                  className="profile__follow-button ml20"
-                  isActive={user.isFollow}
-                  textActive="Подписки"
-                  textDisactive="Подписаться"
-                  onClick={toggleFollow}
-                >
-                </CustomButton>
+                <div className="profile__user-name">{ user.nickname }</div>
+                {(currentUser && currentUser.nickname === user.nickname) ?
+                  <CustomButton
+                    className="profile__follow-button"
+                    isActive={true}
+                    textActive="Это Вы"
+                    onClick={() => {}}
+                  >
+                  </CustomButton> :
+                  <CustomButton
+                    className="profile__follow-button"
+                    isActive={isFollow}
+                    textActive="Подписки"
+                    textDisactive="Подписаться"
+                    onClick={() => toggleFollow(currentUser, user.nickname , isFollow)}
+                  >
+                  </CustomButton>
+                }
               </div>
               <div className="profile__row">
                 <div>
-                  <b>{ user.accountData.posts }</b> публикаций
+                  <b>{ user.feed.posts.length }</b> публикаций
                 </div>
                 <div className="ml40">
                   <b>{ user.accountData.followers }</b> подписчиков
@@ -89,15 +98,24 @@ class Profile extends Component {
                   className={ cn("avatar profile__avatar_mobile", user.avatar) }
                 />
                 <div className="profile__column">
-                  <div className="profile__user-name">{ user.id }</div>
-                  <CustomButton
-                    className="profile__follow-button"
-                    isActive={user.isFollow}
-                    textActive="Подписки"
-                    textDisactive="Подписаться"
-                    onClick={toggleFollow}
-                  >
-                  </CustomButton>
+                  <div className="profile__user-name">{ user.nickname }</div>
+                  {(currentUser && currentUser.nickname === user.nickname) ?
+                    <CustomButton
+                      className="profile__follow-button"
+                      isActive={true}
+                      textActive="Это Вы"
+                      onClick={() => {}}
+                    >
+                    </CustomButton> :
+                    <CustomButton
+                      className="profile__follow-button"
+                      isActive={isFollow}
+                      textActive="Подписки"
+                      textDisactive="Подписаться"
+                      onClick={() => toggleFollow(currentUser, user.nickname , isFollow)}
+                    >
+                    </CustomButton>
+                  }
                 </div>
               </div>
               <div className="profile__user-data">
@@ -106,7 +124,7 @@ class Profile extends Component {
               </div>
               <div className="profile__row profile__follows-info">
                 <div className="profile__follows-info-tab">
-                  <b>{ user.accountData.posts }</b> публикаций
+                  <b>{ user.feed.posts.length }</b> публикаций
                 </div>
                 <div className="profile__follows-info-tab">
                   <b>{ user.accountData.followers }</b> подписчиков

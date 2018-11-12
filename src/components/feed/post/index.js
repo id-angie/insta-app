@@ -58,7 +58,7 @@ class Post extends Component {
             post={post}
             img={img}
             closeFullscreen={this.props.showPreview}
-            isFollow={this.props.user.isFollow}
+            isFollow={this.props.isFollow}
             toggleFollow={this.props.toggleFollow}
             showNextPost={this.props.showNextPost}
             showPrevPost={this.props.showPrevPost}
@@ -66,6 +66,7 @@ class Post extends Component {
             deleteComment={this.props.deleteComment}
             toggleLike={this.props.toggleLike}
             toggleSave={this.props.toggleSave}
+            currentUser={this.props.currentUser}
           />
         }
       </div>

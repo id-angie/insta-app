@@ -23,26 +23,49 @@ class PostInfo extends Component {
     });
   }
 
+  hasUserRights = (comment, currentUser, user) => {
+    if ((currentUser === null) ||
+      ((comment.commiter !== currentUser.nickname) && (currentUser.nickname !== user.nickname))
+    )
+      return false;
+    return true;
+  }
+
+  handleEnter = (e) => {
+    if (e.keyCode === 13) this.props.addComment(e, this.input, this.props.currentUser);
+  }
+
   render() {
     const {
       isCommentInput
     } = this.state;
 
+    const { user, currentUser, isFollow, toggleFollow } = this.props;
+
     return (
       <div className="post-info">
         <div className='post-info__data-zone'>
           <div className="post-info__header">
-            <div className={ cn("post-info__avatar", this.props.user.avatar)} />
-            <div className="post-info__user-name">{this.props.user.id}</div>
+            <div className={ cn("post-info__avatar", user.avatar)} />
+            <div className="post-info__user-name">{user.nickname}</div>
             <div className="post-info__dot">•</div>
-            <CustomButton
-              className="post-info__follow-button"
-              isActive={this.props.user.isFollow}
-              textActive="Подписки"
-              textDisactive="Подписаться"
-              onClick={this.props.toggleFollow}
-            >
-            </CustomButton>
+            {currentUser && user.nickname === currentUser.nickname ?
+              <CustomButton
+                className="post-info__follow-button"
+                isActive={true}
+                textActive="Это Вы"
+                onClick={() => {}}
+              >
+              </CustomButton> :
+              <CustomButton
+                className="post-info__follow-button"
+                isActive={isFollow}
+                textActive="Подписки"
+                textDisactive="Подписаться"
+                onClick={() => toggleFollow(currentUser, user.nickname , isFollow)}
+              >
+              </CustomButton>
+            }
           </div>
           <div
             className="fullscreen-post__img fullscreen-post__img_mobile"
@@ -51,7 +74,8 @@ class PostInfo extends Component {
           <Feedback
             className='post-info__feedback_mobile'
             post={this.props.post}
-            user={this.props.user}
+            user={user}
+            currentUser={currentUser}
             activateComment={this.activateComment}
             toggleLike={this.props.toggleLike}
             toggleSave={this.props.toggleSave}
@@ -66,12 +90,14 @@ class PostInfo extends Component {
                 <span>
                   <b>{comment.commiter}</b> {comment.text}
                 </span>
+                {(this.hasUserRights(comment, this.props.currentUser, this.props.user)) &&
                 <span
                   className="post-info__comments-delete"
                   onClick={this.props.deleteComment}
                 >
                   ×
                 </span>
+              }
               </li>
               )
             }
@@ -85,7 +111,8 @@ class PostInfo extends Component {
             <Feedback
               className="post-info__feedback_fullscreen"
               post={this.props.post}
-              user={this.props.user}
+              user={user}
+              currentUser={currentUser}
               activateComment={this.activateComment}
               toggleLike={this.props.toggleLike}
               toggleSave={this.props.toggleSave}
@@ -97,13 +124,14 @@ class PostInfo extends Component {
           <div className={cn('post-info__add-comment', {
             'post-info__add-comment_disabled': !isCommentInput
           })}>
-            <form onSubmit={this.props.addComment}>
+            <form onSubmit={(e) => this.props.addComment(e, this.input, currentUser)} onKeyDown={(e) => this.handleEnter(e)}>
               <input
                 type="text"
                 ref={(el) => this.input = el}
                 className="post-info__add-comment-input"
                 placeholder="Добавьте комментарий..."
               />
+              <button type='submit' hidden />
             </form>
             <div className="post-info__add-comment-actions">
               <b>...</b>

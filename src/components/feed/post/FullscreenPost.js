@@ -57,6 +57,8 @@ class FullscreenPost extends Component {
               deleteComment={this.props.deleteComment}
               toggleLike={this.props.toggleLike}
               toggleSave={this.props.toggleSave}
+              isFollow={this.props.isFollow}
+              currentUser={this.props.currentUser}
             />
           </div>
           <div

@@ -84,7 +84,8 @@ class Feedback extends Component {
       activateComment,
       toggleLike,
       toggleSave,
-      className
+      className,
+      currentUser
     } = this.props;
 
     return (
@@ -96,7 +97,7 @@ class Feedback extends Component {
                 "post-info__icon post-info__icon_like",
                 {"post-info__icon_like-active" : isLiked}
               )}
-              onClick={toggleLike}
+              onClick={() => toggleLike(currentUser)}
             />
             <div
               className="post-info__icon post-info__icon_comment"
@@ -112,7 +113,7 @@ class Feedback extends Component {
               "post-info__icon post-info__icon_save",
               {"post-info__icon post-info__icon_save-active": isSaved}
             )}
-            onClick={toggleSave}
+            onClick={() => toggleSave(currentUser)}
           />
         </div>
         <div className="post-info__likes">

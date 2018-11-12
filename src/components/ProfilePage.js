@@ -7,11 +7,37 @@ import Footer from './footer';
 
 class ProfilePage extends Component {
   render() {
+    const {
+      userId,
+      currentUser,
+      isFollow,
+      toggleFollow
+    } = this.props;
+
+    const {
+      user
+    } = this.state;
+
+    if (!userId) {
+      return (
+        <div>
+          User not selected
+        </div>
+      );
+    }
+
     return (
-      <div className="ProfilePage">
-        <Header logout={this.props.logout} />
-        <Profile user={this.props.user} toggleFollow={this.props.toggleFollow} />
-        <Feed user={this.props.user} toggleFollow={this.props.toggleFollow} />
+      <div className="profile-page">
+        <Header />
+        { user ?
+          <>
+            <Profile user={user} currentUser={currentUser} isFollow={isFollow} toggleFollow={toggleFollow} />
+            <Feed user={user} currentUser={currentUser} isFollow={isFollow} toggleFollow={toggleFollow} />
+          </> :
+          <div className="loading">
+            Loading...
+          </div>
+        }
         <Footer />
       </div>
     );

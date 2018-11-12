@@ -69,14 +69,15 @@ class Feed extends Component {
     });
   }
 
-  addComment = (e) => {
+  addComment = (e, input, currentUser) => {
     e.preventDefault();
-    const newComment = e.target.children[0].value;
-    e.target.children[0].value = null;
+    if (!this.checkCurrentUser(currentUser)) return;
+    const newComment = input.value;
+    input.value = null;
     if (newComment !== '') {
       this.state.openedPost.feedback.comments.push({
         id: new Date() + ' ' + Math.random(),
-        commiter: this.props.user.id,
+        commiter: this.props.currentUser.nickname,
         text: newComment,
         date: new Date(),
         likes: 0
@@ -102,7 +103,8 @@ class Feed extends Component {
     });
   }
 
-  toggleLike = () => {
+  toggleLike = (currentUser) => {
+    if (!this.checkCurrentUser(currentUser)) return;
     const { user } = this.props;
     const { openedPost } = this.state;
     const indexOfLike = openedPost.feedback.likes.indexOf(user.id);
@@ -115,7 +117,8 @@ class Feed extends Component {
     });
   }
 
-  toggleSave = () => {
+  toggleSave = (currentUser) => {
+    if (!this.checkCurrentUser(currentUser)) return;
     const { openedPost } = this.state;
     openedPost.isSaved = !openedPost.isSaved;
     this.setState({
@@ -123,8 +126,15 @@ class Feed extends Component {
     });
   }
 
+  checkCurrentUser = (currentUser) => {
+    if (!currentUser) {
+      alert('Авторизуйтесь!');
+      return;
+    }
+    return true;
+  }
+
   render() {
-    const { user, toggleFollow } = this.props;
     const feedContent = this.getFeedContent();
     return (
       <div className="feed">
@@ -143,8 +153,9 @@ class Feed extends Component {
               </div> :
               feedContent.map((post) =>
                 <Post
-                  post={post} user={user}
-                  toggleFollow={toggleFollow}
+                  post={post}
+                  user={this.props.user}
+                  toggleFollow={this.props.toggleFollow}
                   key={post.id}
                   openedPost={this.state.openedPost}
                   showFullPost={this.showFullPost}
@@ -155,6 +166,8 @@ class Feed extends Component {
                   deleteComment={this.deleteComment}
                   toggleLike={this.toggleLike}
                   toggleSave={this.toggleSave}
+                  isFollow={this.props.isFollow}
+                  currentUser={this.props.currentUser}
                 />
               )
             }
