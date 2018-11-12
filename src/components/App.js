@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import IndexPage from './IndexPage.js';
 import Login from './login';
 import Registration from './registration';
+import NewPost from './newPost';
 import ProfileContainer from './ProfileContainer.js';
 
 import './App.scss';
@@ -21,6 +22,7 @@ class App extends Component {
           <Route path='/user/:nickname' component={ProfileContainer} />
           <Route path='/login' render={() => <IndexPage Component={Login} />} />
           <Route path='/registration' render={() => <IndexPage Component={Registration} />} />
+          <Route path='/newpost' render={() => <IndexPage Component={NewPost} />} />
         </div>
       </Router>
       );

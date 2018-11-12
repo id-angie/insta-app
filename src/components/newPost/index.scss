@@ -1,0 +1,60 @@
+@import '../../global/variables.scss';
+
+.new-post-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.new-post {
+  background-color: #fff;
+  border: $border_light;
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+
+  &__logo {
+    background-image: url('../../assets/sprite.png');
+    width: 62px;
+    height: 62px;
+    background-position: -260px -291px;
+    margin: 20px;
+  }
+
+  &__input-box {
+    width: 75%;
+    display: flex;
+    position: relative;
+    margin: 10px 15px 5px;
+
+    &_fail {
+      border: $border_fail;
+      color: red;
+    }
+  }
+
+  &__input {
+    font-size: 12px;
+    width: 100%;
+    height: 80%;
+    padding: 11px 6px;
+    text-align: left;
+    z-index: 999;
+  }
+
+  &__add-button {
+    width: 75%;
+    margin: 20px auto;
+
+    &_disactive {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+  }
+}
