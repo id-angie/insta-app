@@ -1,13 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router';
 
-import Login from './login';
 import Footer from './footer';
+import { login } from '../actions';
 
-const IndexPage = (props) => (
-  <div className="IndexPage">
-    <Login setUser={props.setUser} />
-    <Footer />
-  </div>
-);
+const IndexPage = (props) => {
+  if (props.currentUser)
+    return <Redirect to={`/user/${props.currentUser.nickname}`} />
 
-export default IndexPage;
+  const { Component } = props;
+
+  return (
+    <div className="index-page">
+      <Component login={props.login} registration={props.registration} newPost={props.newPost} />
+      <Footer />
+    </div>
+  )
+};
+
+export default connect(
+  (state) => ({
+    currentUser: state.currentUser.user
+  }),
+  {
+    login,
+    registration,
+    newPost
+  }
+)(IndexPage);

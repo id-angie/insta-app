@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom';
 
 import Search from '../ui/Search.js';
 import LoginButton from '../ui/LoginButton.js';
@@ -56,4 +58,11 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default connect(
+  (state) => ({
+    currentUser: state.currentUser.user
+  }),
+  (dispatch) => ({
+    logout: () => dispatch(logout())
+  })
+  )(Header);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
 import Select from 'react-select';
+import { withRouter } from 'react-router';
 
 import users from '../../users.json';
 
@@ -16,19 +17,18 @@ const ClearIndicator  = ({ innerProps: { ...restInnerProps } }) => (
 class Search extends Component {
   state = {
     isFocused: false,
-    selectedOption: null,
-    inputText: null
+    inputText: null,
+    options: []
   };
 
   changeSelectedOption = (selectedOption) => {
-    this.setState({ selectedOption });
+    this.props.history.push(`/user/${selectedOption.value}`);
   }
 
   resetSearch = () => {
     this.setState({
       isFocused: false,
-      selectedOption: null,
-      inputText: document.getElementById("react-select-2-input").value
+      inputText: ''
     });
   }
 
@@ -39,14 +39,15 @@ class Search extends Component {
 
     const { selectedOption } = this.state;
 
+  render() {
     return (
       <div className={cn("search", {
             "search_focused": this.state.isFocused
           })}>
         <Select
-          value={this.state.inputText || selectedOption}
+          value={this.state.inputText}
           isClearable
-          options={options}
+          options={this.state.options}
           classNamePrefix="search__select"
           className="search__select"
           onChange={this.changeSelectedOption}
@@ -61,4 +62,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default withRouter(Search);
