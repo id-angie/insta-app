@@ -19,12 +19,15 @@
   align-items: center;
   padding: 10px;
 
-  &__logo {
-    background-image: url('../../assets/sprite.png');
+  &__preview {
     width: 62px;
     height: 62px;
-    background-position: -260px -291px;
     margin: 20px;
+
+    &_default {
+      background-image: url('../../assets/sprite.png');
+      background-position: -260px -291px;
+    }
   }
 
   &__input-box {
@@ -41,11 +44,38 @@
 
   &__input {
     font-size: 12px;
-    width: 100%;
+    width: 85%;
     height: 80%;
     padding: 11px 6px;
     text-align: left;
     z-index: 999;
+    margin-right: auto;
+
+    &_file {
+      height: 15px;
+      cursor: pointer;
+      overflow: hidden;
+      width: 85%;
+      margin-right: auto;
+
+      input {
+        display: none;
+      }
+    }
+
+    &_large {
+      width: 100%;
+    }
+
+    &_filename {
+      overflow: hidden;
+      white-space: nowrap;
+      color: $input_text_disactive;
+    }
+
+    &_active-text {
+      color: #000;
+    }
   }
 
   &__add-button {
@@ -55,6 +85,27 @@
     &_disactive {
       opacity: .5;
       cursor: not-allowed;
+    }
+  }
+
+  &__clear {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 25%;
+    right: 5px;
+    display: flex;
+    justify-content: center;
+    opacity: .3;
+    cursor: pointer;
+
+    &_hidden {
+      display: none;
+    }
+
+    &:hover {
+      opacity: .5;
+
     }
   }
 }

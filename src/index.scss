@@ -51,7 +51,7 @@ input {
     outline: none;
   }
 
-  &:placeholder {
+  &::placeholder {
     color: $input_text_disactive;
   }
 }

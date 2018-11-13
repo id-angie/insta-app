@@ -9,7 +9,9 @@ class NewPost extends Component {
 
   state = {
     file: '',
-    text: ''
+    preview: '',
+    filename: '',
+    comment: ''
   }
 
   handleEnter = (e) => {
@@ -17,63 +19,128 @@ class NewPost extends Component {
 
     const {
       file,
-      text
+      filename,
+      comment
     } = this.state;
 
     if (!file)
       return;
 
-    this.props.newPost(file, text);
+    this.props.newPost(filename, comment);
   }
 
-  handleFileInput = (value) => {
-    let file = value;
-
+  clearFile = () => {
     this.setState({
-      file
+      file: '',
+      preview: '',
+      filename: ''
     });
   }
 
-  handleTextInput = (value) => {
-    let text = value;
-
+  clearComment = () => {
     this.setState({
-      text
+      comment: ''
+    });
+  }
+
+  handleFileInput = (e) => {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file,
+        filename: file.name,
+        preview: reader.result
+      });
+    }
+    if (!file) return;
+    reader.readAsDataURL(file);
+  }
+
+  handleTextInput = (comment) => {
+    this.setState({
+      comment
     });
   }
 
   render() {
     const {
       file,
-      text
+      preview,
+      filename,
+      comment
     } = this.state;
 
-    const isFileValid = file !== '';
+    const style = file ? {
+      backgroundImage: `url(${preview})`,
+      backgroundSize: "cover"
+    } :
+    {};
 
     return (
       <div className="new-post-container">
         <form className="new-post">
-          <div className="new-post__logo" />
+          <div className={ cn(
+            "new-post__preview", {"new-post__preview_default": !file}
+          )} style={style}
+          >
+          </div>
            <div className="input-box new-post__input-box">
-            <input
-              className="input new-post__input"
-              value={file}
-              placeholder="Загрузите файл"
-              onChange={(e) => this.handleFileInput(e.target.value)}
-            />
+            <label className={ cn(
+              "input new-post__input new-post__input_file", {
+              "new-post__input_large": !filename
+            } )}
+            >
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => this.handleFileInput(e)}
+              />
+              <span className={ cn(
+                "input new-post__input new-post__input_filename", {
+                "new-post__input_active-text": filename
+                }) }
+              >
+                {filename ? filename : "Выберите файл"}
+              </span>
+            </label>
+            <div
+              className={ cn(
+                "new-post__clear", {
+                "new-post__clear_hidden": !file
+              } )}
+              onClick={this.clearFile}
+            >
+              ×
+            </div>
           </div>
           <div className="input-box new-post__input-box">
             <input
-              className="input new-post__input"
-              value={text}
+              className={ cn(
+                "input new-post__input", {
+                "new-post__input_large": !comment
+              } )}
+              value={comment}
               placeholder="Добавьте подпись..."
               onChange={(e) => this.handleTextInput(e.target.value)}
             />
+            <div
+              className={ cn(
+                "new-post__clear", {
+                "new-post__clear_hidden": !comment
+              } )}
+              onClick={this.clearComment}
+            >
+              ×
+            </div>
           </div>
           <CustomButton
             className={ cn(
               "new-post__add-button", {
-              "new-post__add-button_disactive": !isFileValid
+              "new-post__add-button_disactive": !file
               })
             }
             isActive={false}
