@@ -26,6 +26,10 @@
     margin: 5px;
   }
 
+  &__user-name {
+    margin-left: 5px;
+  }
+
   &__comments {
     border-top: $border;
     font-size: 14px;
@@ -64,6 +68,10 @@
     margin: 0 7px;
     background-size: contain;
     border-radius: 50%;
+
+    &_default {
+      background-image: url('../../../assets/avatarDefault.jpg');
+    }
   }
 
   &__dot {

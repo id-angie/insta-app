@@ -38,6 +38,10 @@
   &__follow-button {
     margin-left: 20px;
   }
+
+  &__avatar_default {
+    background-image: url('../../assets/avatarDefault.jpg');
+  }
 }
 
 .avatar {

@@ -46,7 +46,9 @@ class PostInfo extends Component {
       <div className="post-info">
         <div className='post-info__data-zone'>
           <div className="post-info__header">
-            <div className={ cn("post-info__avatar", user.avatar)} />
+            <div className={ cn("post-info__avatar", user.avatar, {
+              "post-info__avatar_default": !user.avatar
+            })} />
             <div className="post-info__user-name">{user.nickname}</div>
             <div className="post-info__dot">•</div>
             {currentUser && user.nickname === currentUser.nickname ?
