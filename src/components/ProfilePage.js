@@ -11,27 +11,17 @@ class ProfilePage extends Component {
     user: null
   };
 
-  componentDidMount() {
-    api.showUser(this.props.userId)
-      .then((body) => {
-        this.setState({
-          user: body.data.user
-        })
-      })
+  loadData = () => {
+    this.props.fetchUser(this.props.userId);
+  }
 
-      .catch((error) => {
-        console.log(error)
-      });
+  componentDidMount() {
+    this.loadData();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.userId !== this.props.userId) {
-      api.showUser(this.props.userId)
-        .then((body) => {
-          this.setState({
-            user: body.data.user
-          })
-        })
+      this.loadData();
     }
   }
 
