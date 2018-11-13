@@ -116,7 +116,7 @@ class Profile extends Component {
                       isActive={isFollow}
                       textActive="Подписки"
                       textDisactive="Подписаться"
-                      onClick={() => toggleFollow(currentUser, user.nickname , isFollow)}
+                      onClick={() => toggleFollow(user.nickname , isFollow)}
                     >
                     </CustomButton>
                   }
