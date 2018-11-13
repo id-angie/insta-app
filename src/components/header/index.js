@@ -62,7 +62,7 @@ export default connect(
   (state) => ({
     currentUser: state.currentUser.user
   }),
-  (dispatch) => ({
-    logout: () => dispatch(logout())
-  })
-  )(Header);
+  {
+    logout: logout
+  }
+)(Header);
