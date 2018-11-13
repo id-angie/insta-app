@@ -4,7 +4,6 @@ import { toggleFollow } from '../actions';
 import ProfilePage from './ProfilePage.js';
 
 const mapStateToProps = ( state, { match } ) => ({
-//  user: users.find((user) => user.id === match.params.nickname),
   userId: match.params.nickname,
   currentUser: state.currentUser.user,
   isFollow:

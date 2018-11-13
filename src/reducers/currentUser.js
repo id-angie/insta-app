@@ -3,8 +3,6 @@ const rootReducer = (state = { user: null, token: null, forceLogin: false }, act
   // console.log(state);
   switch (action.type) {
     case 'LOGIN':
-     // const user = (users.find((user) => user.id === action.id));
-     // if (!user) alert('Пользователь не найден!');
       return {
         user: action.user,
         token: action.token
