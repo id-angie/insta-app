@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 
-import { toggleFollow } from '../actions';
+import { toggleFollow } from '../actions/currentUser.js';
+import { fetchUser, toggleLike, addComment } from '../actions/user.js';
 import ProfilePage from './ProfilePage.js';
 
 const mapStateToProps = ( state, { match } ) => ({

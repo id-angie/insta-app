@@ -1,6 +1,5 @@
-const rootReducer = (state = { user: null, token: null, forceLogin: false }, action) => {
-  // console.log(action);
-  // console.log(state);
+const currentUser = (state = { user: null, token: null, forceLogin: false }, action) => {
+
   switch (action.type) {
     case 'LOGIN':
       return {
@@ -11,6 +10,9 @@ const rootReducer = (state = { user: null, token: null, forceLogin: false }, act
     case 'LOGOUT':
       return { user: null };
 
+    case 'REGISTRATION':
+      return { user: action.user };
+
     case 'TOGGLE_FOLLOW':
       return {
         ...state,
@@ -20,11 +22,7 @@ const rootReducer = (state = { user: null, token: null, forceLogin: false }, act
         }
       };
 
-    case 'REGISTRATION':
-      return { user: action.user };
-
     case 'NEW_POST':
-      alert(`added new post: ${action.file}.jpg with text: '${action.text}'`);
       return state;
 
     default:
@@ -32,4 +30,4 @@ const rootReducer = (state = { user: null, token: null, forceLogin: false }, act
   }
 }
 
-export default rootReducer;
+export default currentUser;

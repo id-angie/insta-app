@@ -3,9 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router';
 
 import Footer from './footer';
-import { login } from '../actions';
-import { registration } from '../actions';
-import { newPost } from '../actions';
+import { login, registration, newPost } from '../actions/currentUser.js';
 
 const IndexPage = (props) => {
   if (props.currentUser)
