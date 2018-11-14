@@ -162,9 +162,9 @@ class Feed extends Component {
                   showPreview={this.showPreview}
                   showPrevPost={this.showPrevPost}
                   showNextPost={this.showNextPost}
-                  addComment={this.addComment}
+                  addComment={this.props.addComment}
                   deleteComment={this.deleteComment}
-                  toggleLike={this.toggleLike}
+                  toggleLike={this.props.toggleLike}
                   toggleSave={this.toggleSave}
                   isFollow={this.props.isFollow}
                   currentUser={this.props.currentUser}

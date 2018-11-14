@@ -4,12 +4,8 @@ import Header from './header';
 import Profile from './profile';
 import Feed from './feed';
 import Footer from './footer';
-import * as api from '../api/users';
 
 class ProfilePage extends Component {
-  state = {
-    user: null
-  };
 
   loadData = () => {
     this.props.fetchUser(this.props.userId);
@@ -27,17 +23,15 @@ class ProfilePage extends Component {
 
   render() {
     const {
-      userId,
+      user,
       currentUser,
       isFollow,
-      toggleFollow
+      toggleFollow,
+      toggleLike,
+      addComment
     } = this.props;
 
-    const {
-      user
-    } = this.state;
-
-    if (!userId) {
+    if (!user) {
       return (
         <div>
           User not selected
@@ -51,7 +45,14 @@ class ProfilePage extends Component {
         { user ?
           <>
             <Profile user={user} currentUser={currentUser} isFollow={isFollow} toggleFollow={toggleFollow} />
-            <Feed user={user} currentUser={currentUser} isFollow={isFollow} toggleFollow={toggleFollow} />
+            <Feed
+              user={user}
+              currentUser={currentUser}
+              isFollow={isFollow}
+              toggleFollow={toggleFollow}
+              toggleLike={toggleLike}
+              addComment={addComment}
+            />
           </> :
           <div className="loading">
             Loading...

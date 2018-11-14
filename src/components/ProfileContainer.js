@@ -6,6 +6,7 @@ import ProfilePage from './ProfilePage.js';
 
 const mapStateToProps = ( state, { match } ) => ({
   userId: match.params.nickname,
+  user: state.user.user,
   currentUser: state.currentUser.user,
   isFollow:
   state.currentUser.user ?
@@ -14,7 +15,10 @@ const mapStateToProps = ( state, { match } ) => ({
 });
 
 const mapDispatchToProps = {
-  toggleFollow: toggleFollow
+  toggleFollow,
+  toggleLike,
+  fetchUser,
+  addComment
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
