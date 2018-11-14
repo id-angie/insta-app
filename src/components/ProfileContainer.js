@@ -9,8 +9,8 @@ const mapStateToProps = ( state, { match } ) => ({
   user: state.user.user,
   currentUser: state.currentUser.user,
   isFollow:
-  state.currentUser.user ?
-    state.currentUser.user.following.some((userId) => userId === match.params.nickname) :
+  (state.currentUser.user && state.user.user !== null) ?
+    state.currentUser.user.following.some((userId) => userId === state.user.user._id) :
     false
 });
 

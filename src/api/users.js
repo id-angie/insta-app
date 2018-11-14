@@ -27,3 +27,14 @@ export const registration = ({nickname, name, password}) =>
     }
   })
   .then((res) => res.json());
+
+export const follow = ({userId, token}) =>
+  fetch(`${apiEndpoint}/users/${userId}/follow`, {
+    method: 'POST',
+    body: JSON.stringify({userId}),
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "Authorization": token
+    }
+  })
+  .then((res) => res.json());

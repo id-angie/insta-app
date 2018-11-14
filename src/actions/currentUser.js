@@ -33,7 +33,8 @@ export const toggleFollow = (userId, isFollow) => {
   return (dispatch, getState) => {
     const {
       currentUser: {
-        user: currentUser
+        user: currentUser,
+        token
       }
     } = getState();
 
@@ -43,11 +44,14 @@ export const toggleFollow = (userId, isFollow) => {
     }
 
     if (isFollow === false || window.confirm("Отписаться?")) {
+      isFollow ?
+        api.follow({userId, token}) :
+        api.follow({userId, token});
+
       dispatch({
         type: 'TOGGLE_FOLLOW',
-        updatedFollowing: isFollow ?
-          currentUser.following.filter((user) => user !== userId) :
-          currentUser.following.concat(userId)
+        userId,
+        isFollow
       });
     }
   }

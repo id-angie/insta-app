@@ -18,7 +18,9 @@ const currentUser = (state = { user: null, token: null, forceLogin: false }, act
         ...state,
         user: {
           ...state.user,
-          following: action.updatedFollowing
+          following: action.isFollow ?
+            state.user.following.filter((user) => user !== action.userId) :
+            state.user.following.concat(action.userId)
         }
       };
 
