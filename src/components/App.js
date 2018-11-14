@@ -19,10 +19,10 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <Route exact path='/' render={() => <IndexPage Component={Login} />} />
           <Route path='/user/:nickname' component={ProfileContainer} />
-          <Route path='/login' render={() => <IndexPage Component={Login} />} />
           <Route path='/registration' render={() => <IndexPage Component={Registration} />} />
-          <Route path='/newpost' render={() => <IndexPage Component={NewPost} />} />
+          <Route path='/newpost' render={() => <IndexPage Component={NewPost} preventRedirect />} />
         </div>
       </Router>
       );

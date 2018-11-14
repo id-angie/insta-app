@@ -12,11 +12,21 @@
   position: relative;
 
   &__link {
-    color: $link_light;
-  }
-
-  &__user-id {
     border-bottom: 1px solid rgba(230, 230, 230, .5);
+
+    &_logout,
+    &_login {
+      color: $link_light;
+    }
+
+    &_user-id {
+      border-bottom: 1px solid rgba(230, 230, 230, .5);
+    }
+
+    &_new-post {
+      font-weight: 400;
+      text-transform: lowercase;
+    }
   }
 
   &__img {

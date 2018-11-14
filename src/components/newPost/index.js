@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
+import { Link } from 'react-router-dom';
 
 import CustomButton from '../ui/CustomButton.js';
 
@@ -147,6 +148,13 @@ class NewPost extends Component {
             textDisactive="Опубликовать"
             onClick={this.handleEnter}
           />
+          <Link to="/" className="new-post__back-link">
+            <CustomButton
+              className="new-post__back-button"
+              isActive={true}
+              textActive="Назад"
+            />
+          </Link>
         </form>
       </div>
     );

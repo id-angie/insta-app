@@ -6,7 +6,7 @@ import Footer from './footer';
 import { login, registration, newPost } from '../actions/currentUser.js';
 
 const IndexPage = (props) => {
-  if (props.currentUser)
+  if (props.currentUser && !props.preventRedirect)
     return <Redirect to={`/user/${props.currentUser.nickname}`} />
 
   const { Component } = props;
