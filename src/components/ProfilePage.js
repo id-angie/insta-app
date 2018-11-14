@@ -28,7 +28,8 @@ class ProfilePage extends Component {
       isFollow,
       toggleFollow,
       toggleLike,
-      addComment
+      toggleSave,
+      addComment,
     } = this.props;
 
     if (!user) {
@@ -51,6 +52,7 @@ class ProfilePage extends Component {
               isFollow={isFollow}
               toggleFollow={toggleFollow}
               toggleLike={toggleLike}
+              toggleSave={toggleSave}
               addComment={addComment}
             />
           </> :

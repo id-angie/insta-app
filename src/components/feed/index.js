@@ -103,15 +103,6 @@ class Feed extends Component {
     });
   }
 
-  toggleSave = (currentUser) => {
-    if (!this.checkCurrentUser(currentUser)) return;
-    const { openedPost } = this.state;
-    openedPost.isSaved = !openedPost.isSaved;
-    this.setState({
-      openedPost: openedPost
-    });
-  }
-
   checkCurrentUser = (currentUser) => {
     if (!currentUser) {
       alert('Авторизуйтесь!');
@@ -151,7 +142,7 @@ class Feed extends Component {
                   addComment={this.props.addComment}
                   deleteComment={this.deleteComment}
                   toggleLike={this.props.toggleLike}
-                  toggleSave={this.toggleSave}
+                  toggleSave={this.props.toggleSave}
                   isFollow={this.props.isFollow}
                   currentUser={this.props.currentUser}
                 />
