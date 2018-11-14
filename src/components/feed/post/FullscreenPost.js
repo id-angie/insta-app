@@ -3,7 +3,7 @@ import ReactModal from 'react-modal';
 
 import PostInfo from './PostInfo.js';
 
-import './FullscreenPost.css';
+import './FullscreenPost.scss';
 
 ReactModal.setAppElement('#root');
 
@@ -57,6 +57,8 @@ class FullscreenPost extends Component {
               deleteComment={this.props.deleteComment}
               toggleLike={this.props.toggleLike}
               toggleSave={this.props.toggleSave}
+              isFollow={this.props.isFollow}
+              currentUser={this.props.currentUser}
             />
           </div>
           <div

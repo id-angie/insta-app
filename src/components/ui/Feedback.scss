@@ -1,0 +1,66 @@
+@import '../../global/variables.scss';
+
+.post-info {
+
+  &__feedback {
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    border-top: $border;
+    padding: 10px 5px 0;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__actions-left {
+    display: flex;
+  }
+
+  &__icon {
+    height: 25px;
+    width: 25px;
+    margin-right: 12px;
+    background-image: url(../../assets/sprite2.png);
+
+    &_like {
+      background-position: -25px -91px;
+    }
+
+    &_like-active {
+      background-position: 0 -91px;
+    }
+
+    &_comment {
+      background-position: -26px -65px;
+    }
+
+    &_share {
+      background-position: -52px -143px;
+    }
+
+    &_save {
+      background-position: -157px -78px;
+      margin-right: 0;
+    }
+
+    &_save-active {
+      background-position: -157px 0;
+    }
+  }
+
+  &__likes {
+    font-size: 14px;
+    padding: 7px 0;
+  }
+}
+
+
+
+@media screen and (max-width: 735px) {
+  .post-info__feedback {
+    width: 100%;
+  }
+}

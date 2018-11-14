@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-import './FeedState.css';
+import './FeedState.scss';
 
 const FeedState = ({
   tabs = [],
@@ -22,7 +22,7 @@ const FeedState = ({
         {...props}
       >
         <div className={ cn("feed-state__img", tab.iconClass) } />
-        <span className="ml10">{tab.title}</span>
+        <span>{tab.title}</span>
       </div>
     )}
   </div>

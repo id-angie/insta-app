@@ -6,12 +6,58 @@ import Feed from './feed';
 import Footer from './footer';
 
 class ProfilePage extends Component {
+
+  loadData = () => {
+    this.props.fetchUser(this.props.userId);
+  }
+
+  componentDidMount() {
+    this.loadData();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.userId !== this.props.userId) {
+      this.loadData();
+    }
+  }
+
   render() {
+    const {
+      user,
+      currentUser,
+      isFollow,
+      toggleFollow,
+      toggleLike,
+      addComment
+    } = this.props;
+
+    if (!user) {
+      return (
+        <div>
+          User not selected
+        </div>
+      );
+    }
+
     return (
-      <div className="ProfilePage">
-        <Header logout={this.props.logout} />
-        <Profile user={this.props.user} toggleFollow={this.props.toggleFollow} />
-        <Feed user={this.props.user} toggleFollow={this.props.toggleFollow} />
+      <div className="profile-page">
+        <Header />
+        { user ?
+          <>
+            <Profile user={user} currentUser={currentUser} isFollow={isFollow} toggleFollow={toggleFollow} />
+            <Feed
+              user={user}
+              currentUser={currentUser}
+              isFollow={isFollow}
+              toggleFollow={toggleFollow}
+              toggleLike={toggleLike}
+              addComment={addComment}
+            />
+          </> :
+          <div className="loading">
+            Loading...
+          </div>
+        }
         <Footer />
       </div>
     );

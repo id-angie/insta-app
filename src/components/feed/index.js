@@ -4,7 +4,7 @@ import FeedState from './FeedState.js'
 import Post from './post'
 import tabs from '../../tabs.json';
 
-import './index.css';
+import './index.scss';
 
 class Feed extends Component {
   state = {
@@ -69,23 +69,24 @@ class Feed extends Component {
     });
   }
 
-  addComment = (e) => {
-    e.preventDefault();
-    const newComment = e.target.children[0].value;
-    e.target.children[0].value = null;
-    if (newComment !== '') {
-      this.state.openedPost.feedback.comments.push({
-        id: new Date() + ' ' + Math.random(),
-        commiter: this.props.user.id,
-        text: newComment,
-        date: new Date(),
-        likes: 0
-      });
-      this.setState({
-        openedPost: this.state.openedPost
-      });
-    }
-  }
+  // addComment = (e, input) => {
+  //   e.preventDefault();
+  //   if (!this.checkCurrentUser(this.props.currentUser)) return;
+  //   const newComment = input.value;
+  //   input.value = null;
+  //   if (newComment !== '') {
+  //     this.state.openedPost.feedback.comments.push({
+  //       id: new Date() + ' ' + Math.random(),
+  //       commiter: this.props.currentUser.nickname,
+  //       text: newComment,
+  //       date: new Date(),
+  //       likes: 0
+  //     });
+  //     this.setState({
+  //       openedPost: this.state.openedPost
+  //     });
+  //   }
+  // }
 
   deleteComment = (e) => {
     e.preventDefault();
@@ -102,20 +103,8 @@ class Feed extends Component {
     });
   }
 
-  toggleLike = () => {
-    const { user } = this.props;
-    const { openedPost } = this.state;
-    const indexOfLike = openedPost.feedback.likes.indexOf(user.id);
-    if (indexOfLike === -1)
-      openedPost.feedback.likes.push(user.id);
-    else
-      openedPost.feedback.likes.splice(indexOfLike, 1);
-    this.setState({
-      openedPost: openedPost
-    });
-  }
-
-  toggleSave = () => {
+  toggleSave = (currentUser) => {
+    if (!this.checkCurrentUser(currentUser)) return;
     const { openedPost } = this.state;
     openedPost.isSaved = !openedPost.isSaved;
     this.setState({
@@ -123,8 +112,15 @@ class Feed extends Component {
     });
   }
 
+  checkCurrentUser = (currentUser) => {
+    if (!currentUser) {
+      alert('Авторизуйтесь!');
+      return;
+    }
+    return true;
+  }
+
   render() {
-    const { user, toggleFollow } = this.props;
     const feedContent = this.getFeedContent();
     return (
       <div className="feed">
@@ -143,18 +139,21 @@ class Feed extends Component {
               </div> :
               feedContent.map((post) =>
                 <Post
-                  post={post} user={user}
-                  toggleFollow={toggleFollow}
+                  post={post}
+                  user={this.props.user}
+                  toggleFollow={this.props.toggleFollow}
                   key={post.id}
-                  openedPost={this.state.openedPost}
+                  openedPostId={this.state.openedPost && this.state.openedPost.id}
                   showFullPost={this.showFullPost}
                   showPreview={this.showPreview}
                   showPrevPost={this.showPrevPost}
                   showNextPost={this.showNextPost}
-                  addComment={this.addComment}
+                  addComment={this.props.addComment}
                   deleteComment={this.deleteComment}
-                  toggleLike={this.toggleLike}
+                  toggleLike={this.props.toggleLike}
                   toggleSave={this.toggleSave}
+                  isFollow={this.props.isFollow}
+                  currentUser={this.props.currentUser}
                 />
               )
             }

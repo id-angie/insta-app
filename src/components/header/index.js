@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom';
 
 import Search from '../ui/Search.js';
 import LoginButton from '../ui/LoginButton.js';
+import { logout } from '../../actions/currentUser.js';
 
-import './index.css';
+import './index.scss';
 
 class Header extends Component {
   state = {
@@ -29,7 +32,18 @@ class Header extends Component {
             <div className="header__logo" />
           </div>
           <Search />
-          <LoginButton logout={this.props.logout} />
+          {this.props.currentUser ?
+            <>
+              <LoginButton
+                logout={this.props.logout}
+                user={this.props.currentUser}
+              />
+            </>
+          :
+            <div className="login-button">
+              <Link to='/login' className='login-button__link'>Войти</Link>
+            </div>
+          }
         </div>
       </header>
     );
@@ -44,4 +58,11 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default connect(
+  (state) => ({
+    currentUser: state.currentUser.user
+  }),
+  {
+    logout: logout
+  }
+)(Header);

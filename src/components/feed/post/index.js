@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import FullscreenPost from './FullscreenPost.js'
 
-import './index.css';
+import './index.scss';
 
 class Post extends Component {
   state = {
@@ -23,7 +23,8 @@ class Post extends Component {
   }
 
   render() {
-    const { post, openedPost } = this.props;
+    const { post, openedPostId } = this.props;
+    console.log(post);
     const img = require(`../../../assets/${post.media[post.previewIndex]}`);
     return (
       <div className="post-container">
@@ -52,13 +53,13 @@ class Post extends Component {
             </div>
           </div>
         </div>
-        {openedPost && openedPost.id === post.id &&
+        {openedPostId === post.id &&
           <FullscreenPost
             user={this.props.user}
             post={post}
             img={img}
             closeFullscreen={this.props.showPreview}
-            isFollow={this.props.user.isFollow}
+            isFollow={this.props.isFollow}
             toggleFollow={this.props.toggleFollow}
             showNextPost={this.props.showNextPost}
             showPrevPost={this.props.showPrevPost}
@@ -66,6 +67,7 @@ class Post extends Component {
             deleteComment={this.props.deleteComment}
             toggleLike={this.props.toggleLike}
             toggleSave={this.props.toggleSave}
+            currentUser={this.props.currentUser}
           />
         }
       </div>
