@@ -31,10 +31,6 @@ class PostInfo extends Component {
     return true;
   }
 
-  handleEnter = (e) => {
-    if (e.keyCode === 13) this.props.addComment(e, this.input, this.props.currentUser);
-  }
-
   render() {
     const {
       isCommentInput
@@ -130,8 +126,7 @@ class PostInfo extends Component {
               e.preventDefault();
               this.props.addComment(this.props.post.id, this.input.value);
               this.input.value = null;
-            }}
-            onKeyDown={(e) => this.handleEnter(e)}>
+            }} >
               <input
                 type="text"
                 ref={(el) => this.input = el}
