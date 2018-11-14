@@ -23,7 +23,8 @@ class Post extends Component {
   }
 
   render() {
-    const { post, openedPost } = this.props;
+    const { post, openedPostId } = this.props;
+    console.log(post);
     const img = require(`../../../assets/${post.media[post.previewIndex]}`);
     return (
       <div className="post-container">
@@ -52,7 +53,7 @@ class Post extends Component {
             </div>
           </div>
         </div>
-        {openedPost && openedPost.id === post.id &&
+        {openedPostId === post.id &&
           <FullscreenPost
             user={this.props.user}
             post={post}

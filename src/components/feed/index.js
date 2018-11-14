@@ -69,24 +69,24 @@ class Feed extends Component {
     });
   }
 
-  addComment = (e, input, currentUser) => {
-    e.preventDefault();
-    if (!this.checkCurrentUser(currentUser)) return;
-    const newComment = input.value;
-    input.value = null;
-    if (newComment !== '') {
-      this.state.openedPost.feedback.comments.push({
-        id: new Date() + ' ' + Math.random(),
-        commiter: this.props.currentUser.nickname,
-        text: newComment,
-        date: new Date(),
-        likes: 0
-      });
-      this.setState({
-        openedPost: this.state.openedPost
-      });
-    }
-  }
+  // addComment = (e, input) => {
+  //   e.preventDefault();
+  //   if (!this.checkCurrentUser(this.props.currentUser)) return;
+  //   const newComment = input.value;
+  //   input.value = null;
+  //   if (newComment !== '') {
+  //     this.state.openedPost.feedback.comments.push({
+  //       id: new Date() + ' ' + Math.random(),
+  //       commiter: this.props.currentUser.nickname,
+  //       text: newComment,
+  //       date: new Date(),
+  //       likes: 0
+  //     });
+  //     this.setState({
+  //       openedPost: this.state.openedPost
+  //     });
+  //   }
+  // }
 
   deleteComment = (e) => {
     e.preventDefault();
@@ -143,7 +143,7 @@ class Feed extends Component {
                   user={this.props.user}
                   toggleFollow={this.props.toggleFollow}
                   key={post.id}
-                  openedPost={this.state.openedPost}
+                  openedPostId={this.state.openedPost && this.state.openedPost.id}
                   showFullPost={this.showFullPost}
                   showPreview={this.showPreview}
                   showPrevPost={this.showPrevPost}

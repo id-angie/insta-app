@@ -126,7 +126,12 @@ class PostInfo extends Component {
           <div className={cn('post-info__add-comment', {
             'post-info__add-comment_disabled': !isCommentInput
           })}>
-            <form onSubmit={(e) => this.props.addComment(e, this.input, currentUser)} onKeyDown={(e) => this.handleEnter(e)}>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              this.props.addComment(this.props.post.id, this.input.value);
+              this.input.value = null;
+            }}
+            onKeyDown={(e) => this.handleEnter(e)}>
               <input
                 type="text"
                 ref={(el) => this.input = el}
