@@ -93,7 +93,6 @@ class Feedback extends Component {
       toggleLike,
       toggleSave,
       className,
-      currentUser,
       post
     } = this.props;
 

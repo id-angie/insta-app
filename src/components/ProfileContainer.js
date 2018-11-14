@@ -19,7 +19,8 @@ const mapDispatchToProps = {
   toggleLike,
   toggleSave,
   fetchUser,
-  addComment
+  addComment,
+  deleteComment
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

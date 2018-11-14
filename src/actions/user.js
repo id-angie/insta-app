@@ -79,3 +79,13 @@ export const addComment = (postId, comment) => {
     })
   }
 };
+
+export const deleteComment = (postId, commentId) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'DELETE_COMMENT',
+      postId,
+      commentId
+    })
+  }
+};

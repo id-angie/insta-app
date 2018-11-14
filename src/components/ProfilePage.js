@@ -30,6 +30,7 @@ class ProfilePage extends Component {
       toggleLike,
       toggleSave,
       addComment,
+      deleteComment
     } = this.props;
 
     if (!user) {
@@ -54,6 +55,7 @@ class ProfilePage extends Component {
               toggleLike={toggleLike}
               toggleSave={toggleSave}
               addComment={addComment}
+              deleteComment={deleteComment}
             />
           </> :
           <div className="loading">

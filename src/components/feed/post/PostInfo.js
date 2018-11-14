@@ -91,7 +91,10 @@ class PostInfo extends Component {
                 {(this.hasUserRights(comment, this.props.currentUser, this.props.user)) &&
                 <span
                   className="post-info__comments-delete"
-                  onClick={this.props.deleteComment}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    this.props.deleteComment(this.props.post.id, comment.id);
+                  }}
                 >
                   ×
                 </span>

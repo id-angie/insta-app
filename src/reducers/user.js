@@ -87,6 +87,31 @@ const user = (state = { user: null }, action) => {
         }
       };
 
+    case 'DELETE_COMMENT':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          feed: {
+            ...state.user.feed,
+            posts: state.user.feed.posts.map((post) => {
+              if (post.id === action.postId) {
+                return {
+                  ...post,
+                  feedback: {
+                    ...post.feedback,
+                    comments: post.feedback.comments.filter((comment) => {
+                      return (comment.id !== action.commentId);
+                    })
+                  }
+                }
+              }
+              return post;
+            })
+          }
+        }
+      };
+
     default:
       return state;
   }

@@ -69,21 +69,6 @@ class Feed extends Component {
     });
   }
 
-  deleteComment = (e) => {
-    e.preventDefault();
-    const comments = this.state.openedPost.feedback.comments;
-    const targetCommentId = e.target.parentNode.id;
-    const targetComment = comments.find((comment) => {
-      console.log(targetCommentId, comment.id);
-      return comment.id === targetCommentId;
-    });
-    const targetCommentIndex = comments.indexOf(targetComment);
-    comments.splice(targetCommentIndex, 1);
-    this.setState({
-      openedPost: this.state.openedPost
-    });
-  }
-
   checkCurrentUser = (currentUser) => {
     if (!currentUser) {
       alert('Авторизуйтесь!');
@@ -121,7 +106,7 @@ class Feed extends Component {
                   showPrevPost={this.showPrevPost}
                   showNextPost={this.showNextPost}
                   addComment={this.props.addComment}
-                  deleteComment={this.deleteComment}
+                  deleteComment={this.props.deleteComment}
                   toggleLike={this.props.toggleLike}
                   toggleSave={this.props.toggleSave}
                   isFollow={this.props.isFollow}
