@@ -41,7 +41,7 @@ class Header extends Component {
             </>
           :
             <div className="login-button">
-              <Link to='/login' className='login-button__link_login'>Войти</Link>
+              <Link to='/' className='login-button__link_login'>Войти</Link>
             </div>
           }
         </div>
