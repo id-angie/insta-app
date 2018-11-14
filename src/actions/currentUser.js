@@ -45,7 +45,7 @@ export const toggleFollow = (userId, isFollow) => {
 
     if (isFollow === false || window.confirm("Отписаться?")) {
       isFollow ?
-        api.follow({userId, token}) :
+        api.unfollow({userId, token}) :
         api.follow({userId, token});
 
       dispatch({
