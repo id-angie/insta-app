@@ -1,78 +1,54 @@
-import React, { Component } from 'react';
-import cn from 'classnames';
+import React from 'react';
 
 import FullscreenPost from './FullscreenPost.js'
 
 import './index.scss';
 
-class Post extends Component {
-  state = {
-    feedback: 'hidden'
-  };
-
-  showFeedback = () => {
-    this.setState({
-      feedback: 'show'
-    });
-  }
-
-  hideFeedback = () => {
-    this.setState({
-      feedback: 'hidden'
-    });
-  }
-
-  render() {
-    const { post, openedPostId } = this.props;
-    console.log(post);
-    const img = require(`../../../assets/${post.media[post.previewIndex]}`);
-    return (
-      <div className="post-container">
+const Post = (props) => {
+  const { post, openedPostId } = props;
+  const img = require(`../../../assets/${post.media[post.previewIndex]}`);
+  return (
+    <div className="post-container">
+      <div
+        className="post"
+        style={{ backgroundImage: `url(${img})` }}
+        id={post.id}
+      >
         <div
-          className="post"
-          style={{ backgroundImage: `url(${img})` }}
-          id={post.id}
+          className="post__hover-overlay"
+          onClick={() => props.showFullPost(post.id)}
         >
           <div
-            className="post__hover-overlay"
-            onMouseOver={this.showFeedback}
-            onMouseOut={this.hideFeedback}
-            onClick={() => this.props.showFullPost(post.id)}
+            className="post__feedback-layout"
           >
-            <div
-              className={cn("post__feedback-layout",
-                {"post__feedback-layout_hidden": this.state.feedback === 'hidden'}
-              )}
-            >
-              <div className="post__feedback post__feedback_likes">
-              </div>
-              <span>{post.feedback.likes.length}</span>
-              <div className="post__feedback post__feedback_comments">
-              </div>
-              <span>{post.feedback.comments.length}</span>
+            <div className="post__feedback post__feedback_likes">
             </div>
+            <span>{post.feedback.likes.length}</span>
+            <div className="post__feedback post__feedback_comments">
+            </div>
+            <span>{post.feedback.comments.length}</span>
           </div>
         </div>
-        {openedPostId === post.id &&
-          <FullscreenPost
-            user={this.props.user}
-            post={post}
-            img={img}
-            closeFullscreen={this.props.showPreview}
-            isFollow={this.props.isFollow}
-            toggleFollow={this.props.toggleFollow}
-            showNextPost={this.props.showNextPost}
-            showPrevPost={this.props.showPrevPost}
-            addComment={this.props.addComment}
-            deleteComment={this.props.deleteComment}
-            toggleLike={this.props.toggleLike}
-            toggleSave={this.props.toggleSave}
-            currentUser={this.props.currentUser}
-          />
-        }
       </div>
-    );
-  }
+      {openedPostId === post.id &&
+        <FullscreenPost
+          user={props.user}
+          post={post}
+          img={img}
+          closeFullscreen={props.showPreview}
+          isFollow={props.isFollow}
+          toggleFollow={props.toggleFollow}
+          showNextPost={props.showNextPost}
+          showPrevPost={props.showPrevPost}
+          addComment={props.addComment}
+          deleteComment={props.deleteComment}
+          toggleLike={props.toggleLike}
+          toggleSave={props.toggleSave}
+          currentUser={props.currentUser}
+        />
+      }
+    </div>
+  );
 }
 
 export default Post;
