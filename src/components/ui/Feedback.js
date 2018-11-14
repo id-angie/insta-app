@@ -75,17 +75,21 @@ class Feedback extends Component {
     toggleSave: () => {}
   };
 
+  isLiked = () => this.props.currentUser ?
+    this.props.post.feedback.likes.some((id) =>
+      (id === this.props.currentUser.nickname)
+    ) : false;
+
   render() {
-    const isLiked = this.props.post.feedback.likes.some((id) =>
-      (id === this.props.user.id)
-    );
+    const isLiked = this.isLiked();
     const isSaved = this.props.post.isSaved;
     const {
       activateComment,
       toggleLike,
       toggleSave,
       className,
-      currentUser
+      currentUser,
+      post
     } = this.props;
 
     return (
@@ -97,7 +101,7 @@ class Feedback extends Component {
                 "post-info__icon post-info__icon_like",
                 {"post-info__icon_like-active" : isLiked}
               )}
-              onClick={() => toggleLike(currentUser)}
+              onClick={() => toggleLike(post.id, isLiked)}
             />
             <div
               className="post-info__icon post-info__icon_comment"
