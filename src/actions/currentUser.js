@@ -9,7 +9,11 @@ export const login = (nickname, password) => {
         token: body.data.token,
         user: body.data.user
       })
-    });
+    })
+    .catch((error) => {
+      console.log(error);
+      alert(error);
+    })
   }
 };
 
@@ -25,6 +29,10 @@ export const registration = (nickname, name, password) => {
         type: 'REGISTRATION',
         user: body.data.user
       })
+    })
+    .catch((error) => {
+      console.log(error);
+      alert(error);
     })
   }
 };
@@ -44,9 +52,18 @@ export const toggleFollow = (userId, isFollow) => {
     }
 
     if (isFollow === false || window.confirm("Отписаться?")) {
-      isFollow ?
+      const promise = isFollow ?
         api.unfollow({userId, token}) :
         api.follow({userId, token});
+
+      promise
+        .catch((error) => (
+          dispatch({
+            type: 'TOGGLE_FOLLOW',
+            userId,
+            isFollow: !isFollow
+          })
+        ));
 
       dispatch({
         type: 'TOGGLE_FOLLOW',

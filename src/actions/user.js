@@ -8,7 +8,11 @@ export const fetchUser = (userId) => {
         type: 'FETCH_USER',
         user: body.data.user
       })
-    });
+    })
+    .catch((error) => {
+      console.log(error);
+      alert(error);
+    })
   }
 };
 
