@@ -181,7 +181,7 @@ class Registration extends Component {
             textDisactive="Зарегистрироваться"
             onClick={(e) => this.handleClick(e, nickname, name, password)}
           />
-          <Link to="/login" className="registration__login-link">
+          <Link to="/" className="registration__login-link">
             <CustomButton
               className="registration__login-button"
               isActive={true}
