@@ -89,6 +89,21 @@ export const registration = ({nickname, name, password}) =>
       }
     })
 
+export const editInfo = ({userId, nickname, name, about, password}) =>
+  fetch(`${apiEndpoint}/users/${userId}`, {
+    method: 'PUT',
+    body: JSON.stringify({nickname, name, about, password}),
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  })
+    .then((res) => {
+      if (res.ok)
+        return res.json();
+      else
+        throw new Error('Ошибка');
+    })
+
 export const follow = ({userId, token}) =>
   fetch(`${apiEndpoint}/users/${userId}/follow`, {
     method: 'POST',

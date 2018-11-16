@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router';
 
 import Footer from './footer';
-import { login, registration, newPost } from '../actions/currentUser.js';
+import { login, registration, newPost, editInfo } from '../actions/currentUser.js';
 
 const IndexPage = (props) => {
   if (props.currentUser && !props.preventRedirect)
@@ -13,7 +13,13 @@ const IndexPage = (props) => {
 
   return (
     <div className="index-page">
-      <Component login={props.login} registration={props.registration} newPost={props.newPost} />
+      <Component
+        currentUser={props.currentUser}
+        login={props.login}
+        registration={props.registration}
+        newPost={props.newPost}
+        editInfo={props.editInfo}
+      />
       <Footer />
     </div>
   )
@@ -26,6 +32,7 @@ export default connect(
   {
     login,
     registration,
-    newPost
+    newPost,
+    editInfo
   }
 )(IndexPage);

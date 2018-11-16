@@ -82,3 +82,20 @@ export const newPost = (file, text) => {
     text
   };
 }
+
+export const editInfo = (userId, nickname, name, about, password) => {
+  return (dispatch) => {
+    api.editInfo({userId, nickname, name, about, password})
+    .then((body) => {
+      alert('Изменения сохранены');
+      dispatch({
+        type: 'EDIT_INFO',
+        user: body.data.user
+      })
+    })
+    .catch((error) => {
+      console.log(error);
+      alert(error);
+    })
+  }
+}

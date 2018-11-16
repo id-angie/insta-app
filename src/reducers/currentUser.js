@@ -27,6 +27,11 @@ const currentUser = (state = { user: null, token: null, forceLogin: false }, act
     case 'NEW_POST':
       return state;
 
+    case 'EDIT_INFO':
+      return {
+        user: action.user
+      };
+
     default:
       return state;
   }

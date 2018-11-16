@@ -47,6 +47,12 @@ class LoginButton extends Component {
             >
               Новый пост
             </Link>
+            <Link
+              to={"/editinfo"}
+              className="login-button__link login-button__link_new-post"
+            >
+              Редактировать
+            </Link>
             <a
               href='#logout'
               className="login-button__link login-button__link_logout"
