@@ -82,10 +82,10 @@ class Profile extends Component {
                   <b>{ user.feed.posts.length }</b> публикаций
                 </div>
                 <div className="ml40">
-                  <b>{ user.accountData.followers }</b> подписчиков
+                  <b>{ user.followers.length }</b> подписчиков
                 </div>
                 <div className="ml40">
-                  Подписки: <b>{ user.accountData.following }</b>
+                  Подписки: <b>{ user.following.length }</b>
                 </div>
               </div>
               <div className="profile__user-data">
