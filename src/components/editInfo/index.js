@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
 
 import CustomButton from '../ui/CustomButton.js';
+import { editInfo } from '../../actions/currentUser.js';
 
 import './index.scss';
 
@@ -236,4 +238,11 @@ class EditInfo extends Component {
   }
 }
 
-export default EditInfo;
+export default connect(
+  (state) => ({
+    currentUser: state.currentUser.user
+  }),
+  {
+    editInfo
+  }
+)(EditInfo);

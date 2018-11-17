@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import CustomButton from '../ui/CustomButton.js';
+import { newPost } from '../../actions/currentUser.js';
 
 import './index.scss';
 
@@ -161,4 +163,9 @@ class NewPost extends Component {
   }
 }
 
-export default NewPost;
+export default connect(
+  null,
+  {
+    newPost
+  }
+)(NewPost);
