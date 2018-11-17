@@ -89,10 +89,10 @@ export const registration = ({nickname, name, password}) =>
       }
     })
 
-export const editInfo = ({userId, nickname, name, about, password}) =>
-  fetch(`${apiEndpoint}/users/${userId}`, {
+export const editInfo = (user) =>
+  fetch(`${apiEndpoint}/users/${user._id}`, {
     method: 'PUT',
-    body: JSON.stringify({nickname, name, about, password}),
+    body: JSON.stringify(user),
     headers: {
       "Content-Type": "application/json; charset=utf-8"
     }

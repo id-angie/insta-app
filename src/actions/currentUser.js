@@ -83,9 +83,9 @@ export const newPost = (file, text) => {
   };
 }
 
-export const editInfo = (userId, nickname, name, about, password) => {
+export const editInfo = (user) => {
   return (dispatch) => {
-    api.editInfo({userId, nickname, name, about, password})
+    api.editInfo(user)
     .then((body) => {
       alert('Изменения сохранены');
       dispatch({

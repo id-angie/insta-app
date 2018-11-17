@@ -42,7 +42,16 @@ class EditInfo extends Component {
 
     const userId = this.props.currentUser._id;
 
-    this.props.editInfo(userId, nickname, name, about, password);
+    const user = {
+      _id: userId,
+      nickname,
+      name,
+      about
+    };
+
+    if (password !== '') user.password = password;
+
+    this.props.editInfo(user);
   }
 
   clearAvatar = () => {
