@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import CustomButton from '../ui/CustomButton.js';
 import { login } from '../../actions/currentUser.js';
+import prevent from '../../utils/prevent.js';
 
 import './index.scss';
 
@@ -34,9 +35,7 @@ class Login extends Component {
     });
   }
 
-  handleEnter = (e) => {
-    e.preventDefault();
-
+  handleEnter = () => {
     const {
       login: nickname,
       password
@@ -103,7 +102,7 @@ class Login extends Component {
             }
             isActive={false}
             textDisactive="Вход"
-            onClick={this.handleEnter}
+            onClick={prevent(this.handleEnter)}
           />
           <Link to="/registration" className="login__registration-link">
             <CustomButton

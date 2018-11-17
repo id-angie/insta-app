@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import CustomButton from '../ui/CustomButton.js';
 import { editInfo } from '../../actions/currentUser.js';
+import prevent from '../../utils/prevent.js';
 
 import './index.scss';
 
@@ -32,9 +33,7 @@ class EditInfo extends Component {
     });
   }
 
-  handleEnter = (e) => {
-    e.preventDefault();
-
+  handleEnter = () => {
     const {
       nickname,
       name,
@@ -64,8 +63,6 @@ class EditInfo extends Component {
   }
 
   handleFileInput = (e) => {
-    e.preventDefault();
-
     let reader = new FileReader();
     let file = e.target.files[0];
 
@@ -136,7 +133,7 @@ class EditInfo extends Component {
               <input
                 type="file"
                 accept="image/*"
-                onChange={(e) => this.handleFileInput(e)}
+                onChange={prevent(this.handleFileInput)}
               />
               <div
                 className="edit-info__add"
@@ -223,7 +220,7 @@ class EditInfo extends Component {
             className="edit-info__add-button"
             isActive={false}
             textDisactive="Сохранить"
-            onClick={this.handleEnter}
+            onClick={prevent(this.handleEnter)}
           />
           <Link to="/" className="edit-info__back-link">
             <CustomButton

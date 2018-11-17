@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import CustomButton from '../ui/CustomButton.js';
 import { registration } from '../../actions/currentUser.js';
+import prevent from '../../utils/prevent.js';
 
 import './index.scss';
 
@@ -62,8 +63,7 @@ class Registration extends Component {
     });
   }
 
-  handleClick = (e, nickname, name, password) => {
-    e.preventDefault();
+  handleClick = (nickname, name, password) => {
     if (!this.state.checkPassword)
       return;
 
@@ -181,7 +181,7 @@ class Registration extends Component {
             }
             isActive={false}
             textDisactive="Зарегистрироваться"
-            onClick={(e) => this.handleClick(e, nickname, name, password)}
+            onClick={prevent(() => this.handleClick(nickname, name, password))}
           />
           <Link to="/" className="registration__login-link">
             <CustomButton

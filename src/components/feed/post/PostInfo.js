@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import CustomButton from '../../ui/CustomButton.js';
 import Feedback from '../../ui/Feedback.js';
+import prevent from '../../../utils/prevent.js';
 
 import './PostInfo.scss';
 
@@ -91,10 +92,9 @@ class PostInfo extends Component {
                 {(this.hasUserRights(comment, this.props.currentUser, this.props.user)) &&
                 <span
                   className="post-info__comments-delete"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    this.props.deleteComment(this.props.post.id, comment.id);
-                  }}
+                  onClick={prevent(() =>
+                    this.props.deleteComment(this.props.post.id, comment.id)
+                  )}
                 >
                   ×
                 </span>
@@ -125,11 +125,10 @@ class PostInfo extends Component {
           <div className={cn('post-info__add-comment', {
             'post-info__add-comment_disabled': !isCommentInput
           })}>
-            <form onSubmit={(e) => {
-              e.preventDefault();
+            <form onSubmit={prevent(() => {
               this.props.addComment(this.props.post.id, this.input.value);
               this.input.value = null;
-            }} >
+            })} >
               <input
                 type="text"
                 ref={(el) => this.input = el}
