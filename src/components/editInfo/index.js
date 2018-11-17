@@ -21,7 +21,7 @@ class EditInfo extends Component {
   componentDidMount() {
 
     if (this.props.currentUser === null)
-      return <Redirect to={'/'} />
+      return;
 
     this.setState({
       nickname: this.props.currentUser.nickname,
