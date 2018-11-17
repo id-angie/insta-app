@@ -118,12 +118,13 @@ class NewPost extends Component {
             </div>
           </div>
           <div className="input-box new-post__input-box">
-            <input
+            <textarea
               className={ cn(
                 "input new-post__input", {
                 "new-post__input_large": !comment
               } )}
               value={comment}
+              maxLength="200"
               placeholder="Добавьте подпись..."
               onChange={(e) => this.handleTextInput(e.target.value)}
             />

@@ -50,6 +50,11 @@
     text-align: left;
     z-index: 999;
     margin-right: auto;
+    resize: none;
+
+    &::placeholder {
+      color: $input_text_disactive;
+    }
 
     &_file {
       height: 15px;
