@@ -33,7 +33,7 @@ class Search extends Component {
   }
 
   componentDidMount() {
-    api.showUsersList({perPage: 5, page: 1})
+    api.showUsersList({perPage: 15, page: 1})
       .then((users) => {
         const options = users.data.map((user) =>
             ({value: user.nickname, label: user.nickname})
