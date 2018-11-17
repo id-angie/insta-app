@@ -1,49 +1,43 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 import CustomButton from '../ui/CustomButton';
 
 import './index.scss';
 
 class Profile extends Component {
-  static propTypes = {
-    user: PropTypes.shape({
-      nickname: PropTypes.string,
-      name: PropTypes.string,
-      about: PropTypes.string,
-      avatar: PropTypes.string,
-      followers: PropTypes.array,
-      following: PropTypes.array,
-      accountData: PropTypes.shape({
-        following: PropTypes.number,
-        followers: PropTypes.number
-      }),
-      feed: PropTypes.shape({
-        posts: PropTypes.array,
-        tagged: PropTypes.array
-      })
-    })
-  };
+  // static propTypes = {
+  //   user: PropTypes.shape({
+  //     _id: PropTypes.string.isRequired,
+  //     nickname: PropTypes.string.isRequired,
+  //     name: PropTypes.string.isRequired,
+  //     following: PropTypes.array,
+  //     followers: PropTypes.array,
+  //     about: PropTypes.string,
+  //     avatar: PropTypes.string,
+  //     feed: PropTypes.shape({
+  //       posts: PropTypes.array,
+  //       tagged: PropTypes.array
+  //     })
+  //   })
+  // };
 
-  static defaultProps = {
-    user: {
-      nickname: 'unknown',
-      name: '',
-      about: '',
-      avatar: '',
-      followers: [],
-      following: [],
-      accountData: {
-        following: 0,
-        followers: 0
-      },
-      feed: {
-        posts: [],
-        tagged: []
-      }
-    }
-  };
+  // static defaultProps = {
+  //   user: {
+  //     _id: 'undefined',
+  //     nickname: 'unknown',
+  //     name: '',
+  //     following: [],
+  //     followers: [],
+  //     about: '',
+  //     avatar: '',
+  //     feed: {
+  //       posts: [],
+  //       tagged: []
+  //     }
+  //   }
+  // };
 
   render() {
     const { user, currentUser, isFollow, toggleFollow } = this.props;
