@@ -37,13 +37,25 @@ class LoginButton extends Component {
           )}>
             <Link
               to={`/user/${this.props.user.nickname}`}
-              className="login-button__user-id"
+              className="login-button__link  login-button__link_user-id"
             >
               {this.props.user.nickname}
             </Link>
+            <Link
+              to={"/newpost"}
+              className="login-button__link login-button__link_new-post"
+            >
+              Новый пост
+            </Link>
+            <Link
+              to={"/editinfo"}
+              className="login-button__link login-button__link_new-post"
+            >
+              Редактировать
+            </Link>
             <a
               href='#logout'
-              className="login-button__link"
+              className="login-button__link login-button__link_logout"
               onClick={this.props.logout}
             >
               Выйти

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import CustomButton from '../ui/CustomButton.js';
+import { newPost } from '../../actions/currentUser.js';
+import prevent from '../../utils/prevent.js';
 
 import './index.scss';
 
@@ -14,9 +18,7 @@ class NewPost extends Component {
     comment: ''
   }
 
-  handleEnter = (e) => {
-    e.preventDefault();
-
+  handleEnter = () => {
     const {
       file,
       filename,
@@ -44,8 +46,6 @@ class NewPost extends Component {
   }
 
   handleFileInput = (e) => {
-    e.preventDefault();
-
     let reader = new FileReader();
     let file = e.target.files[0];
 
@@ -97,7 +97,7 @@ class NewPost extends Component {
               <input
                 type="file"
                 accept="image/*"
-                onChange={(e) => this.handleFileInput(e)}
+                onChange={prevent(this.handleFileInput)}
               />
               <span className={ cn(
                 "input new-post__input new-post__input_filename", {
@@ -118,12 +118,13 @@ class NewPost extends Component {
             </div>
           </div>
           <div className="input-box new-post__input-box">
-            <input
+            <textarea
               className={ cn(
                 "input new-post__input", {
                 "new-post__input_large": !comment
               } )}
               value={comment}
+              maxLength="200"
               placeholder="Добавьте подпись..."
               onChange={(e) => this.handleTextInput(e.target.value)}
             />
@@ -145,12 +146,24 @@ class NewPost extends Component {
             }
             isActive={false}
             textDisactive="Опубликовать"
-            onClick={this.handleEnter}
+            onClick={prevent(this.handleEnter)}
           />
+          <Link to="/" className="new-post__back-link">
+            <CustomButton
+              className="new-post__back-button"
+              isActive={true}
+              textActive="Назад"
+            />
+          </Link>
         </form>
       </div>
     );
   }
 }
 
-export default NewPost;
+export default connect(
+  null,
+  {
+    newPost
+  }
+)(NewPost);

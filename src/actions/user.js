@@ -8,7 +8,11 @@ export const fetchUser = (userId) => {
         type: 'FETCH_USER',
         user: body.data.user
       })
-    });
+    })
+    .catch((error) => {
+      console.log(error);
+      alert(error);
+    })
   }
 };
 
@@ -34,6 +38,28 @@ export const toggleLike = (postId, isLiked) => {
   }
 };
 
+export const toggleSave = (postId, isSaved) => {
+  return (dispatch, getState) => {
+    const {
+      currentUser: {
+        user: currentUser
+      }
+    } = getState();
+
+    if (!currentUser) {
+      alert('Авторизуйтесь!');
+      return;
+    }
+
+    dispatch({
+      type: 'TOGGLE_SAVE',
+      postId,
+      currentUserId: currentUser.nickname,
+      isSaved
+    })
+  }
+};
+
 export const addComment = (postId, comment) => {
   return (dispatch, getState) => {
     const {
@@ -54,6 +80,16 @@ export const addComment = (postId, comment) => {
       postId,
       currentUserId: currentUser.nickname,
       comment
+    })
+  }
+};
+
+export const deleteComment = (postId, commentId) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'DELETE_COMMENT',
+      postId,
+      commentId
     })
   }
 };

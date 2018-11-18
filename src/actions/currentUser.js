@@ -9,7 +9,11 @@ export const login = (nickname, password) => {
         token: body.data.token,
         user: body.data.user
       })
-    });
+    })
+    .catch((error) => {
+      console.log(error);
+      alert(error);
+    })
   }
 };
 
@@ -23,8 +27,13 @@ export const registration = (nickname, name, password) => {
     .then((body) => {
       dispatch({
         type: 'REGISTRATION',
-        user: body.data.user
+        user: body.data.user,
+        token: body.data.token
       })
+    })
+    .catch((error) => {
+      console.log(error);
+      alert(error);
     })
   }
 };
@@ -33,7 +42,8 @@ export const toggleFollow = (userId, isFollow) => {
   return (dispatch, getState) => {
     const {
       currentUser: {
-        user: currentUser
+        user: currentUser,
+        token
       }
     } = getState();
 
@@ -43,11 +53,23 @@ export const toggleFollow = (userId, isFollow) => {
     }
 
     if (isFollow === false || window.confirm("Отписаться?")) {
+      const promise = isFollow ?
+        api.unfollow({userId, token}) :
+        api.follow({userId, token});
+
+      promise
+        .catch((error) => (
+          dispatch({
+            type: 'TOGGLE_FOLLOW',
+            userId,
+            isFollow: !isFollow
+          })
+        ));
+
       dispatch({
         type: 'TOGGLE_FOLLOW',
-        updatedFollowing: isFollow ?
-          currentUser.following.filter((user) => user !== userId) :
-          currentUser.following.concat(userId)
+        userId,
+        isFollow
       });
     }
   }
@@ -60,4 +82,27 @@ export const newPost = (file, text) => {
     file,
     text
   };
+}
+
+export const editInfo = (user) => {
+  return (dispatch, getState) => {
+    const {
+      currentUser: {
+        token
+      }
+    } = getState();
+
+    api.editInfo({user, token})
+    .then((body) => {
+      alert('Изменения сохранены');
+      dispatch({
+        type: 'EDIT_INFO',
+        user: body.data.user
+      })
+    })
+    .catch((error) => {
+      console.log(error);
+      alert(error);
+    })
+  }
 }

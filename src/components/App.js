@@ -7,6 +7,7 @@ import IndexPage from './IndexPage.js';
 import Login from './login';
 import Registration from './registration';
 import NewPost from './newPost';
+import EditInfo from './editInfo';
 import ProfileContainer from './ProfileContainer.js';
 
 import './App.scss';
@@ -19,10 +20,11 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <Route exact path='/' render={() => <IndexPage Component={Login} />} />
           <Route path='/user/:nickname' component={ProfileContainer} />
-          <Route path='/login' render={() => <IndexPage Component={Login} />} />
           <Route path='/registration' render={() => <IndexPage Component={Registration} />} />
-          <Route path='/newpost' render={() => <IndexPage Component={NewPost} />} />
+          <Route path='/newpost' render={() => <IndexPage Component={NewPost} preventRedirect />} />
+          <Route path='/editinfo' render={() => <IndexPage Component={EditInfo} preventRedirect />} />
         </div>
       </Router>
       );

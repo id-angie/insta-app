@@ -32,6 +32,32 @@ const user = (state = { user: null }, action) => {
         }
       };
 
+    case 'TOGGLE_SAVE':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          feed: {
+            ...state.user.feed,
+            posts: state.user.feed.posts.map((post) => {
+              if (post.id === action.postId) {
+                return {
+                  ...post,
+                  feedback: {
+                    ...post.feedback,
+                    saves: action.isSaved ?
+                      post.feedback.saves.filter((user) => user !== action.currentUserId) :
+                      post.feedback.saves.concat(action.currentUserId)
+                  }
+                }
+              }
+
+              return post;
+            })
+          }
+        }
+      };
+
     case 'ADD_COMMENT':
       return {
         ...state,
@@ -51,6 +77,31 @@ const user = (state = { user: null }, action) => {
                       text: action.comment,
                       date: new Date(),
                       likes: 0
+                    })
+                  }
+                }
+              }
+              return post;
+            })
+          }
+        }
+      };
+
+    case 'DELETE_COMMENT':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          feed: {
+            ...state.user.feed,
+            posts: state.user.feed.posts.map((post) => {
+              if (post.id === action.postId) {
+                return {
+                  ...post,
+                  feedback: {
+                    ...post.feedback,
+                    comments: post.feedback.comments.filter((comment) => {
+                      return (comment.id !== action.commentId);
                     })
                   }
                 }

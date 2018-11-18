@@ -69,49 +69,6 @@ class Feed extends Component {
     });
   }
 
-  // addComment = (e, input) => {
-  //   e.preventDefault();
-  //   if (!this.checkCurrentUser(this.props.currentUser)) return;
-  //   const newComment = input.value;
-  //   input.value = null;
-  //   if (newComment !== '') {
-  //     this.state.openedPost.feedback.comments.push({
-  //       id: new Date() + ' ' + Math.random(),
-  //       commiter: this.props.currentUser.nickname,
-  //       text: newComment,
-  //       date: new Date(),
-  //       likes: 0
-  //     });
-  //     this.setState({
-  //       openedPost: this.state.openedPost
-  //     });
-  //   }
-  // }
-
-  deleteComment = (e) => {
-    e.preventDefault();
-    const comments = this.state.openedPost.feedback.comments;
-    const targetCommentId = e.target.parentNode.id;
-    const targetComment = comments.find((comment) => {
-      console.log(targetCommentId, comment.id);
-      return comment.id === targetCommentId;
-    });
-    const targetCommentIndex = comments.indexOf(targetComment);
-    comments.splice(targetCommentIndex, 1);
-    this.setState({
-      openedPost: this.state.openedPost
-    });
-  }
-
-  toggleSave = (currentUser) => {
-    if (!this.checkCurrentUser(currentUser)) return;
-    const { openedPost } = this.state;
-    openedPost.isSaved = !openedPost.isSaved;
-    this.setState({
-      openedPost: openedPost
-    });
-  }
-
   checkCurrentUser = (currentUser) => {
     if (!currentUser) {
       alert('Авторизуйтесь!');
@@ -149,9 +106,9 @@ class Feed extends Component {
                   showPrevPost={this.showPrevPost}
                   showNextPost={this.showNextPost}
                   addComment={this.props.addComment}
-                  deleteComment={this.deleteComment}
+                  deleteComment={this.props.deleteComment}
                   toggleLike={this.props.toggleLike}
-                  toggleSave={this.toggleSave}
+                  toggleSave={this.props.toggleSave}
                   isFollow={this.props.isFollow}
                   currentUser={this.props.currentUser}
                 />
