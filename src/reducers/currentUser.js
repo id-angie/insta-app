@@ -3,6 +3,7 @@ const currentUser = (state = { user: null, token: null, forceLogin: false }, act
   switch (action.type) {
     case 'LOGIN':
       return {
+        ...state,
         user: action.user,
         token: action.token
       };
@@ -11,7 +12,11 @@ const currentUser = (state = { user: null, token: null, forceLogin: false }, act
       return { user: null };
 
     case 'REGISTRATION':
-      return { user: action.user };
+      return {
+        ...state,
+        user: action.user,
+        token: action.token
+      };
 
     case 'TOGGLE_FOLLOW':
       return {
@@ -29,6 +34,7 @@ const currentUser = (state = { user: null, token: null, forceLogin: false }, act
 
     case 'EDIT_INFO':
       return {
+        ...state,
         user: action.user
       };
 

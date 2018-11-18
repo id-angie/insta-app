@@ -27,7 +27,8 @@ export const registration = (nickname, name, password) => {
     .then((body) => {
       dispatch({
         type: 'REGISTRATION',
-        user: body.data.user
+        user: body.data.user,
+        token: body.data.token
       })
     })
     .catch((error) => {
@@ -84,8 +85,14 @@ export const newPost = (file, text) => {
 }
 
 export const editInfo = (user) => {
-  return (dispatch) => {
-    api.editInfo(user)
+  return (dispatch, getState) => {
+    const {
+      currentUser: {
+        token
+      }
+    } = getState();
+
+    api.editInfo({user, token})
     .then((body) => {
       alert('Изменения сохранены');
       dispatch({
