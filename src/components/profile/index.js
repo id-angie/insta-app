@@ -125,10 +125,10 @@ class Profile extends Component {
                   <b>{ user.feed.posts.length }</b> публикаций
                 </div>
                 <div className="profile__follows-info-tab">
-                  <b>{ user.accountData.followers }</b> подписчиков
+                  <b>{ user.followers.length }</b> подписчиков
                 </div>
                 <div className="profile__follows-info-tab">
-                  Подписки: <b>{ user.accountData.following }</b>
+                  Подписки: <b>{ user.following.length }</b>
                 </div>
               </div>
             </div>
