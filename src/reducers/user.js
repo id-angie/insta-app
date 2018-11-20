@@ -36,26 +36,23 @@ const user = (state = { user: null }, action) => {
         ...state,
         user: {
           ...state.user,
-          feed: {
-            ...state.user.feed,
-            posts: state.user.feed.posts.map((post) => {
-              if (post.id === action.postId) {
-                return {
-                  ...post,
-                  feedback: {
-                    ...post.feedback,
-                    likes: action.isLiked ?
-                      post.feedback.likes.filter((user) => user !== action.currentUserId) :
-                      post.feedback.likes.concat(action.currentUserId)
-                  }
+          feed: state.user.feed.map((post) => {
+            if (post._id === action.postId) {
+              return {
+                ...post,
+                feedback: {
+                  ...post.feedback,
+                  likes: action.isLiked ?
+                    post.feedback.likes.filter((user) => user !== action.currentUserId) :
+                    post.feedback.likes.concat(action.currentUserId)
                 }
               }
-
-              return post;
-            })
-          }
+            }
+            return post;
+          })
         }
       };
+
 
     case 'TOGGLE_SAVE':
       return {

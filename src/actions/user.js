@@ -73,13 +73,36 @@ export const showCommentsList = (postId, perPage, page) => {
   }
 };
 
+export const toggleLike = (postId, isLiked) => {
+  return (dispatch, getState) => {
+    const {
+      currentUser,
+      token
+    } = checkAuth(dispatch, getState);
+
+    if (!currentUser) return;
+
+    const promise = isLiked ?
+      apiPosts.unlike({postId, token}) :
+      apiPosts.like({postId, token});
+
+
+    promise
+      .catch((error) => (
+        dispatch({
+          type: 'TOGGLE_LIKE',
+          postId,
+          currentUserId: currentUser._id,
+          isLiked: !isLiked
+        })
+      ));
 
     dispatch({
       type: 'TOGGLE_LIKE',
       postId,
-      currentUserId: currentUser.nickname,
-      isLiked
-    })
+      currentUserId: currentUser._id,
+      isLiked: isLiked
+    });
   }
 };
 

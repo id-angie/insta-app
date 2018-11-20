@@ -16,3 +16,31 @@ export const showCommentsList = ({postId, perPage, page}) =>
       else
         throw new Error('Ошибка вывода комментариев');
     })
+
+export const like = ({postId, token}) =>
+  fetch(`${apiEndpoint}/posts/${postId}/like`, {
+    method: 'POST',
+    headers: {
+      "Authorization": token
+    }
+  })
+  .then((res) => {
+    if (res.ok)
+      return res.json();
+    else
+      throw new Error('Ошибка');
+  })
+
+  export const unlike = ({postId, token}) =>
+  fetch(`${apiEndpoint}/posts/${postId}/unlike`, {
+    method: 'POST',
+    headers: {
+      "Authorization": token
+    }
+  })
+  .then((res) => {
+    if (res.ok)
+      return res.json();
+    else
+      throw new Error('Ошибка');
+  })
