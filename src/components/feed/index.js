@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { MoonLoader } from 'react-spinners';
 
 import FeedState from './FeedState.js'
 import Post from './post'
@@ -99,32 +100,38 @@ class Feed extends Component {
               view={this.state.view}
               changeTab={this.changeTab}
             />
-             {
-              (!this.props.user.feed || this.props.user.feed.length === 0) ?
-              <div className="empty-handler">
-                <div className="empty-handler__img" />
-                <h1 className="empty-handler__text">Публикаций пока нет</h1>
-              </div> :
-              this.props.user.feed.map((post) =>
-                <Post
-                  post={post}
-                  user={this.props.user}
-                  toggleFollow={this.props.toggleFollow}
-                  key={post._id}
-                  openedPostId={this.state.openedPost && this.state.openedPost._id}
-                  showFullPost={this.showFullPost}
-                  showPreview={this.showPreview}
-                  showPrevPost={this.showPrevPost}
-                  showNextPost={this.showNextPost}
-                  addComment={this.props.addComment}
-                  deleteComment={this.props.deleteComment}
-                  toggleLike={this.props.toggleLike}
-                  toggleSave={this.props.toggleSave}
-                  isFollow={this.props.isFollow}
-                  currentUser={this.props.currentUser}
-                />
-              )
-             }
+            {
+              (this.state.isFetching) ?
+                <div className="react-spinner">
+                  <MoonLoader
+                    loading={this.state.isFetching}
+                  />
+                </div> :
+                (!this.props.user.feed || this.props.user.feed.length === 0) ?
+                <div className="empty-handler">
+                  <div className="empty-handler__img" />
+                  <h1 className="empty-handler__text">Публикаций пока нет</h1>
+                </div> :
+                this.props.user.feed.map((post) =>
+                  <Post
+                    postId={post._id}
+                    user={this.props.user}
+                    toggleFollow={this.props.toggleFollow}
+                    key={post._id}
+                    openedPostId={this.state.openedPost && this.state.openedPost._id}
+                    showFullPost={this.showFullPost}
+                    showPreview={this.showPreview}
+                    showPrevPost={this.showPrevPost}
+                    showNextPost={this.showNextPost}
+                    addComment={this.props.addComment}
+                    deleteComment={this.props.deleteComment}
+                    toggleLike={this.props.toggleLike}
+                    toggleSave={this.props.toggleSave}
+                    isFollow={this.props.isFollow}
+                    currentUser={this.props.currentUser}
+                  />
+                )
+              }
           </div>
         </div>
       </div>
