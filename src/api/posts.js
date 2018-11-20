@@ -44,3 +44,31 @@ export const like = ({postId, token}) =>
     else
       throw new Error('Ошибка');
   })
+
+  export const save = ({postId, token}) =>
+  fetch(`${apiEndpoint}/posts/${postId}/save`, {
+    method: 'POST',
+    headers: {
+      "Authorization": token
+    }
+  })
+  .then((res) => {
+    if (res.ok)
+      return res.json();
+    else
+      throw new Error('Ошибка');
+  })
+
+  export const unsave = ({postId, token}) =>
+  fetch(`${apiEndpoint}/posts/${postId}/unsave`, {
+    method: 'POST',
+    headers: {
+      "Authorization": token
+    }
+  })
+  .then((res) => {
+    if (res.ok)
+      return res.json();
+    else
+      throw new Error('Ошибка');
+  })

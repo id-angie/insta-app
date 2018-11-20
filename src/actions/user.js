@@ -109,22 +109,33 @@ export const toggleLike = (postId, isLiked) => {
 export const toggleSave = (postId, isSaved) => {
   return (dispatch, getState) => {
     const {
-      currentUser: {
-        user: currentUser
-      }
-    } = getState();
+      currentUser,
+      token
+    } = checkAuth(dispatch, getState);
 
-    if (!currentUser) {
-      alert('Авторизуйтесь!');
-      return;
-    }
+    if (!currentUser) return;
+
+    const promise = isSaved ?
+      apiPosts.unsave({postId, token}) :
+      apiPosts.save({postId, token});
+
+
+    promise
+      .catch((error) => (
+        dispatch({
+          type: 'TOGGLE_SAVE',
+          postId,
+          currentUserId: currentUser._id,
+          isSaved: !isSaved
+        })
+      ));
 
     dispatch({
       type: 'TOGGLE_SAVE',
       postId,
-      currentUserId: currentUser.nickname,
-      isSaved
-    })
+      currentUserId: currentUser._id,
+      isSaved: isSaved
+    });
   }
 };
 
