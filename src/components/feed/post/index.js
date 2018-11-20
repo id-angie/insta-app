@@ -28,8 +28,7 @@ const Post = (props) => {
             <span>{post.feedback.likes.length}</span>
             <div className="post__feedback post__feedback_comments">
             </div>
-            { /*<span>{post.feedback.comments.length}</span> */}
-            <span>0</span>
+            <span>{post.feedback.comments}</span>
           </div>
         </div>
       </div>
@@ -54,4 +53,8 @@ const Post = (props) => {
   );
 }
 
-export default Post;
+export default connect(
+  (state, props) =>({
+    post: state.user.user.feed.find((post) => post._id === props.postId)
+  })
+)(Post);

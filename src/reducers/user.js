@@ -97,6 +97,10 @@ const user = (state = { user: null }, action) => {
             if (post._id === action.postId) {
               return {
                 ...post,
+                feedback: {
+                  ...post.feedback,
+                  comments: post.feedback.comments + 1
+                },
                 comments: (post.comments || []).concat(
                   action.comment
                 )
@@ -116,6 +120,10 @@ const user = (state = { user: null }, action) => {
             if (post._id === action.postId) {
               return {
                 ...post,
+                feedback: {
+                  ...post.feedback,
+                  comments: post.feedback.comments -1
+                },
                 comments: post.comments.filter((comment) =>
                   comment._id !== action.commentId
                 )

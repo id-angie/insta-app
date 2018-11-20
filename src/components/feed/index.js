@@ -55,31 +55,31 @@ class Feed extends Component {
     });
   }
 
-  // showPrevPost = (e, id) => {
-  //   const feedContent = this.getFeedContent();
-  //   e.stopPropagation();
-  //   const currentPost = feedContent.find((post) => {
-  //       return id === post._id;
-  //     }
-  //   );
-  //   const currentPostIndex = feedContent.indexOf(currentPost);
-  //   this.setState({
-  //     openedPost: feedContent[currentPostIndex - 1]
-  //   });
-  // }
+  showPrevPost = (e, id) => {
+    const feed = this.props.user.feed;
+    e.stopPropagation();
+    const currentPost = feed.find((post) => (
+      id === post._id
+      )
+    );
+    const currentPostIndex = feed.indexOf(currentPost);
+    this.setState({
+      openedPost: feed[currentPostIndex - 1]
+    });
+  }
 
-  // showNextPost = (e, id) => {
-  //   const feedContent = this.getFeedContent();
-  //   e.stopPropagation();
-  //   const currentPost = feedContent.find((post) => {
-  //       return id === post._id;
-  //     }
-  //   );
-  //   const currentPostIndex = feedContent.indexOf(currentPost);
-  //   this.setState({
-  //     openedPost: feedContent[currentPostIndex+ 1]
-  //   });
-  // }
+  showNextPost = (e, id) => {
+    const feed = this.props.user.feed;
+    e.stopPropagation();
+    const currentPost = feed.find((post) => (
+        id === post._id
+      )
+    );
+    const currentPostIndex = feed.indexOf(currentPost);
+    this.setState({
+      openedPost: feed[currentPostIndex+ 1]
+    });
+  }
 
   checkCurrentUser = (currentUser) => {
     if (!currentUser) {
