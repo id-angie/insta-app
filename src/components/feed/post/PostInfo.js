@@ -136,7 +136,7 @@ class PostInfo extends Component {
             'post-info__add-comment_disabled': !isCommentInput
           })}>
             <form onSubmit={prevent(() => {
-              this.props.addComment(this.props.post.id, this.input.value);
+              this.props.addComment(this.props.post._id, this.input.value);
               this.input.value = null;
             })} >
               <input

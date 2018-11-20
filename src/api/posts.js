@@ -72,3 +72,33 @@ export const like = ({postId, token}) =>
     else
       throw new Error('Ошибка');
   })
+
+  export const addComment = ({postId, text, token}) =>
+  fetch(`${apiEndpoint}/posts/${postId}/comments`, {
+    method: 'POST',
+    body: JSON.stringify({text}),
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": token
+    }
+  })
+  .then((res) => {
+    if (res.ok)
+      return res.json();
+    else
+      throw new Error('Ошибка');
+  })
+
+  export const deleteComment = ({commentId, token}) =>
+  fetch(`${apiEndpoint}/comments/${commentId}`, {
+    method: 'DELETE',
+    headers: {
+      "Authorization": token
+    }
+  })
+  .then((res) => {
+    if (res.ok)
+      return res.json();
+    else
+      throw new Error('Ошибка');
+  })

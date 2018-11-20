@@ -139,36 +139,52 @@ export const toggleSave = (postId, isSaved) => {
   }
 };
 
-export const addComment = (postId, comment) => {
+export const addComment = (postId, text) => {
   return (dispatch, getState) => {
     const {
-      currentUser: {
-        user: currentUser
-      }
-    } = getState();
+      currentUser,
+      token
+    } = checkAuth(dispatch, getState);
 
-    if (!currentUser) {
-      alert('Авторизуйтесь!');
-      return;
-    }
+    if (!currentUser) return;
 
-    if (comment === '') return;
+    if (text === '') return;
 
-    dispatch({
-      type: 'ADD_COMMENT',
-      postId,
-      currentUserId: currentUser.nickname,
-      comment
-    })
+    return apiPosts.addComment({postId, text, token})
+      .then((body) =>
+        dispatch({
+          type: 'ADD_COMMENT',
+          postId,
+          comment: body.data.comment
+        })
+      )
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      })
   }
 };
 
 export const deleteComment = (postId, commentId) => {
-  return (dispatch) => {
-    dispatch({
-      type: 'DELETE_COMMENT',
-      postId,
-      commentId
-    })
+  return (dispatch, getState) => {
+    const {
+      currentUser,
+      token
+    } = checkAuth(dispatch, getState);
+
+    if (!currentUser) return;
+
+    return apiPosts.deleteComment({postId, commentId, token})
+      .then((body) =>
+        dispatch({
+          type: 'DELETE_COMMENT',
+          postId,
+          commentId
+        })
+      )
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      })
   }
 };

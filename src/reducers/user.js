@@ -93,27 +93,17 @@ const user = (state = { user: null }, action) => {
         ...state,
         user: {
           ...state.user,
-          feed: {
-            ...state.user.feed,
-            posts: state.user.feed.posts.map((post) => {
-              if (post.id === action.postId) {
-                return {
-                  ...post,
-                  feedback: {
-                    ...post.feedback,
-                    comments: post.feedback.comments.concat({
-                      id: new Date() + ' ' + Math.random(),
-                      commiter: action.currentUserId,
-                      text: action.comment,
-                      date: new Date(),
-                      likes: 0
-                    })
-                  }
-                }
+          feed: state.user.feed.map((post) => {
+            if (post._id === action.postId) {
+              return {
+                ...post,
+                comments: (post.comments || []).concat(
+                  action.comment
+                )
               }
-              return post;
-            })
-          }
+            }
+            return post;
+          })
         }
       };
 
@@ -122,23 +112,17 @@ const user = (state = { user: null }, action) => {
         ...state,
         user: {
           ...state.user,
-          feed: {
-            ...state.user.feed,
-            posts: state.user.feed.posts.map((post) => {
-              if (post.id === action.postId) {
-                return {
-                  ...post,
-                  feedback: {
-                    ...post.feedback,
-                    comments: post.feedback.comments.filter((comment) => {
-                      return (comment.id !== action.commentId);
-                    })
-                  }
-                }
+          feed: state.user.feed.map((post) => {
+            if (post._id === action.postId) {
+              return {
+                ...post,
+                comments: post.comments.filter((comment) =>
+                  comment._id !== action.commentId
+                )
               }
-              return post;
-            })
-          }
+            }
+            return post;
+          })
         }
       };
 
