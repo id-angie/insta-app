@@ -1,6 +1,21 @@
 import * as apiUsers from '../api/users';
 import * as apiPosts from '../api/posts';
 
+const checkAuth = (dispatch, getState) => {
+  const {
+    currentUser: {
+      user: currentUser,
+      token
+    }
+  } = getState();
+
+  if (!currentUser) {
+    alert('Авторизуйтесь!');
+    return false;
+  }
+  return { currentUser, token };
+}
+
 export const fetchUser = (userId) => {
   return (dispatch) => {
     apiUsers.showUser(userId)
@@ -17,18 +32,30 @@ export const fetchUser = (userId) => {
   }
 };
 
-export const toggleLike = (postId, isLiked) => {
+export const showPostsList = (perPage, page) => {
   return (dispatch, getState) => {
     const {
-      currentUser: {
-        user: currentUser
+      user: {
+        user: {
+          _id: userId
+        }
       }
     } = getState();
 
-    if (!currentUser) {
-      alert('Авторизуйтесь!');
-      return;
-    }
+    return apiPosts.showPostsList({userId, perPage, page})
+      .then((body) =>
+        dispatch({
+          type: 'SHOW_POSTS_LIST',
+          feed: body.data
+        })
+      )
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      })
+  }
+};
+
 
     dispatch({
       type: 'TOGGLE_LIKE',

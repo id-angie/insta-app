@@ -6,6 +6,15 @@ const user = (state = { user: null }, action) => {
         user: action.user
       };
 
+    case 'SHOW_POSTS_LIST':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          feed: action.feed
+        }
+      };
+
     case 'TOGGLE_LIKE':
       return {
         ...state,

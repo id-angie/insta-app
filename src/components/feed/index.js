@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import FeedState from './FeedState.js'
 import Post from './post'
 import tabs from '../../tabs.json';
+import { showPostsList } from '../../actions/user.js';
 
 import './index.scss';
 
@@ -12,13 +14,24 @@ class Feed extends Component {
     openedPost: null
   };
 
-  getFeedContent = () => {
-    return (
-      this.state.view === 'posts' ?
-      this.props.user.feed.posts :
-      this.props.user.feed.tagged
-    );
+  // getFeedContent = () => {
+  //   return (
+  //     this.state.view === 'posts' ?
+  //     this.props.user.feed.posts :
+  //     this.props.user.feed.tagged
+  //   );
+  // }
+
+  componentDidMount() {
+    this.props.showPostsList();
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.user._id !== this.props.user._id) {
+      this.props.showPostsList();
+    }
+  }
+
 
   changeTab = (view) => {
     this.setState({
@@ -33,9 +46,8 @@ class Feed extends Component {
   }
 
   showFullPost = (id) => {
-    const feedContent = this.getFeedContent();
-    const openThisPost = feedContent.find((post) => {
-        return id === post.id;
+    const openThisPost = this.props.user.feed.find((post) => {
+        return id === post._id;
       }
     );
     this.setState({
@@ -43,31 +55,31 @@ class Feed extends Component {
     });
   }
 
-  showPrevPost = (e, id) => {
-    const feedContent = this.getFeedContent();
-    e.stopPropagation();
-    const currentPost = feedContent.find((post) => {
-        return id === post.id;
-      }
-    );
-    const currentPostIndex = feedContent.indexOf(currentPost);
-    this.setState({
-      openedPost: feedContent[currentPostIndex - 1]
-    });
-  }
+  // showPrevPost = (e, id) => {
+  //   const feedContent = this.getFeedContent();
+  //   e.stopPropagation();
+  //   const currentPost = feedContent.find((post) => {
+  //       return id === post._id;
+  //     }
+  //   );
+  //   const currentPostIndex = feedContent.indexOf(currentPost);
+  //   this.setState({
+  //     openedPost: feedContent[currentPostIndex - 1]
+  //   });
+  // }
 
-  showNextPost = (e, id) => {
-    const feedContent = this.getFeedContent();
-    e.stopPropagation();
-    const currentPost = feedContent.find((post) => {
-        return id === post.id;
-      }
-    );
-    const currentPostIndex = feedContent.indexOf(currentPost);
-    this.setState({
-      openedPost: feedContent[currentPostIndex+ 1]
-    });
-  }
+  // showNextPost = (e, id) => {
+  //   const feedContent = this.getFeedContent();
+  //   e.stopPropagation();
+  //   const currentPost = feedContent.find((post) => {
+  //       return id === post._id;
+  //     }
+  //   );
+  //   const currentPostIndex = feedContent.indexOf(currentPost);
+  //   this.setState({
+  //     openedPost: feedContent[currentPostIndex+ 1]
+  //   });
+  // }
 
   checkCurrentUser = (currentUser) => {
     if (!currentUser) {
@@ -78,7 +90,6 @@ class Feed extends Component {
   }
 
   render() {
-    const feedContent = this.getFeedContent();
     return (
       <div className="feed">
         <div className="container">
@@ -88,19 +99,19 @@ class Feed extends Component {
               view={this.state.view}
               changeTab={this.changeTab}
             />
-            {
-              (feedContent.length === 0) ?
+             {
+              (!this.props.user.feed || this.props.user.feed.length === 0) ?
               <div className="empty-handler">
                 <div className="empty-handler__img" />
                 <h1 className="empty-handler__text">Публикаций пока нет</h1>
               </div> :
-              feedContent.map((post) =>
+              this.props.user.feed.map((post) =>
                 <Post
                   post={post}
                   user={this.props.user}
                   toggleFollow={this.props.toggleFollow}
-                  key={post.id}
-                  openedPostId={this.state.openedPost && this.state.openedPost.id}
+                  key={post._id}
+                  openedPostId={this.state.openedPost && this.state.openedPost._id}
                   showFullPost={this.showFullPost}
                   showPreview={this.showPreview}
                   showPrevPost={this.showPrevPost}
@@ -113,7 +124,7 @@ class Feed extends Component {
                   currentUser={this.props.currentUser}
                 />
               )
-            }
+             }
           </div>
         </div>
       </div>
@@ -121,4 +132,11 @@ class Feed extends Component {
   }
 }
 
-export default Feed;
+export default connect(
+  (state) => ({
+    user: state.user.user
+  }),
+  {
+    showPostsList
+  }
+)(Feed);
