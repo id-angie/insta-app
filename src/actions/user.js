@@ -1,8 +1,9 @@
-import * as api from '../api/users';
+import * as apiUsers from '../api/users';
+import * as apiPosts from '../api/posts';
 
 export const fetchUser = (userId) => {
   return (dispatch) => {
-    api.showUser(userId)
+    apiUsers.showUser(userId)
     .then((body) => {
       dispatch({
         type: 'FETCH_USER',

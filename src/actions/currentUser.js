@@ -1,8 +1,9 @@
-import * as api from '../api/users';
+import * as apiUsers from '../api/users';
+import * as apiPosts from '../api/posts';
 
 export const login = (nickname, password) => {
   return (dispatch) => {
-    api.login({nickname, password})
+    apiUsers.login({nickname, password})
     .then((body) => {
       dispatch({
         type: 'LOGIN',
@@ -23,7 +24,7 @@ export const logout = () => ({
 
 export const registration = (nickname, name, password) => {
   return (dispatch) => {
-    api.registration({nickname, name, password})
+    apiUsers.registration({nickname, name, password})
     .then((body) => {
       dispatch({
         type: 'REGISTRATION',
@@ -54,8 +55,8 @@ export const toggleFollow = (userId, isFollow) => {
 
     if (isFollow === false || window.confirm("Отписаться?")) {
       const promise = isFollow ?
-        api.unfollow({userId, token}) :
-        api.follow({userId, token});
+        apiUsers.unfollow({userId, token}) :
+        apiUsers.follow({userId, token});
 
       promise
         .catch((error) => (
@@ -92,7 +93,7 @@ export const editInfo = (user) => {
       }
     } = getState();
 
-    api.editInfo({user, token})
+    apiUsers.editInfo({user, token})
     .then((body) => {
       alert('Изменения сохранены');
       dispatch({
