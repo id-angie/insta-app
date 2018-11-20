@@ -5,39 +5,47 @@ import { MoonLoader } from 'react-spinners';
 import FeedState from './FeedState.js'
 import Post from './post'
 import tabs from '../../tabs.json';
-import { showPostsList } from '../../actions/user.js';
+import { showPostsList, showEmptyList } from '../../actions/user.js';
 
 import './index.scss';
 
 class Feed extends Component {
   state = {
-    view: 'posts',
-    openedPost: null
+    openedPost: null,
+    isFetching: false
   };
 
-  // getFeedContent = () => {
-  //   return (
-  //     this.state.view === 'posts' ?
-  //     this.props.user.feed.posts :
-  //     this.props.user.feed.tagged
-  //   );
-  // }
-
   componentDidMount() {
-    this.props.showPostsList();
+    this.setState({
+      isFetching: true
+    });
+    this.props.showPostsList()
+      .then(() =>
+        this.setState({
+          isFetching: false
+        })
+      );
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.user._id !== this.props.user._id) {
-      this.props.showPostsList();
+      this.setState({
+        isFetching: true
+      });
+      this.props.showPostsList()
+        .then(() =>
+          this.setState({
+            isFetching: false
+          })
+        );
     }
   }
 
-
   changeTab = (view) => {
-    this.setState({
-      view
-    });
+    if (view === 'posts')
+      this.props.showPostsList();
+    else
+      this.props.showEmptyList();
   }
 
   showPreview = () => {
@@ -97,7 +105,7 @@ class Feed extends Component {
           <div className="feed-flow">
             <FeedState
               tabs={tabs}
-              view={this.state.view}
+              view={this.props.view}
               changeTab={this.changeTab}
             />
             {
@@ -140,10 +148,12 @@ class Feed extends Component {
 }
 
 export default connect(
-  (state) => ({
-    user: state.user.user
+  (state, props) => ({
+    user: state.user.user,
+    view: state.user.user.view || props.view
   }),
   {
-    showPostsList
+    showPostsList,
+    showEmptyList
   }
 )(Feed);

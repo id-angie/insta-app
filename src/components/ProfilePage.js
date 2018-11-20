@@ -55,6 +55,7 @@ class ProfilePage extends Component {
               toggleSave={toggleSave}
               addComment={addComment}
               deleteComment={deleteComment}
+              view='posts'
             />
           </> :
           <div className="loading">

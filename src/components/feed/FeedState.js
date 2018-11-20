@@ -5,7 +5,7 @@ import './FeedState.scss';
 
 const FeedState = ({
   tabs = [],
-  view = 'posts',
+  view,
   changeTab,
   ...props
 }) => (
