@@ -80,7 +80,7 @@ class Profile extends Component {
               </div>
               <div className="profile__row">
                 <div>
-                  <b>{ user.feed.posts.length }</b> публикаций
+                  <b>{ user.counters.posts }</b> публикаций
                 </div>
                 <div className="ml40">
                   <b>{ user.followers.length }</b> подписчиков
@@ -129,7 +129,7 @@ class Profile extends Component {
               </div>
               <div className="profile__row profile__follows-info">
                 <div className="profile__follows-info-tab">
-                  <b>{ user.feed.posts.length }</b> публикаций
+                  <b>{ user.counters.posts }</b> публикаций
                 </div>
                 <div className="profile__follows-info-tab">
                   <b>{ user.followers.length }</b> подписчиков
