@@ -108,9 +108,7 @@ export const editInfo = ({user, token}) =>
 export const follow = ({userId, token}) =>
   fetch(`${apiEndpoint}/users/${userId}/follow`, {
     method: 'POST',
-    body: JSON.stringify({userId}),
     headers: {
-      "Content-Type": "application/json; charset=utf-8",
       "Authorization": token
     }
   })
@@ -124,9 +122,7 @@ export const follow = ({userId, token}) =>
 export const unfollow = ({userId, token}) =>
   fetch(`${apiEndpoint}/users/${userId}/unfollow`, {
     method: 'POST',
-    body: JSON.stringify({userId}),
     headers: {
-      "Content-Type": "application/json; charset=utf-8",
       "Authorization": token
     }
   })

@@ -31,6 +31,18 @@ const user = (state = { user: null }, action) => {
           })
         }
       };
+
+    case 'TOGGLE_FOLLOW':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          followers: action.isFollow ?
+            state.user.followers.filter((user) => user !== action.currentUserId) :
+            state.user.followers.concat(action.currentUserId)
+        }
+      };
+
     case 'TOGGLE_LIKE':
       return {
         ...state,

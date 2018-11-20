@@ -63,6 +63,7 @@ export const toggleFollow = (userId, isFollow) => {
           dispatch({
             type: 'TOGGLE_FOLLOW',
             userId,
+            currentUserId: currentUser._id,
             isFollow: !isFollow
           })
         ));
@@ -70,6 +71,7 @@ export const toggleFollow = (userId, isFollow) => {
       dispatch({
         type: 'TOGGLE_FOLLOW',
         userId,
+        currentUserId: currentUser._id,
         isFollow
       });
     }
