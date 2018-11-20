@@ -41,14 +41,21 @@ class Profile extends Component {
 
   render() {
     const { user, currentUser, isFollow, toggleFollow } = this.props;
+    const apiEndpoint = process.env.REACT_APP_API;
+    const style = (user.avatar !== null) ? {
+      backgroundImage: `url(${apiEndpoint}${user.avatar})`,
+      backgroundSize: "cover"
+    } :
+    {};
     return (
       <div>
         <div className="profile">
           <div className="container">
             <div
-              className={ cn("avatar profile__avatar_fullscreen", user.avatar, {
-                "profile__avatar_default": !user.avatar
+              className={ cn("avatar profile__avatar_fullscreen", {
+                "profile__avatar_default": user.avatar === null
               }) }
+              style={style}
             />
             <div className="profile__info profile__info_fullscreen">
               <div className="profile__row">
@@ -91,8 +98,8 @@ class Profile extends Component {
             <div className="profile__info profile__info_mobile">
               <div className="profile__row profile__head">
                 <div
-                  className={ cn("avatar profile__avatar_mobile", user.avatar, {
-                    "profile__avatar_default": !user.avatar
+                  className={ cn("avatar profile__avatar_mobile", {
+                    "profile__avatar_default": user.avatar === null
                   }) }
                 />
                 <div className="profile__column">

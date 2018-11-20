@@ -89,12 +89,13 @@ export const registration = ({nickname, name, password}) =>
       }
     })
 
-export const editInfo = ({user, token}) =>
-  fetch(`${apiEndpoint}/users/${user._id}`, {
+export const editInfo = ({user, token}) => {
+  const formData = new FormData();
+  Object.keys(user).forEach((item) => {formData.append(item, user[item])});
+  return fetch(`${apiEndpoint}/users`, {
     method: 'PUT',
-    body: JSON.stringify({user}),
+    body: formData,
     headers: {
-      "Content-Type": "application/json; charset=utf-8",
       "Authorization": token
     }
   })
@@ -104,6 +105,7 @@ export const editInfo = ({user, token}) =>
       else
         throw new Error('Ошибка');
     })
+}
 
 export const follow = ({userId, token}) =>
   fetch(`${apiEndpoint}/users/${userId}/follow`, {

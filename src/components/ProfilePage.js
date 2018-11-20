@@ -48,7 +48,6 @@ class ProfilePage extends Component {
           <>
             <Profile user={user} currentUser={currentUser} isFollow={isFollow} toggleFollow={toggleFollow} />
             <Feed
-              user={user}
               currentUser={currentUser}
               isFollow={isFollow}
               toggleFollow={toggleFollow}
