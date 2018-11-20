@@ -56,6 +56,23 @@ export const showPostsList = (perPage, page) => {
   }
 };
 
+export const showCommentsList = (postId, perPage, page) => {
+  return (dispatch) => {
+    return apiPosts.showCommentsList({postId, perPage, page})
+      .then((body) =>
+        dispatch({
+          type: 'SHOW_COMMENTS_LIST',
+          postId: postId,
+          comments: body.data
+        })
+      )
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      })
+  }
+};
+
 
     dispatch({
       type: 'TOGGLE_LIKE',

@@ -15,6 +15,22 @@ const user = (state = { user: null }, action) => {
         }
       };
 
+    case 'SHOW_COMMENTS_LIST':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          feed: state.user.feed.map((post) => {
+            if (post._id === action.postId) {
+              return {
+                ...post,
+                comments: action.comments
+              }
+            }
+            return post;
+          })
+        }
+      };
     case 'TOGGLE_LIKE':
       return {
         ...state,
