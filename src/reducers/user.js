@@ -3,7 +3,10 @@ const user = (state = { user: null }, action) => {
     case 'FETCH_USER':
       return {
         ...state,
-        user: action.user
+        user: {
+          ...(state.user) || {},
+          ...action.user
+        }
       };
 
     case 'SHOW_POSTS_LIST':
@@ -11,7 +14,18 @@ const user = (state = { user: null }, action) => {
         ...state,
         user: {
           ...state.user,
-          feed: action.feed
+          view: 'posts',
+          feed: action.feed,
+        }
+      };
+
+    case 'SHOW_EMPTY_LIST':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          view: 'tagged',
+          feed: []
         }
       };
 

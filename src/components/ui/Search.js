@@ -34,12 +34,16 @@ class Search extends Component {
 
   componentDidMount() {
     apiUsers.showUsersList({perPage: 15, page: 1})
-      .then((users) => {
-        const options = users.data.map((user) =>
+      .then((body) => {
+        const options = body.data.data.map((user) =>
             ({value: user.nickname, label: user.nickname})
           );
         this.setState({options});
-      });
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('Ошибка вывода списка пользователей');
+      })
   }
 
   render() {

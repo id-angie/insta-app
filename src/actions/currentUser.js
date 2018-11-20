@@ -7,13 +7,13 @@ export const login = (nickname, password) => {
     .then((body) => {
       dispatch({
         type: 'LOGIN',
-        token: body.data.token,
-        user: body.data.user
+        token: body.data.data.token,
+        user: body.data.data.user
       })
     })
     .catch((error) => {
       console.log(error);
-      alert(error);
+      alert('Неверное имя пользователя или пароль');
     })
   }
 };
@@ -28,14 +28,54 @@ export const registration = (nickname, name, password) => {
     .then((body) => {
       dispatch({
         type: 'REGISTRATION',
-        user: body.data.user,
-        token: body.data.token
+        user: body.data.data.user,
+        token: body.data.data.token
       })
     })
-    .catch((error) => {
-      console.log(error);
-      alert(error);
-    })
+          .catch((err) => {
+            const error = err.response.data.data
+            console.log(error);
+            switch (error.name) {
+              case 'DatabaseError':
+                let errorName = error.errors.key;
+                alert(`Имя ${errorName} уже занято`);
+                break;
+
+              case 'ValidationError':
+                let errorInput;
+                let errorType;
+
+                if (error.errors.nickname) {
+                  errorInput = 'Логин';
+                  if (error.errors.nickname[0] === "The nickname must be at least 2 characters.")
+                    errorType = 'менее 2';
+                  else
+                    errorType = 'более 200';
+                }
+
+                if (error.errors.name) {
+                  errorInput = 'Имя';
+                  if (error.errors.name[0] === "The name must be at least 3 characters.")
+                    errorType = 'менее 3';
+                  else
+                    errorType = 'более 200';
+                }
+
+                if (error.errors.password) {
+                  errorInput = 'Пароль';
+                  if (error.errors.password[0] === "The password must be at least 2 characters.")
+                    errorType = 'менее 2';
+                  else
+                    errorType = 'более 200';
+                }
+
+                alert(`Длина поля "${errorInput}" должна быть не ${errorType} символов`);
+                break;
+
+              default:
+                alert('Ошибка');
+            }
+          })
   }
 };
 
@@ -91,8 +131,8 @@ export const newPost = (file, text) => {
       alert('Добавлено!');
       dispatch({
         type: 'NEW_POST',
-        file: body.data.file,
-        text: body.data.text
+        file: body.data.data.file,
+        text: body.data.data.text
       })
     })
     .catch((error) => {
@@ -115,7 +155,7 @@ export const editInfo = (user) => {
       alert('Изменения сохранены');
       dispatch({
         type: 'EDIT_INFO',
-        user: body.data.user
+        user: body.data.data.user
       })
     })
     .catch((error) => {

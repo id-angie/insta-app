@@ -22,12 +22,12 @@ export const fetchUser = (userId) => {
     .then((body) => {
       dispatch({
         type: 'FETCH_USER',
-        user: body.data.user
+        user: body.data.data.user
       })
     })
     .catch((error) => {
       console.log(error);
-      alert(error);
+      alert('Пользователь не найден');
     })
   }
 };
@@ -46,15 +46,19 @@ export const showPostsList = (perPage, page) => {
       .then((body) =>
         dispatch({
           type: 'SHOW_POSTS_LIST',
-          feed: body.data
+          feed: body.data.data
         })
       )
       .catch((error) => {
         console.log(error);
         alert(error);
-      })
+    })
   }
 };
+
+export const showEmptyList = () => ({
+  type: 'SHOW_EMPTY_LIST'
+});
 
 export const showCommentsList = (postId, perPage, page) => {
   return (dispatch) => {
@@ -63,7 +67,7 @@ export const showCommentsList = (postId, perPage, page) => {
         dispatch({
           type: 'SHOW_COMMENTS_LIST',
           postId: postId,
-          comments: body.data
+          comments: body.data.data
         })
       )
       .catch((error) => {
@@ -155,7 +159,7 @@ export const addComment = (postId, text) => {
         dispatch({
           type: 'ADD_COMMENT',
           postId,
-          comment: body.data.comment
+          comment: body.data.data.comment
         })
       )
       .catch((error) => {

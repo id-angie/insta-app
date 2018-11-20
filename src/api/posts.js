@@ -1,124 +1,62 @@
+import axios from 'axios';
+
 const apiEndpoint = process.env.REACT_APP_API;
 
 export const newPost = ({file, text, token}) => {
   const formData = new FormData();
   formData.append('file', file);
   formData.append('text', text);
-  return fetch(`${apiEndpoint}/posts`, {
-    method: 'POST',
-    body: formData,
+  return axios.post(`${apiEndpoint}/posts`, formData, {
     headers: {
       "Authorization": token
     }
   })
-  .then((res) => {
-    if (res.ok)
-      return res.json();
-    else
-      throw new Error('Ошибка загрузки');
-  });
 }
 
 export const showPostsList = ({userId, perPage, page}) =>
-  fetch(`${apiEndpoint}/users/${userId}/posts?perPage=${perPage}&page=${page}`)
-    .then((res) => {
-      if (res.ok)
-        return res.json();
-      else
-        throw new Error('Ошибка вывода постов');
-    })
+  axios.get(`${apiEndpoint}/users/${userId}/posts?perPage=${perPage}&page=${page}`)
 
 export const showCommentsList = ({postId, perPage, page}) =>
-  fetch(`${apiEndpoint}/posts/${postId}/comments?perPage=${perPage}&page=${page}`)
-    .then((res) => {
-      if (res.ok)
-        return res.json();
-      else
-        throw new Error('Ошибка вывода комментариев');
-    })
+  axios.get(`${apiEndpoint}/posts/${postId}/comments?perPage=${perPage}&page=${page}`)
 
 export const like = ({postId, token}) =>
-  fetch(`${apiEndpoint}/posts/${postId}/like`, {
-    method: 'POST',
+  axios.post(`${apiEndpoint}/posts/${postId}/like`, null, {
     headers: {
       "Authorization": token
     }
-  })
-  .then((res) => {
-    if (res.ok)
-      return res.json();
-    else
-      throw new Error('Ошибка');
   })
 
   export const unlike = ({postId, token}) =>
-  fetch(`${apiEndpoint}/posts/${postId}/unlike`, {
-    method: 'POST',
+  axios.post(`${apiEndpoint}/posts/${postId}/unlike`, null, {
     headers: {
       "Authorization": token
     }
-  })
-  .then((res) => {
-    if (res.ok)
-      return res.json();
-    else
-      throw new Error('Ошибка');
   })
 
   export const save = ({postId, token}) =>
-  fetch(`${apiEndpoint}/posts/${postId}/save`, {
-    method: 'POST',
+  axios.post(`${apiEndpoint}/posts/${postId}/save`, null, {
     headers: {
       "Authorization": token
     }
-  })
-  .then((res) => {
-    if (res.ok)
-      return res.json();
-    else
-      throw new Error('Ошибка');
   })
 
   export const unsave = ({postId, token}) =>
-  fetch(`${apiEndpoint}/posts/${postId}/unsave`, {
-    method: 'POST',
+  axios.post(`${apiEndpoint}/posts/${postId}/unsave`, null, {
     headers: {
       "Authorization": token
     }
-  })
-  .then((res) => {
-    if (res.ok)
-      return res.json();
-    else
-      throw new Error('Ошибка');
   })
 
   export const addComment = ({postId, text, token}) =>
-  fetch(`${apiEndpoint}/posts/${postId}/comments`, {
-    method: 'POST',
-    body: JSON.stringify({text}),
+  axios.post(`${apiEndpoint}/posts/${postId}/comments`, { text }, {
     headers: {
-      "Content-Type": "application/json",
       "Authorization": token
     }
-  })
-  .then((res) => {
-    if (res.ok)
-      return res.json();
-    else
-      throw new Error('Ошибка');
   })
 
   export const deleteComment = ({commentId, token}) =>
-  fetch(`${apiEndpoint}/comments/${commentId}`, {
-    method: 'DELETE',
+  axios.delete(`${apiEndpoint}/comments/${commentId}`, {
     headers: {
       "Authorization": token
     }
-  })
-  .then((res) => {
-    if (res.ok)
-      return res.json();
-    else
-      throw new Error('Ошибка');
   })
