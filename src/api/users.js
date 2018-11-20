@@ -5,7 +5,7 @@ export const login = ({nickname, password}) =>
     method: 'POST',
     body: JSON.stringify({nickname, password}),
     headers: {
-      "Content-Type": "application/json; charset=utf-8"
+      "Content-Type": "application/json"
     }
   })
     .then((res) => {
@@ -38,7 +38,7 @@ export const registration = ({nickname, name, password}) =>
     method: 'POST',
     body: JSON.stringify({nickname, name, password}),
     headers: {
-      "Content-Type": "application/json; charset=utf-8"
+      "Content-Type": "application/json"
     }
   })
     .then((res) => {
