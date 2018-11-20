@@ -1,4 +1,24 @@
 const apiEndpoint = process.env.REACT_APP_API;
+
+export const newPost = ({file, text, token}) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('text', text);
+  return fetch(`${apiEndpoint}/posts`, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      "Authorization": token
+    }
+  })
+  .then((res) => {
+    if (res.ok)
+      return res.json();
+    else
+      throw new Error('Ошибка загрузки');
+  });
+}
+
 export const showPostsList = ({userId, perPage, page}) =>
   fetch(`${apiEndpoint}/users/${userId}/posts?perPage=${perPage}&page=${page}`)
     .then((res) => {

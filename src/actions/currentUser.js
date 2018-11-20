@@ -79,13 +79,28 @@ export const toggleFollow = (userId, isFollow) => {
 };
 
 export const newPost = (file, text) => {
-  alert(`added new post: ${file} with text: '${text}'`);
-  return {
-    type: 'NEW_POST',
-    file,
-    text
-  };
-}
+  return (dispatch, getState) => {
+    const {
+      currentUser: {
+        token
+      }
+    } = getState();
+
+    apiPosts.newPost({file, text, token})
+    .then((body) => {
+      alert('Добавлено!');
+      dispatch({
+        type: 'NEW_POST',
+        file: body.data.file,
+        text: body.data.text
+      })
+    })
+    .catch((error) => {
+      console.log(error);
+      alert(error);
+    })
+  }
+};
 
 export const editInfo = (user) => {
   return (dispatch, getState) => {
