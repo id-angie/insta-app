@@ -42,16 +42,16 @@ export const showPostsList = (perPage, page) => {
       }
     } = getState();
 
-    return apiPosts.showPostsList({userId, perPage, page})
-      .then((body) =>
-        dispatch({
-          type: 'SHOW_POSTS_LIST',
-          feed: body.data.data
-        })
-      )
-      .catch((error) => {
-        console.log(error);
-        alert(error);
+  return apiPosts.showPostsList({userId, perPage, page})
+    .then((body) =>
+      dispatch({
+        type: 'SHOW_POSTS_LIST',
+        feed: body.data.data
+      })
+    )
+    .catch((error) => {
+      console.log(error);
+      alert(error);
     })
   }
 };
