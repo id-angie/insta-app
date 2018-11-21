@@ -49,5 +49,10 @@
 
   .feed-flow {
     padding: 0;
+
+    &:last-child:after {
+      content: '';
+      width: 33%;
+  }
   }
 }
