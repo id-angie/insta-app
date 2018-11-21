@@ -48,7 +48,6 @@ class ProfilePage extends Component {
           <>
             <Profile user={user} currentUser={currentUser} isFollow={isFollow} toggleFollow={toggleFollow} />
             <Feed
-              user={user}
               currentUser={currentUser}
               isFollow={isFollow}
               toggleFollow={toggleFollow}
@@ -56,6 +55,7 @@ class ProfilePage extends Component {
               toggleSave={toggleSave}
               addComment={addComment}
               deleteComment={deleteComment}
+              view='posts'
             />
           </> :
           <div className="loading">

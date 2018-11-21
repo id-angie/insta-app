@@ -3,7 +3,7 @@ import cn from 'classnames';
 import Select from 'react-select';
 import { withRouter } from 'react-router';
 
-import * as api from '../../api/users';
+import * as apiUsers from '../../api/users';
 
 import './Search.scss';
 
@@ -33,13 +33,17 @@ class Search extends Component {
   }
 
   componentDidMount() {
-    api.showUsersList({perPage: 15, page: 1})
-      .then((users) => {
-        const options = users.data.map((user) =>
+    apiUsers.showUsersList({perPage: 15, page: 1})
+      .then((body) => {
+        const options = body.data.data.map((user) =>
             ({value: user.nickname, label: user.nickname})
           );
         this.setState({options});
-      });
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('Ошибка вывода списка пользователей');
+      })
   }
 
   render() {

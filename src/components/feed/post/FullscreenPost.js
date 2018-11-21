@@ -33,7 +33,7 @@ class FullscreenPost extends Component {
           <div
             className=
               "fullscreen-post__navigation fullscreen-post__navigation_previous"
-            onClick={(e) => this.props.showPrevPost(e, this.props.post.id)}
+            onClick={(e) => this.props.showPrevPost(e, this.props.post._id)}
           />
           <div
             className="fullscreen-post"
@@ -50,7 +50,7 @@ class FullscreenPost extends Component {
             </div>
             <PostInfo
               user={this.props.user}
-              post={this.props.post}
+              postId={this.props.post._id}
               toggleFollow={this.props.toggleFollow}
               img={this.props.img}
               addComment={this.props.addComment}
@@ -63,7 +63,7 @@ class FullscreenPost extends Component {
           </div>
           <div
             className="fullscreen-post__navigation fullscreen-post__navigation_next"
-            onClick={(e) => this.props.showNextPost(e, this.props.post.id)}
+            onClick={(e) => this.props.showNextPost(e, this.props.post._id)}
           />
           <button
             className="fullscreen-post__navigation fullscreen-post__navigation_close"

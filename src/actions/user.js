@@ -1,14 +1,54 @@
-import * as api from '../api/users';
+import * as apiUsers from '../api/users';
+import * as apiPosts from '../api/posts';
+
+const checkAuth = (dispatch, getState) => {
+  const {
+    currentUser: {
+      user: currentUser,
+      token
+    }
+  } = getState();
+
+  if (!currentUser) {
+    alert('Авторизуйтесь!');
+    return false;
+  }
+  return { currentUser, token };
+}
 
 export const fetchUser = (userId) => {
   return (dispatch) => {
-    api.showUser(userId)
+    apiUsers.showUser(userId)
     .then((body) => {
       dispatch({
         type: 'FETCH_USER',
-        user: body.data.user
+        user: body.data.data.user
       })
     })
+    .catch((error) => {
+      console.log(error);
+      alert('Пользователь не найден');
+    })
+  }
+};
+
+export const showPostsList = (perPage, page) => {
+  return (dispatch, getState) => {
+    const {
+      user: {
+        user: {
+          _id: userId
+        }
+      }
+    } = getState();
+
+  return apiPosts.showPostsList({userId, perPage, page})
+    .then((body) =>
+      dispatch({
+        type: 'SHOW_POSTS_LIST',
+        feed: body.data.data
+      })
+    )
     .catch((error) => {
       console.log(error);
       alert(error);
@@ -16,80 +56,139 @@ export const fetchUser = (userId) => {
   }
 };
 
+export const showEmptyList = () => ({
+  type: 'SHOW_EMPTY_LIST'
+});
+
+export const showCommentsList = (postId, perPage, page) => {
+  return (dispatch) => {
+    return apiPosts.showCommentsList({postId, perPage, page})
+      .then((body) =>
+        dispatch({
+          type: 'SHOW_COMMENTS_LIST',
+          postId: postId,
+          comments: body.data.data
+        })
+      )
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      })
+  }
+};
+
 export const toggleLike = (postId, isLiked) => {
   return (dispatch, getState) => {
     const {
-      currentUser: {
-        user: currentUser
-      }
-    } = getState();
+      currentUser,
+      token
+    } = checkAuth(dispatch, getState);
 
-    if (!currentUser) {
-      alert('Авторизуйтесь!');
-      return;
-    }
+    if (!currentUser) return;
+
+    const promise = isLiked ?
+      apiPosts.unlike({postId, token}) :
+      apiPosts.like({postId, token});
+
+
+    promise
+      .catch((error) => (
+        dispatch({
+          type: 'TOGGLE_LIKE',
+          postId,
+          currentUserId: currentUser._id,
+          isLiked: !isLiked
+        })
+      ));
 
     dispatch({
       type: 'TOGGLE_LIKE',
       postId,
-      currentUserId: currentUser.nickname,
-      isLiked
-    })
+      currentUserId: currentUser._id,
+      isLiked: isLiked
+    });
   }
 };
 
 export const toggleSave = (postId, isSaved) => {
   return (dispatch, getState) => {
     const {
-      currentUser: {
-        user: currentUser
-      }
-    } = getState();
+      currentUser,
+      token
+    } = checkAuth(dispatch, getState);
 
-    if (!currentUser) {
-      alert('Авторизуйтесь!');
-      return;
-    }
+    if (!currentUser) return;
+
+    const promise = isSaved ?
+      apiPosts.unsave({postId, token}) :
+      apiPosts.save({postId, token});
+
+
+    promise
+      .catch((error) => (
+        dispatch({
+          type: 'TOGGLE_SAVE',
+          postId,
+          currentUserId: currentUser._id,
+          isSaved: !isSaved
+        })
+      ));
 
     dispatch({
       type: 'TOGGLE_SAVE',
       postId,
-      currentUserId: currentUser.nickname,
-      isSaved
-    })
+      currentUserId: currentUser._id,
+      isSaved: isSaved
+    });
   }
 };
 
-export const addComment = (postId, comment) => {
+export const addComment = (postId, text) => {
   return (dispatch, getState) => {
     const {
-      currentUser: {
-        user: currentUser
-      }
-    } = getState();
+      currentUser,
+      token
+    } = checkAuth(dispatch, getState);
 
-    if (!currentUser) {
-      alert('Авторизуйтесь!');
-      return;
-    }
+    if (!currentUser) return;
 
-    if (comment === '') return;
+    if (text === '') return;
 
-    dispatch({
-      type: 'ADD_COMMENT',
-      postId,
-      currentUserId: currentUser.nickname,
-      comment
-    })
+    return apiPosts.addComment({postId, text, token})
+      .then((body) =>
+        dispatch({
+          type: 'ADD_COMMENT',
+          postId,
+          comment: body.data.data.comment
+        })
+      )
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      })
   }
 };
 
 export const deleteComment = (postId, commentId) => {
-  return (dispatch) => {
-    dispatch({
-      type: 'DELETE_COMMENT',
-      postId,
-      commentId
-    })
+  return (dispatch, getState) => {
+    const {
+      currentUser,
+      token
+    } = checkAuth(dispatch, getState);
+
+    if (!currentUser) return;
+
+    return apiPosts.deleteComment({postId, commentId, token})
+      .then((body) =>
+        dispatch({
+          type: 'DELETE_COMMENT',
+          postId,
+          commentId
+        })
+      )
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      })
   }
 };

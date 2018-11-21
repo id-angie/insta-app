@@ -10,13 +10,16 @@ import prevent from '../../utils/prevent.js';
 
 import './index.scss';
 
+
+const apiEndpoint = process.env.REACT_APP_API;
+
 class EditInfo extends Component {
 
   state = {
     nickname: '',
     name: '',
     about: '',
-    avatar: '',
+    avatar: null,
     preview: '',
     password: ''
   };
@@ -26,10 +29,14 @@ class EditInfo extends Component {
     if (this.props.currentUser === null)
       return;
 
+    const prevPreview = `${apiEndpoint}${this.props.currentUser.avatar}`;
+
     this.setState({
       nickname: this.props.currentUser.nickname,
       name: this.props.currentUser.name,
-      about: this.props.currentUser.about || ''
+      about: this.props.currentUser.about || '',
+      avatar: this.props.currentUser.avatar,
+      preview: prevPreview
     });
   }
 
@@ -38,6 +45,7 @@ class EditInfo extends Component {
       nickname,
       name,
       about,
+      avatar,
       password
     } = this.state;
 
@@ -47,7 +55,8 @@ class EditInfo extends Component {
       _id: userId,
       nickname,
       name,
-      about
+      about,
+      avatar
     };
 
     if (password !== '') user.password = password;
@@ -57,7 +66,7 @@ class EditInfo extends Component {
 
   clearAvatar = () => {
     this.setState({
-      avatar: '',
+      avatar: null,
       preview: ''
     });
   }
@@ -116,7 +125,7 @@ class EditInfo extends Component {
       password
     } = this.state;
 
-    const style = avatar ? {
+    const style = (avatar !== null) ? {
       backgroundImage: `url(${preview})`,
       backgroundSize: "cover"
     } :
@@ -126,7 +135,7 @@ class EditInfo extends Component {
       <div className="edit-info-container">
         <form className="edit-info">
           <div className={ cn(
-            "edit-info__preview", {"edit-info__preview_default": !avatar}
+            "edit-info__preview", {"edit-info__preview_default": avatar === null}
           )} style={style}
           >
             <label className="edit-info__avatar-input">
@@ -205,6 +214,7 @@ class EditInfo extends Component {
                 "input edit-info__input",
                 {"edit-info__input_typing": password}
               )}
+              type="password"
               value={password}
               onChange={(e) => this.handlePasswordInput(e.target.value)}
             />

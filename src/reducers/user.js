@@ -3,7 +3,58 @@ const user = (state = { user: null }, action) => {
     case 'FETCH_USER':
       return {
         ...state,
-        user: action.user
+        user: {
+          ...(state.user) || {},
+          ...action.user
+        }
+      };
+
+    case 'SHOW_POSTS_LIST':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          view: 'posts',
+          feed: action.feed,
+        }
+      };
+
+    case 'SHOW_EMPTY_LIST':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          view: 'tagged',
+          feed: []
+        }
+      };
+
+    case 'SHOW_COMMENTS_LIST':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          feed: state.user.feed.map((post) => {
+            if (post._id === action.postId) {
+              return {
+                ...post,
+                comments: action.comments
+              }
+            }
+            return post;
+          })
+        }
+      };
+
+    case 'TOGGLE_FOLLOW':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          followers: action.isFollow ?
+            state.user.followers.filter((user) => user !== action.currentUserId) :
+            state.user.followers.concat(action.currentUserId)
+        }
       };
 
     case 'TOGGLE_LIKE':
@@ -11,50 +62,43 @@ const user = (state = { user: null }, action) => {
         ...state,
         user: {
           ...state.user,
-          feed: {
-            ...state.user.feed,
-            posts: state.user.feed.posts.map((post) => {
-              if (post.id === action.postId) {
-                return {
-                  ...post,
-                  feedback: {
-                    ...post.feedback,
-                    likes: action.isLiked ?
-                      post.feedback.likes.filter((user) => user !== action.currentUserId) :
-                      post.feedback.likes.concat(action.currentUserId)
-                  }
+          feed: state.user.feed.map((post) => {
+            if (post._id === action.postId) {
+              return {
+                ...post,
+                feedback: {
+                  ...post.feedback,
+                  likes: action.isLiked ?
+                    post.feedback.likes.filter((user) => user !== action.currentUserId) :
+                    post.feedback.likes.concat(action.currentUserId)
                 }
               }
-
-              return post;
-            })
-          }
+            }
+            return post;
+          })
         }
       };
+
 
     case 'TOGGLE_SAVE':
       return {
         ...state,
         user: {
           ...state.user,
-          feed: {
-            ...state.user.feed,
-            posts: state.user.feed.posts.map((post) => {
-              if (post.id === action.postId) {
-                return {
-                  ...post,
-                  feedback: {
-                    ...post.feedback,
-                    saves: action.isSaved ?
-                      post.feedback.saves.filter((user) => user !== action.currentUserId) :
-                      post.feedback.saves.concat(action.currentUserId)
-                  }
+          feed: state.user.feed.map((post) => {
+            if (post._id === action.postId) {
+              return {
+                ...post,
+                feedback: {
+                  ...post.feedback,
+                  saves: action.isSaved ?
+                    post.feedback.saves.filter((user) => user !== action.currentUserId) :
+                    post.feedback.saves.concat(action.currentUserId)
                 }
               }
-
-              return post;
-            })
-          }
+            }
+            return post;
+          })
         }
       };
 
@@ -63,27 +107,21 @@ const user = (state = { user: null }, action) => {
         ...state,
         user: {
           ...state.user,
-          feed: {
-            ...state.user.feed,
-            posts: state.user.feed.posts.map((post) => {
-              if (post.id === action.postId) {
-                return {
-                  ...post,
-                  feedback: {
-                    ...post.feedback,
-                    comments: post.feedback.comments.concat({
-                      id: new Date() + ' ' + Math.random(),
-                      commiter: action.currentUserId,
-                      text: action.comment,
-                      date: new Date(),
-                      likes: 0
-                    })
-                  }
-                }
+          feed: state.user.feed.map((post) => {
+            if (post._id === action.postId) {
+              return {
+                ...post,
+                feedback: {
+                  ...post.feedback,
+                  comments: post.feedback.comments + 1
+                },
+                comments: (post.comments || []).concat(
+                  action.comment
+                )
               }
-              return post;
-            })
-          }
+            }
+            return post;
+          })
         }
       };
 
@@ -92,23 +130,21 @@ const user = (state = { user: null }, action) => {
         ...state,
         user: {
           ...state.user,
-          feed: {
-            ...state.user.feed,
-            posts: state.user.feed.posts.map((post) => {
-              if (post.id === action.postId) {
-                return {
-                  ...post,
-                  feedback: {
-                    ...post.feedback,
-                    comments: post.feedback.comments.filter((comment) => {
-                      return (comment.id !== action.commentId);
-                    })
-                  }
-                }
+          feed: state.user.feed.map((post) => {
+            if (post._id === action.postId) {
+              return {
+                ...post,
+                feedback: {
+                  ...post.feedback,
+                  comments: post.feedback.comments -1
+                },
+                comments: post.comments.filter((comment) =>
+                  comment._id !== action.commentId
+                )
               }
-              return post;
-            })
-          }
+            }
+            return post;
+          })
         }
       };
 

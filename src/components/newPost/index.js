@@ -12,7 +12,7 @@ import './index.scss';
 class NewPost extends Component {
 
   state = {
-    file: '',
+    file: null,
     preview: '',
     filename: '',
     comment: ''
@@ -21,14 +21,15 @@ class NewPost extends Component {
   handleEnter = () => {
     const {
       file,
-      filename,
       comment
     } = this.state;
 
     if (!file)
       return;
 
-    this.props.newPost(filename, comment);
+    this.props.newPost(file, comment);
+    this.clearFile();
+    this.clearComment();
   }
 
   clearFile = () => {

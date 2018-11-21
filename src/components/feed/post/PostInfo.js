@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
 import moment from 'moment';
+import { connect } from 'react-redux';
 
 import CustomButton from '../../ui/CustomButton.js';
 import Feedback from '../../ui/Feedback.js';
 import prevent from '../../../utils/prevent.js';
+import { showCommentsList } from '../../../actions/user.js';
 
 import './PostInfo.scss';
 
@@ -16,6 +18,10 @@ class PostInfo extends Component {
     isCommentInput: false
   };
 
+  componentDidMount() {
+    this.props.showCommentsList(this.props.post._id);
+  }
+
   activateComment = () => {
     this.setState({
       isCommentInput: true
@@ -26,7 +32,7 @@ class PostInfo extends Component {
 
   hasUserRights = (comment, currentUser, user) => {
     if ((currentUser === null) ||
-      ((comment.commiter !== currentUser.nickname) && (currentUser.nickname !== user.nickname))
+      ((comment.commiter.nickname !== currentUser.nickname) && (currentUser.nickname !== user.nickname))
     )
       return false;
     return true;
@@ -38,14 +44,24 @@ class PostInfo extends Component {
     } = this.state;
 
     const { user, currentUser, isFollow, toggleFollow } = this.props;
+    const comments = this.props.post.comments || [];
+
+    const apiEndpoint = process.env.REACT_APP_API;
+    const style = (user.avatar !== null) ? {
+      backgroundImage: `url(${apiEndpoint}${user.avatar})`,
+      backgroundSize: "cover"
+    } :
+    {};
 
     return (
       <div className="post-info">
         <div className='post-info__data-zone'>
           <div className="post-info__header">
-            <div className={ cn("post-info__avatar", user.avatar, {
-              "post-info__avatar_default": !user.avatar
-            })} />
+            <div className={ cn("post-info__avatar", {
+              "post-info__avatar_default": user.avatar === null
+            })}
+              style={style}
+            />
             <div className="post-info__user-name">{user.nickname}</div>
             <div className="post-info__dot">•</div>
             {currentUser && user.nickname === currentUser.nickname ?
@@ -79,21 +95,23 @@ class PostInfo extends Component {
             toggleLike={this.props.toggleLike}
             toggleSave={this.props.toggleSave}
           />
-          <ul className="post-info__comments">
-            {this.props.post.feedback.comments.map((comment) =>
+          {(comments) &&
+            <ul className="post-info__comments">
+            {
+              comments.map((comment) =>
               <li
-                key={comment.id}
+                key={comment._id}
                 className="post-info__comments-li"
-                id={comment.id}
+                id={comment._id}
               >
                 <span>
-                  <b>{comment.commiter}</b> {comment.text}
+                  <b>{comment.commiter.nickname}</b> {comment.text}
                 </span>
                 {(this.hasUserRights(comment, this.props.currentUser, this.props.user)) &&
                 <span
                   className="post-info__comments-delete"
                   onClick={prevent(() =>
-                    this.props.deleteComment(this.props.post.id, comment.id)
+                    this.props.deleteComment(this.props.post._id, comment._id)
                   )}
                 >
                   ×
@@ -102,7 +120,7 @@ class PostInfo extends Component {
               </li>
               )
             }
-          </ul>
+          </ul>}
           <time className="post-info__date post-info__date_mobile">
             { moment(this.props.post.date).format('LL') }
           </time>
@@ -126,7 +144,7 @@ class PostInfo extends Component {
             'post-info__add-comment_disabled': !isCommentInput
           })}>
             <form onSubmit={prevent(() => {
-              this.props.addComment(this.props.post.id, this.input.value);
+              this.props.addComment(this.props.post._id, this.input.value);
               this.input.value = null;
             })} >
               <input
@@ -147,4 +165,11 @@ class PostInfo extends Component {
   }
 }
 
-export default PostInfo;
+export default connect(
+  (state, props) => ({
+    post: state.user.user.feed.find((post) => post._id === props.postId)
+  }),
+  {
+    showCommentsList
+  }
+)(PostInfo);
