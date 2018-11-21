@@ -5,7 +5,8 @@ const user = (state = { user: null }, action) => {
         ...state,
         user: {
           ...(state.user) || {},
-          ...action.user
+          ...action.user,
+          about: action.user.about || ''
         }
       };
 
