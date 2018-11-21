@@ -3,6 +3,10 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+
+  &__react-spinner {
+    margin: 50px;
+  }
 }
 
 .feed-flow {

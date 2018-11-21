@@ -101,6 +101,7 @@ class Profile extends Component {
                   className={ cn("avatar profile__avatar_mobile", {
                     "profile__avatar_default": user.avatar === null
                   }) }
+                  style={style}
                 />
                 <div className="profile__column">
                   <div className="profile__user-name">{ user.nickname }</div>
