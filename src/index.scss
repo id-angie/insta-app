@@ -113,5 +113,9 @@ input {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 50px
+  align-items: center;
+}
+
+.profile-page__react-spinner {
+  height: 100vh;
 }

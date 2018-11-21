@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { MoonLoader } from 'react-spinners';
 
 import Header from './header';
 import Profile from './profile';
@@ -35,8 +36,10 @@ class ProfilePage extends Component {
 
     if (!user) {
       return (
-        <div>
-          User not selected
+        <div className="react-spinner profile-page__react-spinner">
+          <MoonLoader
+            loading={true}
+          />
         </div>
       );
     }

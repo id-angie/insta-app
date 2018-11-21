@@ -110,7 +110,7 @@ class Feed extends Component {
             />
             {
               (this.state.isFetching) ?
-                <div className="react-spinner">
+                <div className="react-spinner feed__react-spinner">
                   <MoonLoader
                     loading={this.state.isFetching}
                   />
