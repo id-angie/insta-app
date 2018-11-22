@@ -78,8 +78,14 @@ class Feedback extends Component {
       post
     } = this.props;
 
-    const isLiked = this.props.post.feedback.likes.some((user) => user === this.props.currentUser._id);
-    const isSaved = this.props.post.feedback.saves.some((user) => user === this.props.currentUser._id);
+    const isLiked = this.props.currentUser ||
+    this.props.post.feedback.likes.some((user) =>
+      user === this.props.currentUser._id
+    );
+    const isSaved = this.props.currentUser ||
+      this.props.post.feedback.saves.some((user) =>
+        user === this.props.currentUser._id
+      );
 
     return (
       <div className={cn( "post-info__feedback", className )} >
