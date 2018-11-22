@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import cn from 'classnames';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import ClickoutComponent from 'react-onclickout';
 
 import CustomButton from '../../ui/CustomButton.js';
 import Feedback from '../../ui/Feedback.js';
 import prevent from '../../../utils/prevent.js';
-import { showCommentsList } from '../../../actions/user.js';
+import { showCommentsList, deletePost } from '../../../actions/user.js';
 
 import './PostInfo.scss';
 
@@ -15,11 +16,25 @@ class PostInfo extends Component {
   input = null;
 
   state = {
-    isCommentInput: false
+    isCommentInput: false,
+    menuIsHidden: true
   };
+
 
   componentDidMount() {
     this.props.showCommentsList(this.props.post._id);
+  }
+
+  toggleDropdown = (hidden) => {
+    this.setState({
+      menuIsHidden: !hidden
+    });
+  }
+
+  hideDropdown = () => {
+    this.setState({
+      menuIsHidden: true
+    });
   }
 
   activateComment = () => {
@@ -155,8 +170,28 @@ class PostInfo extends Component {
               />
               <button type='submit' hidden />
             </form>
-            <div className="post-info__add-comment-actions">
-              <b>...</b>
+            <div className="post-info__menu">
+              <ClickoutComponent onClickOut={this.hideDropdown}>
+                <div className="post-info__add-comment-actions"
+                  onClick={() => this.toggleDropdown(this.state.menuIsHidden)}
+                >
+                  <b>...</b>
+                </div>
+                <div className={cn(
+                  "post-info__dropdown",
+                  {"post-info__dropdown_hidden" : this.state.menuIsHidden}
+                )}>
+                  <a
+                    href='#delete-post'
+                    className="post-info__link post-info__link_delete"
+                    onClick={prevent(() =>
+                      this.props.deletePost(this.props.post._id)
+                    )}
+                  >
+                    Удалить пост
+                  </a>
+                </div>
+              </ClickoutComponent>
             </div>
           </div>
         </div>
@@ -170,6 +205,7 @@ export default connect(
     post: state.user.user.feed.find((post) => post._id === props.postId)
   }),
   {
-    showCommentsList
+    showCommentsList,
+    deletePost
   }
 )(PostInfo);

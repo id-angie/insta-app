@@ -60,3 +60,10 @@ export const like = ({postId, token}) =>
       "Authorization": token
     }
   })
+
+  export const deletePost = ({postId, token}) =>
+  axios.delete(`${apiEndpoint}/posts/${postId}`, {
+    headers: {
+      "Authorization": token
+    }
+  })

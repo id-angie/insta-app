@@ -117,16 +117,51 @@
   }
 
   &__add-comment-actions {
-    width: 15%;
     font-size: 20px;
     color: $text_dark;
     line-height: 26px;
     padding: 0 10px;
     box-sizing: border-box;
+    cursor: pointer;
   }
 
   &__feedback_mobile {
     display: none;
+  }
+
+  &__menu {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 28px;
+    position: relative;
+  }
+
+  &__link {
+
+    &_delete {
+      color: $link_light;
+      font-weight: 400;
+      text-transform: lowercase;
+    }
+  }
+
+  &__dropdown {
+    display: flex;
+    flex-direction: column;
+    line-height: 36px;
+    position: absolute;
+    top: -45px;
+    right: -5px;
+    background-color: #fff;
+    padding: 5px 20px;
+    border: $border_light;
+    min-width: 100px;
+
+    &_hidden {
+      display: none;
+    }
   }
 }
 
