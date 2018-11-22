@@ -149,6 +149,17 @@ const user = (state = { user: null }, action) => {
         }
       };
 
+    case 'DELETE_POST':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          feed: state.user.feed.filter((post) =>
+            (post._id !== action.postId)
+          )
+        }
+      };
+
     default:
       return state;
   }

@@ -192,3 +192,26 @@ export const deleteComment = (postId, commentId) => {
       })
   }
 };
+
+export const deletePost = (postId) => {
+  return (dispatch, getState) => {
+    const {
+      currentUser,
+      token
+    } = checkAuth(dispatch, getState);
+
+    if (!currentUser) return;
+
+    return apiPosts.deletePost({postId, token})
+      .then((body) =>
+        dispatch({
+          type: 'DELETE_POST',
+          postId
+        })
+      )
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      })
+  }
+};
